@@ -13,7 +13,7 @@ This is a project funded by the Erasmus + programme of the European union, calle
 
 - [For Students]({{ '/for-students/' | relative_url }}){: .btn .btn-primary }
 - [For Teachers]({{ '/for-teachers/' | relative_url }}){: .btn .btn-primary }
-- [About the Teaching With AI Project]({{ '/about' | relative_url }}){: .btn }
+- [About the Teaching With AI Project]({{ '/about.html' | relative_url }}){: .btn }
 
 
 <p style="text-align:center;">

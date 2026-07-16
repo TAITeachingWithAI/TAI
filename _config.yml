@@ -5,7 +5,7 @@ plugins:
   - jekyll-include-cache
 
 # Project site settings 
-url: "https://teachingwithai.github.io"
+url: "https://taiteachingwithai.github.io"
 baseurl: "/TAI"
 
 # Theme options
