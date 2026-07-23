@@ -25,13 +25,20 @@ def _prettify(filename: str) -> str:
     return stem[:1].upper() + stem[1:] if stem else filename
 
 
-def _read_title(abs_path: str) -> str | None:
-    """Best-effort page title: YAML `title:` meta, else first H1."""
+def _read_page_meta(abs_path: str) -> tuple[str | None, float]:
+    """Best-effort ``(title, order)`` for a page.
+
+    The title comes from the YAML ``title:`` meta, else the first H1. The order
+    comes from an optional ``order:`` meta; pages without one keep their
+    previous alphabetical placement.
+    """
     try:
         with open(abs_path, encoding="utf-8") as fh:
             text = fh.read()
     except OSError:
-        return None
+        return None, float("inf")
+    title = None
+    order = float("inf")
     if text.startswith("---"):
         end = text.find("\n---", 3)
         if end != -1:
@@ -39,11 +46,18 @@ def _read_title(abs_path: str) -> str | None:
                 meta = yaml.safe_load(text[3:end]) or {}
             except yaml.YAMLError:
                 meta = {}
-            if isinstance(meta, dict) and meta.get("title"):
-                return str(meta["title"])
+            if isinstance(meta, dict):
+                if meta.get("title"):
+                    title = str(meta["title"])
+                try:
+                    order = float(meta["order"])
+                except (KeyError, TypeError, ValueError):
+                    pass
             text = text[end + 4:]
-    match = re.search(r"^#\s+(.+)$", text, re.MULTILINE)
-    return match.group(1).strip() if match else None
+    if title is None:
+        match = re.search(r"^#\s+(.+)$", text, re.MULTILINE)
+        title = match.group(1).strip() if match else None
+    return title, order
 
 
 def _pdf_block(folder: str, files) -> str:
@@ -72,11 +86,14 @@ def _sections_block(folder: str, files) -> str:
             children[parent] = f
     if not children:
         return ""
+    entries = []
+    for parent, f in children.items():
+        name = posixpath.basename(parent)
+        title, order = _read_page_meta(f.abs_src_path)
+        entries.append((order, name.lower(), title or _prettify(name), name + "/index.md"))
+    entries.sort()
     lines = ['<div class="grid cards" markdown>', ""]
-    for parent in sorted(children):
-        f = children[parent]
-        title = _read_title(f.abs_src_path) or _prettify(posixpath.basename(parent))
-        href = posixpath.basename(parent) + "/index.md"
+    for _, _, title, href in entries:
         lines.append(f"-   :material-folder-open:{{ .lg .middle }} **[{title}]({href})**")
         lines.append("")
     lines.append("</div>")

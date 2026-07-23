@@ -81,7 +81,14 @@ nav:
               - for-teachers/part-1-ai-arts-humanities/diffusion/index.md
               - Image to Noise Examples: for-teachers/part-1-ai-arts-humanities/diffusion/image_to_noise_examples/index.md
           - Sound Effects: for-teachers/part-1-ai-arts-humanities/sound_effects/index.md
-      - "Part 2: AI & Science": for-teachers/part-2-ai-science/index.md
+      - "Part 2: AI & Science":
+          - for-teachers/part-2-ai-science/index.md
+          - Physics: for-teachers/part-2-ai-science/physics/index.md
+          - Mathematics: for-teachers/part-2-ai-science/mathematics/index.md
+          - Chemistry: for-teachers/part-2-ai-science/chemistry/index.md
+          - Biology: for-teachers/part-2-ai-science/biology/index.md
+          - Robotics: for-teachers/part-2-ai-science/robotics/index.md
+          - Exoplanet Files: for-teachers/part-2-ai-science/exoplanet-files/index.md
       - "Part 3: AI & Everyday Life": for-teachers/part-3-ai-everyday-life/index.md
   - AI Tools: tools.md
   - About: about.md
