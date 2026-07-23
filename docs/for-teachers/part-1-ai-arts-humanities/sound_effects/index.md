@@ -40,7 +40,7 @@ trimmed to shorter clips (except the Full version), original audio removed.
 ## Clips from Sintel
 
 All of the following clips are from *Sintel* (2010) by Blender Foundation,
-licensed CC BY 4.0 ([Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/)).
+licensed CC BY 3.0 ([Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/)).
 Source: <https://archive.org/download/sintel-open-movie-by-blender>. Edited by
 TeachingWithAI: trimmed to shorter clips, original audio removed.
 
