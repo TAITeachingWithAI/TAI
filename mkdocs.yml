@@ -1,11 +1,11 @@
 site_name: Teaching With AI
-site_description: Teaching and learning materials about — and with — artificial intelligence
+site_description: Teaching and learning materials about and with artificial intelligence
 site_url: https://taiteachingwithai.github.io/TAI/
 repo_url: https://github.com/TAITeachingWithAI/TAI
 repo_name: TAITeachingWithAI/TAI
 edit_uri: edit/main/docs/
 copyright: >
-  Teaching With AI — funded by the Erasmus+ programme of the European Union.
+  Teaching With AI. Funded by the Erasmus+ programme of the European Union.
 
 theme:
   name: material
@@ -13,7 +13,7 @@ theme:
   icon:
     logo: material/school
     repo: fontawesome/brands/github
-  favicon: assets/images/logos.png
+  favicon: assets/images/favicon.svg
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -64,24 +64,24 @@ nav:
   - Home: index.md
   - For Students:
       - for-students/index.md
-      - "Part 1 — AI & Arts and Humanities":
+      - "Part 1: AI & Arts and Humanities":
           - for-students/part-1-ai-arts-and-humanities/index.md
           - Art Exhibition: for-students/part-1-ai-arts-and-humanities/Exhibition/index.md
           - Art Styles: for-students/part-1-ai-arts-and-humanities/Art-styles/index.md
           - Prompting LLMs: for-students/part-1-ai-arts-and-humanities/Prompting-LLMs/index.md
           - Sound Effects: for-students/part-1-ai-arts-and-humanities/sound_effects/index.md
           - How LLMs Work: for-students/part-1-ai-arts-and-humanities/how_LLMs_work/index.md
-      - "Part 2 — AI & Science": for-students/part-2-ai-science/index.md
-      - "Part 3 — AI & Everyday Life": for-students/part-3-ai-everyday-life/index.md
+      - "Part 2: AI & Science": for-students/part-2-ai-science/index.md
+      - "Part 3: AI & Everyday Life": for-students/part-3-ai-everyday-life/index.md
   - For Teachers:
       - for-teachers/index.md
-      - "Part 1 — AI & Arts and Humanities":
+      - "Part 1: AI & Arts and Humanities":
           - for-teachers/part-1-ai-arts-humanities/index.md
           - Diffusion:
               - for-teachers/part-1-ai-arts-humanities/diffusion/index.md
               - Image to Noise Examples: for-teachers/part-1-ai-arts-humanities/diffusion/image_to_noise_examples/index.md
           - Sound Effects: for-teachers/part-1-ai-arts-humanities/sound_effects/index.md
-      - "Part 2 — AI & Science": for-teachers/part-2-ai-science/index.md
-      - "Part 3 — AI & Everyday Life": for-teachers/part-3-ai-everyday-life/index.md
+      - "Part 2: AI & Science": for-teachers/part-2-ai-science/index.md
+      - "Part 3: AI & Everyday Life": for-teachers/part-3-ai-everyday-life/index.md
   - AI Tools: tools.md
   - About: about.md

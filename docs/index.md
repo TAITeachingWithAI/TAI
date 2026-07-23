@@ -9,7 +9,7 @@ hide:
 
 # Teaching With AI
 
-### Free, open teaching and learning materials about — and with — artificial intelligence, for students and teachers.
+### Free, open teaching and learning materials about and with artificial intelligence, for students and teachers.
 
 [Browse student materials](for-students/index.md){ .md-button .md-button--primary }
 [Browse teacher materials](for-teachers/index.md){ .md-button }

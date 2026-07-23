@@ -9,7 +9,7 @@ click a card to open one in a new tab.
 
 <div class="grid cards" markdown>
 
--   :material-atom:{ .lg .middle } **Emmy — Physics Tutor**
+-   :material-atom:{ .lg .middle } **Emmy: Physics Tutor**
 
     ---
 
