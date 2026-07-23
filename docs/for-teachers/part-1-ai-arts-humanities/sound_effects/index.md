@@ -7,6 +7,23 @@ title: Materials for Sound Effects
 Here you find download links to the MP4 files that can be used as videos in the
 lesson. They are cropped to 30 seconds, so they can be uploaded in Adobe Firefly.
 
+!!! warning "About the quality of these clips"
+    The clips on this page are **compressed** so that this website stays small
+    enough to host. They are perfectly usable for the lesson, but they are
+    noticeably lower quality than the original films, especially in the darker
+    Sintel scenes.
+
+    If you want the best possible quality, download the **original full film**
+    from its source below and crop your own clips. Remember to remove the audio,
+    so students can invent the sound themselves.
+
+    | Film | Download the original |
+    | --- | --- |
+    | *Big Buck Bunny* (2008) | [archive.org](https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4) (59 MB) |
+    | *Sintel* (2010) | [archive.org](https://archive.org/download/sintel-open-movie-by-blender/Sintel%20-%20Open%20Movie%20by%20Blender.mp4) (224 MB) |
+    | *Spring* (2019) | [Blender Studio](https://studio.blender.org/films/spring/) |
+    | *Hero* (2018) | [archive.org](https://archive.org/download/hero_20260106/hero.mp4) (51 MB) |
+
 ## Clips from Big Buck Bunny
 
 All of the following clips are from *Big Buck Bunny* (2008) by Blender Foundation,
