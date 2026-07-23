@@ -5,7 +5,20 @@ order: 2
 
 # Rover Dossiers
 
-The rover dossier for each of the eight exoplanets, used during the activity.
+!!! warning "For the teacher only, do not hand these out"
+    These dossiers are **not** student handouts. They are the confidential input
+    files for the **Scientific AI Laboratory**, the app built by Andrea Lopez
+    Incera.
+
+    You upload a dossier to the app and share the link it gives you. Students
+    then chat with an AI that simulates the experiments they request on that
+    planet, without revealing what the dossier contains. Giving a dossier
+    directly to students would spoil the activity.
+
+    [:octicons-arrow-right-24: About our AI tools](../../../../tools.md) &nbsp;
+    [:octicons-arrow-right-24: Open the Chemistry Lab](https://scientificailab.streamlit.app/ChemistryLab)
+
+## The eight dossiers
 
 - [:material-file-pdf-box: 1. 55 Cancri e](Dossier_RoverExoplanet_1_55CancriE.pdf)
 - [:material-file-pdf-box: 2. WASP-76 b](Dossier_RoverExoplanet_2_WASP76b.pdf)
