@@ -7,16 +7,15 @@ order: 2
 
 !!! warning "For the teacher only, do not hand these out"
     These dossiers are **not** student handouts. They are the confidential input
-    files for the **Scientific AI Laboratory**, the app built by Andrea Lopez
-    Incera.
+    files for the **Rover Lab** in our Scientific AI Laboratory app.
 
-    You upload a dossier to the app and share the link it gives you. Students
-    then chat with an AI that simulates the experiments they request on that
-    planet, without revealing what the dossier contains. Giving a dossier
-    directly to students would spoil the activity.
+    You upload a dossier to the Rover Lab and share the link it gives you.
+    Students then chat with an AI that simulates the measurements their rover
+    takes on that planet, without revealing what the dossier contains. Giving a
+    dossier directly to students would spoil the activity.
 
     [:octicons-arrow-right-24: About our AI tools](../../../../tools.md) &nbsp;
-    [:octicons-arrow-right-24: Open the Chemistry Lab](https://scientificailab.streamlit.app/ChemistryLab)
+    [:octicons-arrow-right-24: Open the Rover Lab](https://scientificailab.streamlit.app/RoverLab)
 
 ## The eight dossiers
 

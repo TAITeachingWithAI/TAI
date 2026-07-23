@@ -14,8 +14,6 @@ so you can open them straight from here. No installation and no account needed.
 
 ## Scientific AI Laboratory
 
-Our main app, with two parts:
-
 <div class="grid cards" markdown>
 
 -   :material-school:{ .lg .middle } **AI Tutors**
@@ -29,13 +27,23 @@ Our main app, with two parts:
 
     [:octicons-arrow-right-24: Open the AI Tutors](https://scientificailab.streamlit.app/Tutors)
 
+-   :material-rocket-launch:{ .lg .middle } **Rover Lab**
+
+    ---
+
+    Used in the **exoplanet unit** of Part 2. You upload a rover dossier for one
+    of the eight exoplanets and share the link. Students then chat with an AI
+    that simulates the measurements their rover takes, without revealing what
+    the dossier says.
+
+    [:octicons-arrow-right-24: Open the Rover Lab](https://scientificailab.streamlit.app/RoverLab)
+
 -   :material-flask:{ .lg .middle } **Chemistry Lab**
 
     ---
 
-    The teacher picks or uploads a confidential dossier about an unknown liquid
-    found on an exoplanet. Students then chat with an AI that simulates the
-    experiments they request, without giving the answer away.
+    An earlier activity around an unknown liquid, still available in the app but
+    not used in our current teaching material.
 
     [:octicons-arrow-right-24: Open the Chemistry Lab](https://scientificailab.streamlit.app/ChemistryLab)
 
@@ -47,9 +55,10 @@ Our main app, with two parts:
 
 - **AI Tutors** need no preparation. Students simply open the page and start
   chatting, because there is no hidden information to protect.
-- **The Chemistry Lab** works with a share link. As a teacher you choose a
-  dossier and get a link for your students, which opens a student-only view with
-  the teacher controls hidden.
+- **The Rover Lab** works with a share link. You choose a dossier and get a link
+  for your students, which opens a student-only view with the teacher controls
+  hidden. The dossiers live with the
+  [Exoplanet Files](for-teachers/part-2-ai-science/exoplanet-files/dossiers/index.md).
 - The app runs on a free AI model. If you would like to run a tutor on a stronger
   model, the app has a **"Use in your own chatbot"** page that gives you a
   self-contained version of the tutor's prompt to paste into ChatGPT, Claude or
