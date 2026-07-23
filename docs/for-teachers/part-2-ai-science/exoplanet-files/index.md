@@ -5,8 +5,17 @@ order: 6
 
 # Exoplanet Files
 
-Data files and supporting material for the exoplanet unit of Part 2: AI & Science.
+Material for the exoplanet unit, in which students investigate eight real
+exoplanets.
+
+## For the teacher
+
+- [:material-file-pdf-box: Teacher overview](Teacher_Overview.pdf)
+- [:material-file-pdf-box: Transit graphs: answer key](Teacher_TransitGraphs_KEY.pdf)
+
+## Student material
 
 <!--sections-->
 
-<!--pdfs-->
+Each of the eight exoplanets has two documents: a **planet file** with the
+background information, and a **rover dossier** used during the activity.

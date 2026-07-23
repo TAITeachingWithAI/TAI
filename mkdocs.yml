@@ -71,7 +71,14 @@ nav:
           - Prompting LLMs: for-students/part-1-ai-arts-and-humanities/Prompting-LLMs/index.md
           - Sound Effects: for-students/part-1-ai-arts-and-humanities/sound_effects/index.md
           - How LLMs Work: for-students/part-1-ai-arts-and-humanities/how_LLMs_work/index.md
-      - "Part 2: AI & Science": for-students/part-2-ai-science/index.md
+      - "Part 2: AI & Science":
+          - for-students/part-2-ai-science/index.md
+          - Physics: for-students/part-2-ai-science/physics/index.md
+          - Mathematics: for-students/part-2-ai-science/mathematics/index.md
+          - Chemistry: for-students/part-2-ai-science/chemistry/index.md
+          - Biology: for-students/part-2-ai-science/biology/index.md
+          - Robotics: for-students/part-2-ai-science/robotics/index.md
+          - Exoplanet Files: for-students/part-2-ai-science/exoplanet-files/index.md
       - "Part 3: AI & Everyday Life": for-students/part-3-ai-everyday-life/index.md
   - For Teachers:
       - for-teachers/index.md
@@ -84,11 +91,16 @@ nav:
       - "Part 2: AI & Science":
           - for-teachers/part-2-ai-science/index.md
           - Physics: for-teachers/part-2-ai-science/physics/index.md
-          - Mathematics: for-teachers/part-2-ai-science/mathematics/index.md
+          - Mathematics:
+              - for-teachers/part-2-ai-science/mathematics/index.md
+              - Notebooks for the math lesson: for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/index.md
           - Chemistry: for-teachers/part-2-ai-science/chemistry/index.md
           - Biology: for-teachers/part-2-ai-science/biology/index.md
           - Robotics: for-teachers/part-2-ai-science/robotics/index.md
-          - Exoplanet Files: for-teachers/part-2-ai-science/exoplanet-files/index.md
+          - Exoplanet Files:
+              - for-teachers/part-2-ai-science/exoplanet-files/index.md
+              - Planet Files: for-teachers/part-2-ai-science/exoplanet-files/planet-files/index.md
+              - Rover Dossiers: for-teachers/part-2-ai-science/exoplanet-files/dossiers/index.md
       - "Part 3: AI & Everyday Life": for-teachers/part-3-ai-everyday-life/index.md
   - AI Tools: tools.md
   - About: about.md
