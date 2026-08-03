@@ -12,7 +12,6 @@ exoplanets.
 
 - [:material-file-pdf-box: Teacher overview](Teacher_Overview.pdf)
 - [:material-file-pdf-box: Transit graphs: answer key](Teacher_TransitGraphs_KEY.pdf)
-- [:material-folder-open: Rover Dossiers](dossiers/index.md)
 
 !!! warning "The rover dossiers are not handouts"
     The **rover dossiers** are *not* meant to be given to students. They are the
