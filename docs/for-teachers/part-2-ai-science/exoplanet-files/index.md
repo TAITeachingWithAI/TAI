@@ -13,7 +13,7 @@ exoplanets.
 - [:material-file-pdf-box: Teacher overview](Teacher_Overview.pdf)
 - [:material-file-pdf-box: Transit graphs: answer key](Teacher_TransitGraphs_KEY.pdf)
 
-!!! warning "Where are the rover dossiers?"
+!!! warning "Exoplanet dossiers for chemistry lesson (Rover Lab)"
     The dossiers for the chemistry lesson are embedded directly in the app.
 
     [:octicons-arrow-right-24: About our AI tools](../../../tools.md) &nbsp;

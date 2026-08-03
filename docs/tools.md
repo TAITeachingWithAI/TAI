@@ -31,10 +31,10 @@ so you can open them straight from here. No installation and no account needed.
 
     ---
 
-    Used in the **exoplanet unit** of Part 2. You upload a rover dossier for one
-    of the eight exoplanets and share the link. Students then chat with an AI
-    that simulates the measurements their rover takes, without revealing what
-    the dossier says.
+    Used in the **chemistry lesson** of Part 2. You upload a rover dossier for
+    an exoplanet or choose one from the 8 existing exoplanet dossiers, and
+    share the link. Students then chat with an AI that simulates the
+    measurements their rover takes, without revealing what the dossier says.
 
     [:octicons-arrow-right-24: Open the Rover Lab](https://scientificailab.streamlit.app/RoverLab)
 
