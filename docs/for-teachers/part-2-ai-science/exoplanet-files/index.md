@@ -13,15 +13,8 @@ exoplanets.
 - [:material-file-pdf-box: Teacher overview](Teacher_Overview.pdf)
 - [:material-file-pdf-box: Transit graphs: answer key](Teacher_TransitGraphs_KEY.pdf)
 
-!!! warning "The rover dossiers are not handouts"
-    The **rover dossiers** are *not* meant to be given to students. They are the
-    confidential input files for the **Rover Lab** in our Scientific AI
-    Laboratory app.
-
-    As a teacher you upload a dossier to the Rover Lab and share the resulting
-    link. Students then chat with an AI that simulates the measurements their
-    rover takes on that planet, without revealing what the dossier says. Handing
-    a dossier straight to students would give the answer away.
+!!! warning "Where are the rover dossiers?"
+    The dossiers for the chemistry lesson are embedded directly in the app.
 
     [:octicons-arrow-right-24: About our AI tools](../../../tools.md) &nbsp;
     [:octicons-arrow-right-24: Open the Rover Lab](https://scientificailab.streamlit.app/RoverLab)

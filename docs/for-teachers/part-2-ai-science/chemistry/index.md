@@ -16,3 +16,9 @@ Teaching material for the chemistry lessons of Part 2: AI & Science.
 !!! info "Which version do I need?"
     The **student version** is the worksheet you hand out. The **teacher version**
     is the same lesson including the worked answers, for your own preparation.
+
+!!! warning "Where are the rover dossiers?"
+    The dossiers for the chemistry lesson are embedded directly in the app.
+
+    [:octicons-arrow-right-24: About our AI tools](../../../tools.md) &nbsp;
+    [:octicons-arrow-right-24: Open the Rover Lab](https://scientificailab.streamlit.app/RoverLab)
