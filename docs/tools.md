@@ -55,10 +55,11 @@ so you can open them straight from here. No installation and no account needed.
 
 - **AI Tutors** need no preparation. Students simply open the page and start
   chatting, because there is no hidden information to protect.
-- **The Rover Lab** works with a share link. You choose a dossier and get a link
-  for your students, which opens a student-only view with the teacher controls
-  hidden. The dossiers live with the
-  [Exoplanet Files](for-teachers/part-2-ai-science/exoplanet-files/dossiers/index.md).
+- **The Rover Lab** works with a share link. Pick a built-in dossier (or upload
+  your own) directly in the app, and share the resulting link — it opens a
+  student-only view with the teacher controls hidden. See the
+  [Exoplanet Files](for-teachers/part-2-ai-science/exoplanet-files/index.md)
+  page for the accompanying teacher/student materials.
 - The app runs on a free AI model. If you would like to run a tutor on a stronger
   model, the app has a **"Use in your own chatbot"** page that gives you a
   self-contained version of the tutor's prompt to paste into ChatGPT, Claude or
