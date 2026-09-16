@@ -1,0 +1,469 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{comment}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{subcaption} % modern replacement for the deprecated subfigure package
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% Tell cleveref how to name your counter
+\crefname{exercise}{assignment}{assignments}
+\Crefname{exercise}{Assignment}{Assignments}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+
+% Optional label: \exercisetitle[<label>]{<Title>}
+\newcommand{\exercisetitle}[2][]{%
+  \refstepcounter{exercise}% make this step referenceable/hyperlinked
+  \vspace{0.5cm}%
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise:~ #2}%
+    }%
+  }%
+  % If an optional label was provided, set it
+  \if\relax\detokenize{#1}\relax\else\label{#1}\fi
+  \vspace{0.3cm}%
+}
+
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX (with starred variant and cleveref names) ---
+% Requires: \usepackage{hyperref} for \Form/\TextField
+%           \usepackage{fontawesome5} for \faEdit
+
+% Cleveref names for the question counter
+\crefname{question}{question}{questions}
+\Crefname{question}{Question}{Questions}
+
+\makeatletter
+\newcounter{question}
+\newlength\questionheight
+\setlength\questionheight{5cm} % default answer box height
+
+% \question{<text>}                  -> with TextField (default height)
+% \question[<height>]{<text>}        -> with TextField (custom height)
+% \question*{<text>}                 -> no TextField, still numbered
+\newcommand{\question}{\@ifstar{\question@text}{\question@field}}
+
+% Common heading (increments counter and creates ref anchor)
+\newcommand{\question@heading}[1]{%
+  \refstepcounter{question}%
+  \vspace{0.3cm}%
+  \noindent\textbf{\faEdit\ Question \thequestion: #1}%\\[0.3em]%
+}
+
+% Starred form: numbered question without input field
+\newcommand{\question@text}[1]{%
+  \question@heading{#1}%
+%  \vspace{0.3cm}%
+}
+
+% Unstarred form: numbered question with input field (optional height)
+\newcommand{\question@field}[2][\questionheight]{%
+  \question@heading{#2}%
+ \\[0.3em] \begin{Form}
+    \TextField[
+      name=Q\thequestion,
+      multiline=true,
+      width=\linewidth,
+      height=#1,
+      charsize=10pt,
+      bordercolor={0 0 0},
+      borderwidth=1.8,
+      backgroundcolor={1 1 1}
+    ]{}
+  \end{Form}
+  \vspace{0.3cm}%
+}
+\makeatother
+
+\newcommand{\notefield}[2][5cm]{%
+  \\[0.3em]\begin{Form}
+    \TextField[
+      name=#2,
+      multiline=true,
+      width=\linewidth,
+      height=#1,
+      charsize=10pt,
+      bordercolor={0 0 0},
+      borderwidth=1.8,
+      backgroundcolor={1 1 1}
+    ]{}
+  \end{Form}
+  \vspace{0.3cm}%
+}
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teacherfalse% Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} Exoplanet detection \par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{ccc}
+\includegraphics[height=1.35cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.35cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.35cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg} \\
+\includegraphics[height=1.35cm]{Figures/Logos/IMG_1189.PNG} &
+\includegraphics[height=1.6cm]{Figures/Logos/2nd Lyceum of Kos logo.jpg} &
+\includegraphics[height=1.35cm]{Figures/Logos/NEXT_prov_logo.png}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+\hypersetup{pageanchor=true}
+
+% --- Description of activity ---
+\vspace*{0.5\textheight}
+
+Subject: Physics
+
+
+\vspace{0.3cm}
+
+Activity duration: 150 min
+
+\vspace{0.5cm}
+
+Lesson outline:
+\begin{enumerate}
+    \item Introduction to exoplanets and detection methods (5 min)
+    \item Initial research using reliable sources or an AI assistant (15 min)
+    \item Planning and building a model transit experiment (40 min)
+    \item Collecting and analysing light-curve data (75 min)
+    \item Calculating the size of a mystery exoplanet (15 min)
+\end{enumerate}
+
+Learning goals:
+
+\begin{itemize}
+    \item Explain how a transit light curve can provide information about an exoplanet.
+    \item Design a fair experiment by changing one variable and controlling the others.
+    \item Collect, plot, and interpret light-intensity data.
+    \item Use an AI experimental tutor critically, checking whether its suggestions make scientific sense.
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\LARGE \color{maincolor} Exoplanet detection}\\[5pt]
+    {\large \textit{Experimenting with help of AI}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+\textit{How are exoplanets detected? How can scientists infer properties of a planet that is many light-years away? In this lesson, you will build a model of a distant solar system with a star and an orbiting planet. By measuring the star's light curve, you can detect the model exoplanet. By testing different model planet sizes, you will investigate how planet size affects the transit signal.}
+
+\vspace{0.5cm}
+\textcolor{accentcolor}{\textbf{\faLightbulb\ Initial ideas}}
+
+\question{How do you think that exoplanets can be detected?}
+
+
+
+%\begin{importantbox}
+%\textbf{Key idea:} When a planet passes in front of its star, it blocks a small fraction of the star's light. This event is called a \textbf{transit}. A graph of brightness versus time is called a \textbf{light curve}. 
+%\end{importantbox}
+
+%\vspace{0.3cm}
+
+
+
+
+
+
+
+\vspace{0.5cm}
+\textcolor{accentcolor}{\textbf{\faLightbulb\ Constructing new ideas}}
+
+\exercisetitle{Initial research}
+Do an online search to answer the following questions about exoplanets. If you use AI, ask specific questions and ask it to explain ideas at your level. Check important claims with at least one reliable source. You should be able to explain your answers to your classmates. 
+
+\question{What are the most common ways that exoplanets are detected?}
+
+\question{What is a transit, and what information can we gain from it?}
+
+\question{What is a lightcurve? Sketch a graph of a transit lightcurve (or copy an example you find online).}
+
+\question{How would the transit graph look for a bigger exoplanet?}
+
+\question{What is \emph{transit depth?}  }
+
+\question{Name a reliable source that can teach you about exoplanet research. Write one sentence explaining why it is useful.}
+
+
+\exercisetitle{Model an exoplanet}
+
+
+\vspace{0.5cm}
+\textcolor{accentcolor}{\textbf{\faLightbulb\ The challenge}}
+
+\textbf{Goal:} Build a model of an exoplanet transit and investigate how the size of the planet influences the transit light curve.
+
+At the end of this class, you should deliver:
+
+\begin{itemize}
+    \item One figure of a transit, showing light intensity as a function of time.
+    \item One plot of your results of transit depth versus planet size squared.
+    \item A five-sentence conclusion about your research.
+\end{itemize}
+
+\vspace{0.5cm}
+\textcolor{accentcolor}{\textbf{\faLightbulb\ Constructing new ideas}}
+
+\textcolor{maincolor}{\textbf{\faPen\ Open the Scientific AI Laboratory app at \href{https://scientificailab.streamlit.app}{scientificailab.streamlit.app}, go to \emph{AI Tutors}, and choose \emph{Emmy}.}} Emmy is your experimental guide: she helps you set up your research project on exoplanet transits by following the scientific method, one question at a time. She will ask you questions, but you can also ask her questions in return, and you can ask her for a hint whenever you get stuck. Remember: the AI is a helper, not the final authority. You are responsible for checking whether the experimental plan is safe, fair, and scientifically reasonable.
+
+\begin{importantbox}
+\textbf{Prefer your own AI?} If you would rather run Emmy in your own (perhaps more powerful) chatbot, open the \emph{AI Tutors} page in the app, expand \emph{``Run this in your own (stronger) chatbot''}, and copy the prompt shown there. Paste it as the first message in a fresh chat, and Emmy will guide you from there instead.
+\end{importantbox}
+
+Emmy guides you through \textbf{five stages} of the scientific method. Use these stages to structure your investigation.
+\begin{itemize}
+  \item \textbf{Research question:} Define one clear question for your experiment. State which variable you will change, and which variable you will measure.
+  \item \textbf{Hypothesis:} Predict what you think will happen and explain why. 
+  \item \textbf{Experimental plan:} Decide exactly how you will build the model, which planet sizes you will test, how many trials you will do, and how you will keep the other conditions the same.
+  \item \textbf{Data collection:} Carry out the experiment and record your measurements carefully. For each trial, note the planet size, the time or position during the transit, and the measured light intensity.
+  \item \textbf{Analysis \& conclusion:} Process your measurements by making a light curve and calculating the transit depth, then compare the transit depth for different planet sizes (for example, by plotting transit depth versus planet size squared). Answer your research question using evidence from your data: explain whether your results support your hypothesis, mention any uncertainties or possible sources of error, and suggest one improvement or next step (such as repeating the measurements, testing more planet sizes, improving the model's alignment, or investigating another variable such as orbital distance).
+\end{itemize}
+
+\begin{solution}
+\textbf{Expected physics (analysis stage):} the fraction of the star's light blocked during a transit equals the ratio of the projected areas, so the \emph{transit depth} is
+\[
+\text{depth} = \frac{\Delta F}{F} = \left(\frac{R_\mathrm{planet}}{R_\mathrm{star}}\right)^{2}.
+\]
+For a fixed star, depth $\propto R_\mathrm{planet}^{2}$, so a graph of transit depth versus planet size squared should be an approximately straight line through the origin, with slope $1/R_\mathrm{star}^{2}$. Larger model planets should therefore produce deeper transits.
+\end{solution}
+
+\textcolor{maincolor}{\textbf{\faPen\ Follow the lead of the LLM research guide and get to work.}} Below, you find a list of the available materials. On the next page, you can write notes for each stage of the scientific method.
+ 
+
+
+
+\subsection*{Available Materials}
+
+\begin{itemize}
+    \item Light sensor on your phone. Recommended application: Physics Toolbox or Arduino science journal.
+    \item Cardboard box
+    \item Image of a star, displayed on a phone and used as the star light source
+    \item Sticks
+    \item Cutting knife
+    \item Tape
+    \item Modeling clay
+    \item Compass
+    \item Geo triangle
+    \item Caliper
+\end{itemize}
+
+\begin{importantbox}
+\textbf{Use of AI for data analysis and programming:} You may use AI to help with all programming steps, including organising your data, writing code, calculating transit depth, making plots, and improving the layout of your figures. You may also ask AI to explain error messages or suggest better ways to analyse your measurements. However, you remain responsible for checking the results: make sure the code uses the correct data, the axes and units are labelled clearly, and the conclusions match your measurements.
+\end{importantbox}
+
+\subsection*{Analysing your data with Google Colab}
+
+You will measure the star's brightness with a light-sensor app on your phone (for example \emph{Physics Toolbox} or the \emph{Arduino Science Journal}). To load and analyse that data on your computer, use the ready-made Google Colab notebook:
+
+\begin{center}
+\href{https://colab.research.google.com/github/TAITeachingWithAI/ScientificAILab/blob/main/notebooks/exoplanet_transit_analysis.ipynb}{\textbf{Open the data-analysis notebook in Google Colab}}
+\end{center}
+
+\begin{enumerate}
+  \item In your light-sensor app, record a transit and \textbf{export the data as a CSV file} (in Physics Toolbox, use the share/export button; in the Arduino Science Journal, export the experiment as CSV). Send the file to your computer.
+  \item Open the notebook with the link above and \textbf{run the cells from top to bottom}. When prompted, \textbf{upload your CSV}.
+  \item The notebook draws your \textbf{light curve}, helps you compute the \textbf{transit depth}, and --- once you have tested several planet sizes --- plots \textbf{transit depth versus planet size squared}.
+  \item You can ask Emmy (or your own AI) to help you \textbf{adapt or extend the code}: describe what you want and paste any error messages. Always check that the output uses your data and that the axes and units are labelled.
+\end{enumerate}
+
+The notebook also accepts a \textbf{plain CSV file} (any file with a time column and a light or brightness column), so it works even if you use a different app.
+
+
+\subsection*{Scientific Method Notes}
+
+Use the fillable boxes below to write your interim notes for each stage of the scientific method. These notes are your research log; they do not need to be perfect, but they should show how your thinking develops.
+
+\begin{enumerate}
+    \item \textbf{Research question:} \textit{\small (What exactly do you want to find out? Identify the variable you will change and the variable you will measure, and express their relationship as a clear, testable question.)}
+    \notefield{ScientificMethodResearchQuestion}
+
+    \item \textbf{Hypothesis:} \textit{\small (What result do you predict, and why? Use scientific reasoning to describe how you expect the measured variable to change.)}
+    \notefield{ScientificMethodHypothesis}
+
+    \item \textbf{Experimental plan:} \textit{\small (How will you test your hypothesis fairly and safely? Describe what you will change, measure, and keep constant, as well as how many values and repeated trials you will use.)}
+    \notefield[10cm]{ScientificMethodExperimentalPlan}
+
+    \item \textbf{Data collection:} \textit{\small (Record your raw measurements clearly, including units and repeated trials. Note any unusual observations, measurement problems, or changes to your original plan.)}
+    \notefield[20cm]{ScientificMethodDataCollection}
+
+    \item \textbf{Analysis \& conclusion:} \textit{\small (Does your data support your hypothesis, judged within your uncertainty? State a claim--evidence--reasoning conclusion, and suggest one next step.)}
+    \notefield[7cm]{ScientificMethodAnalysisConclusion}
+\end{enumerate}
+
+
+\subsection*{Submission Checklist}
+
+Before the end of class, make sure you have prepared:
+
+\begin{itemize}
+    \item One labelled figure of a transit, showing light intensity as a function of time.
+    \item One plot of your research results: transit depth versus planet size squared.
+    \item A short explanation of how you calculated transit depth.
+    \item A five-sentence conclusion about your research.
+    \item One suggestion for improving the experiment if you had more time.
+\end{itemize}
+
+\subsection*{Peer Check}
+
+\textcolor{maincolor}{\textbf{\faPen\ Exchange results with another group and discuss:}}
+\begin{itemize}
+    \item Are the axes, units, and labels clear on both graphs?
+    \item Did both groups control the same variables during the experiment?
+    \item Do the conclusions follow from the data, or are there alternative explanations?
+\end{itemize}
+
+
+\vspace{0.5cm}
+\textcolor{accentcolor}{\textbf{\faLightbulb\ Closing the challenge}}
+
+\exercisetitle{Calculating the size of your mystery planet}
+
+\question{If you are given a transit light curve of a newly found exoplanet, how can you estimate its size? Use the transit-depth relationship in your explanation.}
+
+\begin{solution}
+\textbf{Model answer:} rearranging depth $=\left(R_\mathrm{planet}/R_\mathrm{star}\right)^{2}$ gives
+\[
+R_\mathrm{planet} = R_\mathrm{star}\,\sqrt{\text{depth}}.
+\]
+Measure the transit depth from the light curve, use the known (or modelled) star radius $R_\mathrm{star}$, and compute $R_\mathrm{planet}$. In the model experiment, $R_\mathrm{star}$ is the radius of the star-disk image on the phone, and depth $=(\text{baseline}-\text{minimum})/\text{baseline}$.
+\end{solution}
+
+\textcolor{maincolor}{\textbf{\faPen\ Calculate the size of your mystery exoplanet.}} Add the size to your planet factsheet. 
+
+\question[2cm]{How does the size of your planet compare to the size of Earth?}
+
+\question[2cm]{How does the size of the star in your exoplanet system compare to the size of the Sun? And to the size of its host star?}
+
+
+
+\vspace{0.5cm}
+\textcolor{accentcolor}{\textbf{\faLightbulb\ What have we learned?}}
+
+\question{What have you learned that you didn't know before?}
+
+\question{How have you used AI in this lesson, and what did you learn from it?}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
