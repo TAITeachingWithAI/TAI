@@ -16,6 +16,19 @@ Teaching material for the physics lesson of Part 2: AI & Science.
     The **student version** is the worksheet you hand out. The **teacher version**
     is the same lesson including the worked answers, for your own preparation.
 
+## Star image for the experiment
+
+Students display this image on their phone as the star. During the experiment
+they move the "planet" in front of it while the light sensor records the dip in
+brightness. Each student downloads it to their own phone.
+
+- [:material-star-four-points: Open or download the star image](star_disk.png)
+
+<p style="text-align:center;">
+  <img src="star_disk.png" alt="Star image for the transit experiment" width="180"
+       style="background:#000; border-radius:8px; padding:8px;">
+</p>
+
 ## Data-analysis notebook
 
 Students use this Colab notebook to load and analyse their light-sensor data: it
