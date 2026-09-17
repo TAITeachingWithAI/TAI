@@ -22,7 +22,8 @@ Students display this image on their phone as the star. During the experiment
 they move the "planet" in front of it while the light sensor records the dip in
 brightness. Each student downloads it to their own phone.
 
-- [:material-star-four-points: Open or download the star image](star_disk.png)
+- [:material-image-search: Open the star image in your browser](star_disk.png){ target="_blank" }
+- [:material-download: Download the star image](star_disk.png){ download="star_disk.png" }
 
 <p style="text-align:center;">
   <img src="star_disk.png" alt="Star image for the transit experiment" width="180"
