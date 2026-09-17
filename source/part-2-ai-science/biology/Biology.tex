@@ -1,0 +1,382 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{comment}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{subcaption} % modern replacement for the deprecated subfigure package
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% Tell cleveref how to name your counter
+\crefname{exercise}{assignment}{assignments}
+\Crefname{exercise}{Assignment}{Assignments}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+
+% Optional label: \exercisetitle[<label>]{<Title>}
+\newcommand{\exercisetitle}[2][]{%
+  \refstepcounter{exercise}% make this step referenceable/hyperlinked
+  \vspace{0.5cm}%
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise:~ #2}%
+    }%
+  }%
+  % If an optional label was provided, set it
+  \if\relax\detokenize{#1}\relax\else\label{#1}\fi
+  \vspace{0.3cm}%
+}
+
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX (with starred variant and cleveref names) ---
+% Requires: \usepackage{hyperref} for \Form/\TextField
+%           \usepackage{fontawesome5} for \faEdit
+
+% Cleveref names for the question counter
+\crefname{question}{question}{questions}
+\Crefname{question}{Question}{Questions}
+
+\makeatletter
+\newcounter{question}
+\newlength\questionheight
+\setlength\questionheight{5cm} % default answer box height
+
+% \question{<text>}                  -> with TextField (default height)
+% \question[<height>]{<text>}        -> with TextField (custom height)
+% \question*{<text>}                 -> no TextField, still numbered
+\newcommand{\question}{\@ifstar{\question@text}{\question@field}}
+
+% Common heading (the calling command increments the counter)
+\newcommand{\question@heading}[1]{%
+  \vspace{0.3cm}%
+  \noindent\textbf{\faEdit\ Question \thequestion: #1}%\\[0.3em]%
+}
+
+% Starred form: numbered question without input field
+\newcommand{\question@text}[1]{%
+  \refstepcounter{question}%
+  \question@heading{#1}%
+%  \vspace{0.3cm}%
+}
+
+% Unstarred form: numbered question with input field (optional height)
+\newcommand{\question@field}[2][\questionheight]{%
+  \par
+  \refstepcounter{question}% keep labels after \question tied to this question
+  \noindent
+  \begin{minipage}{\linewidth}% keep the question and answer box together
+    \question@heading{#2}%
+    \\[0.3em]
+    \begin{Form}
+      \TextField[
+        name=Q\thequestion,
+        multiline=true,
+        width=\linewidth,
+        height=#1,
+        charsize=10pt,
+        bordercolor={0 0 0},
+        borderwidth=1.8,
+        backgroundcolor={1 1 1}
+      ]{}
+    \end{Form}
+    \vspace{0.3cm}%
+  \end{minipage}%
+  \par
+}
+\makeatother
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue% Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} Design an organism\par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{cccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg} \\
+\includegraphics[height=1.5cm]{Figures/Logos/IMG_1189.PNG} &
+\includegraphics[height=1.8cm] {Figures/Logos/2nd Lyceum of Kos logo.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/NEXT_prov_logo.png}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+\vspace*{0.5\textheight}
+
+Subject: Biology
+
+
+\vspace{0.3cm}
+
+Activity duration: 90 min
+
+\vspace{0.5cm}
+
+Steps:
+\begin{enumerate}
+    \item Life on Earth, what does it require? (15 min)
+    \item Investigating your exoplanet's extreme condition with a real scientific paper (50 min)
+    \item Design an organism for your planet (25 min)
+\end{enumerate}
+
+Learning goals:
+
+\begin{itemize}
+    \item Learn about the main requirements for life.
+\item Understand the main principles of how evolution shapes an organism's traits based on the environmental conditions.
+\item Practice using AI to help read and understand a scientific paper, connecting it to biology concepts from the curriculum.
+\item Reflect and critically analyze the output of the AI.
+\item Apply the above to design an organism under certain conditions, and critically evaluate an AI-generated one.
+
+
+
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\LARGE \color{maincolor} Design an organism}\\[5pt]
+    {\large \textit{A biology lesson with AI}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{importantbox}
+\textbf{Challenge}: The research station on your exoplanet is investigating whether life could exist there. As part of the scientific team, your mission is to identify the evolutionary adaptations that organisms would need to survive in one of the planet's environmental conditions. Your final task is to design a hypothetical organism that incorporates these adaptations.
+\end{importantbox}
+
+\vspace{0.3cm}
+
+
+% --- Assignment ---
+\exercisetitle{Life in extreme conditions: analyzing evolutionary traits}
+
+Your goals for this assignment are:
+\begin{itemize}
+  \item Identify what are the minimal conditions for life.
+  \item Understand the type of adaptations that organisms would evolve to survive a given environmental condition.
+\end{itemize}
+
+
+\textcolor{accentcolor}{\textbf{\faLightbulb\ Initial ideas}}
+
+\question{What are the basic conditions that would need to be present at the exoplanet for life to survive there? Explain why each condition is important.}
+
+\begin{solution}
+Based on every form of life scientists have ever studied on Earth (and everything we know of chemistry and physics), life needs: 
+\begin{itemize}
+  \item A \textbf{liquid solvent} in which molecules can move and react -- on Earth this is always water, though scientists debate whether other liquids (like liquid ammonia or methane) could in principle work elsewhere
+  \item The right \textbf{chemical building blocks}, above all carbon, which can form the huge variety of stable, complex molecules (proteins, DNA, lipids) that life is built from, together with hydrogen, oxygen, nitrogen, phosphorus and sulfur (CHNOPS). Each of these elements play an essential role in building and maintaining living organisms. \textbf{Carbon} is the backbone of biological molecules, with four bonds, it is able to form huge and complex molecules. \textbf{Hydrogen and oxygen} form water and many organic molecules, and oxygen is also used in respiration to release energy from food. \textbf{Nitrogen} is needed to make amino acids (which build proteins) and DNA/RNA (genetic material). \textbf{Phosphorus} is part of the DNA, cell membranes, and ATP for energy transfer, and \textbf{sulfur} is found in some amino acids. It forms strong links that help proteins keep their correct shape. Together, they provide the right balance of stability and reactivity, allowing cells to grow, reproduce, and carry out the chemical reactions needed for life. Although scientists are exploring whether life elsewhere could use different chemistry, all known life on Earth depends on these six elements.
+
+  \item A \textbf{usable source of energy}, either light (photosynthesis) or chemical energy from reactions between substances (chemosynthesis), to power metabolism.
+
+  \item A \textbf{stable-enough temperature range} -- too hot and the molecules that build cells (proteins, DNA) fall apart faster than they can be repaired; too cold and the chemical reactions of metabolism become too slow to sustain life.
+
+  \item Enough \textbf{protection from destructive radiation}, since radiation damages DNA faster than most organisms can repair it. 
+\end{itemize}
+Every organism we know of, however extreme its environment, still meets all five of these conditions -- it simply has evolved unusual ways of meeting them.
+\end{solution}
+
+\question{Briefly explain how natural selection works.}
+
+\question{Do you know of any organism that survives in extreme conditions on Earth? What features have they evolved to survive?}
+
+\question{Based on your exoplanet's ``Survival challenge" (see planet's file), what problems would an organism face at the cellular level to survive? For each of the problems you list, make a guess about a possible adaptation for it.} \label{q:initial_guess_adaptation}
+
+
+\textcolor{accentcolor}{\textbf{\faLightbulb\ Constructing new ideas}}
+
+
+A \textit{selective pressure} is an environmental factor that influences which organisms survive and reproduce. It ``selects" for individuals with adaptations that help them cope with that challenge.
+
+You can find your planet's selective pressure written in your exoplanet's file, under the title ``Survival challenge'', or in the second column of the table below. To help you understand how life might realistically cope with it, your group is also assigned one scientific paper, matched to your planet's condition (some of these papers describe an actual extremophile organism on Earth that lives under a similar condition; others describe hypothetical adaptations for that condition, when no single organism example exists yet).
+
+\vspace{0.3cm}
+\begin{table}[H]
+\small
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{|p{2.4cm}|p{3.6cm}|p{7.3cm}|}
+\hline
+\textbf{Exoplanet} & \textbf{Selective pressure} & \textbf{Your assigned paper (click to open)} \\
+\hline
+55 Cancri e & Extreme heat and volcanic toxicity & \href{https://pmc.ncbi.nlm.nih.gov/articles/PMC1664684/}{Stetter, K.O. (2006). Hyperthermophiles in the history of life. \textit{Phil. Trans. R. Soc. B}, 361, 1837--1843.} \\
+\hline
+WASP-76 b & Aerial life in gas-giant clouds with huge day-night temperature swings & \href{https://articles.adsabs.harvard.edu/pdf/1976ApJS...32..737S}{Sagan, C. \& Salpeter, E.E. (1976). Particles, environments, and possible ecologies in the Jovian atmosphere. \textit{ApJS}, 32, 737--755.} \\
+\hline
+TRAPPIST-1 e & Intense stellar flares and radiation from an active red dwarf & \href{https://www.nature.com/articles/ncomms12808}{Hashimoto, T. et al. (2016). Extremotolerant tardigrade genome and improved radiotolerance of human cultured cells by a tardigrade-unique protein. \textit{Nature Communications}, 7, 12808.} \\
+\hline
+K2-18 b & No sunlight reaches the deep ocean beneath a thick atmosphere & \href{https://www.whoi.edu/feature/history-hydrothermal-vents/pdf/Corliss.pdf}{Corliss, J.B. et al. (1979). Submarine thermal springs on the Gal\'apagos Rift. \textit{Science}, 203, 1073--1083.} \\
+\hline
+TOI-700 d & Photosynthesis with red/infrarred light & \href{https://pmc.ncbi.nlm.nih.gov/articles/PMC9386421/}{Billi, D. et al. (2022). "Identification of far-red light acclimation in an endolithic Chroococcidiopsis strain and associated genomic features: Implications for oxygenic photosynthesis on exoplanets." \textit{Frontiers in Microbiology}, 13, 933404.} \\
+\hline
+GJ 1214 b & Crushing atmospheric pressure and permanent haze & \href{https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2016.00665/full}{Front. Microbiol. (2016). Identification of free-living and particle-associated microbial communities in hadal regions of the Mariana Trench. 7, 665.} \\
+\hline
+LHS 1140 b & Very dim starlight & \href{https://pmc.ncbi.nlm.nih.gov/articles/PMC1166624/}{Beatty, J.T. et al. (2005). An obligately photosynthetic bacterial anaerobe from a deep-sea hydrothermal vent. \textit{PNAS}, 102, 9306--9310.} \\
+\hline
+TRAPPIST-1 g & Permanent extreme cold, possibly beneath a global layer of ice & \href{https://scholarworks.montana.edu/bitstreams/5437607a-0a1e-4f23-b287-4183652d4abe/download}{Christner, B.C. et al. (2014). A microbial ecosystem beneath the West Antarctic Ice Sheet. \textit{Nature}, 512, 310--313.} \\
+\hline
+\end{tabular}
+\end{table}
+
+Find your exoplanet in the table above and open the link -- that paper is what your group will use for the rest of this assignment.
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt the AI to help you understand your paper.} Copy the paper's text (or upload the PDF, if your AI tool accepts files) together with the prompt below. Don't forget to write the selective pressure of your exoplanet in the prompt (where it says so) before sending it to the AI!}
+
+\begin{promptbox}
+You are helping a 15-16-year-old biology student understand a scientific paper about how life copes with an extreme environmental condition. The condition I am investigating is: [WRITE YOUR EXOPLANET'S SELECTIVE PRESSURE HERE]. The paper is attached. Please: (1) summarize the paper in simple language for a high-school student, explaining any technical terms you use; (2) identify the main biological adaptation(s) or mechanism(s) described, at the cellular or molecular level; (3) connect this to biology concepts from my curriculum, such as cell membranes, proteins/enzymes, DNA, metabolism, or natural selection. Keep the answer concise, using short paragraphs or bullet points. The answer should not be longer than 400 words.
+\end{promptbox}
+
+\question{Based on the AI's summary of your paper, make a list of the main biological adaptations that help cope with the selective pressure, and explain each of them in your own words, including the problem they solve and why.}
+
+\question{Compare your answers in the previous question to your guesses in Question~\ref{q:initial_guess_adaptation}. Are they similar? Which adaptations did you miss?}
+
+\question{Reflect upon the adaptations you got in the AI's summary. Do you understand how they actually work? Write here the list of things you don't understand, for each of the adaptations. A good way of seeing if you actually understood something is to try and explain it to someone else.}
+
+\question{Take (at least) one of the adaptations that you wrote in the previous question and dive deeper into how it works, to try and understand it better. Ask the AI for a deeper explanation, look on the internet, etc.}
+
+
+% --- Assignment ---
+\exercisetitle{Design an organism}
+
+The cellular adaptations described in the paper evolved first in microbes, but your task now is to imagine how evolution could build a large, macroscopic organism that would survive in your planet.
+
+\question{Discuss in your team about the evolutionary adaptations that you think a large organism would show externally, based on the cellular adaptations you discussed in Assignment 1. Write your conclusions here.}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen Make a drawing (yourself!) of how the organism would look like based on the adaptations you discussed about.}} Include the environmental conditions of your exoplanet in the drawing (e.g. temperature, atmosphere, light level, terrain) as the background/setting the organism lives in.
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ Use the AI to generate an image of a large organism that would survive under the selective pressure of the exoplanet. Use the prompt below.}} 
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt. Don't forget to write the selective pressure of your exoplanet in the prompt (where it says so) before sending it to the AI!}}
+
+\begin{promptbox}
+
+Generate a realistic scientific illustration of a large multicellular organism that has evolved to survive on an exoplanet with [ADD SELECTIVE PRESSURE HERE]. Show it in its natural habitat on the exoplanet, and make sure every visible feature has a biological function that helps it survive. The image should be scientifically plausible, not a fantasy creature.
+
+\end{promptbox}
+
+\question{Compare the AI generated image to the one you created. What are the differences?}
+
+\question{Which version (yours or AI's) do you think is more scientifically plausible and why?}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\  Ask the AI for an explanation of the features it included in its picture.}}
+
+\vspace{0.5cm}
+\textcolor{accentcolor}{\textbf{\faLightbulb\ Closing the challenge}}
+
+\textcolor{maincolor}{\textbf{\faPen\ Write in your exoplanet file the adaptations to your exoplanet's condition.}}
+
+\vspace{0.5cm}
+\textcolor{accentcolor}{\textbf{\faLightbulb\ What have we learned?}}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\  Write in your file the things you have learned in this lesson (Reflections) and how you used AI for science in this lesson (AI assistance).}}
+
+
+\end{document}
