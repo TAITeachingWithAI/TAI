@@ -59,6 +59,6 @@ anything, or download the `.ipynb` file to run it locally.
 
 ## Assignment 3 — Cutebot
 
-- [:material-language-python: Cutebot.py](assignment-3-cutebot/Cutebot.py) — required library; add this to the micro:bit project **before** the RL code.
-- [:material-chip: RL_cutebot.hex](assignment-3-cutebot/RL_cutebot.hex) — ready-to-flash version of the full RL + Cutebot code, in case a group's save fails.
-- [:material-language-python: RL_cutebot_BACKUP_SOLUTION.py](assignment-3-cutebot/RL_cutebot_BACKUP_SOLUTION.py) — the plain source, as a copy-paste backup.
+- [:material-language-python: cutebot.py](assignment-3-cutebot/cutebot.py) — required library; add this to the micro:bit project **before** the RL code.
+- [:material-chip: RL_cutebot.hex](assignment-3-cutebot/RL_cutebot.hex) — ready-to-flash version of the full RL + line-following Cutebot code, in case a group's save fails.
+- [:material-language-python: RL_cutebot.py](assignment-3-cutebot/RL_cutebot.py) — the plain source, as a copy-paste backup.
