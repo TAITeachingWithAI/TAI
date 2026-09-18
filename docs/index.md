@@ -7,6 +7,8 @@ hide:
 
 <div class="tai-hero" markdown>
 
+![Teaching With AI](assets/images/Logo_TAI_Transparent.png){ .tai-hero-logo }
+
 # Teaching With AI
 
 ### Free, open teaching and learning materials about and with artificial intelligence, for students and teachers.
