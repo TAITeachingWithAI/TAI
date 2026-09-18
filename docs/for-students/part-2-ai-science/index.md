@@ -4,8 +4,8 @@ title: "Part 2: AI & Science"
 
 # Part 2: AI & Science
 
-The material for this part is still under development and will be added here
-once it is finished, in the fall of 2026.
+Here you find the material you need for the AI & Science lessons, organised by
+subject.
 
 ## Subjects
 

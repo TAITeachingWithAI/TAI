@@ -5,4 +5,8 @@ order: 4
 
 # Biology
 
-The student material for this subject will be added here once it is finished.
+Material for the biology lesson.
+
+## Worksheet
+
+- [:material-file-pdf-box: Biology worksheet](../../../for-teachers/part-2-ai-science/biology/Biology%20lesson_student%20version.pdf)
