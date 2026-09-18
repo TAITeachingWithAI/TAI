@@ -10,8 +10,8 @@ copyright: >
 theme:
   name: material
   language: en
+  logo: assets/images/Logo_TAI_Transparent.png
   icon:
-    logo: material/school
     repo: fontawesome/brands/github
   favicon: assets/images/favicon.svg
   features:

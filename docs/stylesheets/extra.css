@@ -65,3 +65,13 @@
   text-align: center;
   margin: 2rem 0 .5rem;
 }
+
+/* Header logo in the top banner (shown on every page) */
+.md-header__button.md-logo {
+  padding: .2rem;
+}
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 2rem;
+  width: auto;
+}
