@@ -11,7 +11,7 @@ Explore the parts below:
 !!! tip "Hand in your worksheets"
     Hand in your worksheets with your answers **[here](https://universe.uibk.ac.at/s/HjWMnQJHQ9Hf7bY)**.
     Please give your PDF a clear name and put it in the correct folder
-    (e.g. `Art_styles_group_Emma.pdf`).
+    (e.g. `WASP-76b_Biology.pdf`).
 
 <div class="tai-logos" markdown>
 ![Partner logos](../assets/images/logos.png){ height="48" }
