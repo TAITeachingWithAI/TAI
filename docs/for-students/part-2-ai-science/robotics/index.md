@@ -16,6 +16,16 @@ an exoplanet grid, with an AI co-pilot.
 
 Extra resources for the lesson, and ready-made code in case you get stuck.
 
+!!! tip "Write and flash your code at python.microbit.org"
+    All the code for this lesson — calibration, the RL grid, and the Cutebot
+    — is written and flashed to the micro:bit at
+    [python.microbit.org](https://python.microbit.org){ target="_blank" }.
+    That's where you paste or upload any of the files below.
+
+### Calibrate your rover
+
+- [:material-language-python: cutebot.py](../../../for-teachers/part-2-ai-science/robotics/assignment-3-cutebot/cutebot.py) — required library; add this to your micro:bit project before your own code.
+
 ### Q values simulation
 
 A notebook with pictures and a simulation of how Q values evolve throughout
