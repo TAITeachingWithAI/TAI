@@ -26,3 +26,11 @@ Use this notebook to load your light-sensor data, draw the light curve, and work
 out the transit depth. It opens in your browser, no installation needed.
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/ScientificAILab/blob/main/notebooks/exoplanet_transit_analysis.ipynb)
+
+## Ask Emmy, your physics tutor
+
+**Emmy** is an AI physics tutor who guides you through your own experiment step by
+step, by asking questions rather than handing you the answer. Chat with her when
+you are planning or making sense of your measurements.
+
+[:octicons-arrow-right-24: Chat with Emmy](https://scientificailab.streamlit.app/Tutors){ target="_blank" }
