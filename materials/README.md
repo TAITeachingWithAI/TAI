@@ -52,5 +52,11 @@ artifacts (`.aux`, `.log`, ...) are ignored by `.gitignore`.
 
 Some published files are not built from `materials/` and live only in `website/`:
 the exoplanet data PDFs (`exoplanet-files/`), the math print-out plots
-(`linear_fit_*.pdf`), and anything in Part 1. These are placed in `website/`
-directly for now.
+(`linear_fit_*.pdf`), and the Part 1 cards made in other tools (`Prompt_guide`,
+`Tips_prompting_card`, `Style_guide`, the Exhibition cards,
+`Diffusion_assignment_1_images`). These are placed in `website/` directly.
+
+Both Part 1 and Part 2 lesson worksheets are built from `materials/` via
+`publish.py`. In Part 1, `dest` routes each build to the student or teacher
+section; in Part 2 everything goes to for-teachers and the student pages
+cross-link.

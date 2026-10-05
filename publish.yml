@@ -1,37 +1,63 @@
-# Which course materials to publish, and how.
-# Run:  python publish.py            (publish every lesson below)
-#       python publish.py physics    (publish only one or more lessons)
+# What to publish, and how.  Run:
+#   python publish.py                 publish everything
+#   python publish.py <lesson>        publish one lesson (e.g. physics, art-styles)
+#   python publish.py <part>          publish a whole part
+#   python publish.py --list          show all parts and lessons
 #
-# "latex" lessons are built from their .tex (student = \teacherfalse,
-# teacher = \teachertrue) into the two PDF names given here. Every other file
-# in a lesson's materials folder (notebooks, slides, code, images, ...) is
-# copied to the matching website folder as-is.
+# Each lesson lists its builds. A build compiles <tex> with the student
+# (\teacherfalse) or teacher (\teachertrue) toggle into <out>, and publishes it
+# to the student or teacher section (dest). Part 2 defaults dest to "teacher"
+# (student pages cross-link); Part 1 sets dest per build.
 
-part: part-2-ai-science
+parts:
 
-lessons:
-  physics:
-    latex:
-      tex: physics.tex
-      student: physics_forstudents.pdf
-      teacher: physics_teachertrue.pdf
-  mathematics:
-    latex:
-      tex: Math.tex
-      student: Math_forstudents.pdf
-      teacher: Math_teachertrue.pdf
-  chemistry:
-    latex:
-      tex: Chemistry.tex
-      student: "Chemistry lesson_student version.pdf"
-      teacher: "Chemistry lesson_teacher version.pdf"
-  biology:
-    latex:
-      tex: Biology.tex
-      student: "Biology lesson_student version.pdf"
-      teacher: "Biology lesson_teacher version.pdf"
-  robotics:
-    latex:
-      tex: RL_Rover_Handout.tex
-      student: RL_Rover_Handout_student.pdf
-      teacher: RL_Rover_Handout_teacher.pdf
+  part-2-ai-science:
+    default_dest: teacher
+    copy_materials: true
+    lessons:
+      physics:
+        - {tex: physics.tex, toggle: student, out: physics_forstudents.pdf}
+        - {tex: physics.tex, toggle: teacher, out: physics_teachertrue.pdf}
+      mathematics:
+        - {tex: Math.tex, toggle: student, out: Math_forstudents.pdf}
+        - {tex: Math.tex, toggle: teacher, out: Math_teachertrue.pdf}
+      chemistry:
+        - {tex: Chemistry.tex, toggle: student, out: "Chemistry lesson_student version.pdf"}
+        - {tex: Chemistry.tex, toggle: teacher, out: "Chemistry lesson_teacher version.pdf"}
+      biology:
+        - {tex: Biology.tex, toggle: student, out: "Biology lesson_student version.pdf"}
+        - {tex: Biology.tex, toggle: teacher, out: "Biology lesson_teacher version.pdf"}
+      robotics:
+        - {tex: RL_Rover_Handout.tex, toggle: student, out: RL_Rover_Handout_student.pdf}
+        - {tex: RL_Rover_Handout.tex, toggle: teacher, out: RL_Rover_Handout_teacher.pdf}
+
+  part-1-ai-arts-and-humanities:
+    default_dest: student
+    copy_materials: false
+    lessons:
+      how-llms-work:
+        - {tex: How_LLMs_work.tex, toggle: student, out: How_LLMs_work.pdf, dest: student}
+        - {tex: How_LLMs_work.tex, toggle: teacher, out: How_LLMs_work_TEACHERS.pdf, dest: teacher}
+      prompting-llms:
+        - {tex: Prompting_LLMs_Athina.tex, toggle: student, out: Prompting_LLMs.pdf, dest: student}
+      where-llms-fail:
+        - {tex: Where_LLMs_fail.tex, toggle: student, out: Where_LLMs_fail.pdf, dest: student}
+        - {tex: Where_LLMs_fail.tex, toggle: teacher, out: Where_LLMs_fail_TEACHERS.pdf, dest: teacher}
+      history:
+        - {tex: History.tex, toggle: student, out: History.pdf, dest: student}
+      languages:
+        - {tex: languages.tex, toggle: student, out: Languages.pdf, dest: student}
+      literature:
+        - {tex: Literature.tex, toggle: student, out: Literature.pdf, dest: student}
+      diffusion-models:
+        - {tex: "Diffusion models.tex", toggle: student, out: Diffusion_models.pdf, dest: student}
+      art-styles:
+        - {tex: "Art styles and image prompting.tex", toggle: student, out: Art_styles_image_generation.pdf, dest: student}
+        - {tex: "Style card.tex", toggle: student, out: Style_card.pdf, dest: student}
+        - {tex: "Art Styles Teacher Guide.tex", toggle: teacher, out: Art_styles_teachers_supplement.pdf, dest: teacher}
+      sound-generation:
+        - {tex: "Sound generation.tex", toggle: student, out: Sound_generation.pdf, dest: student}
+      debate:
+        - {tex: Debate.tex, toggle: teacher, out: Debate_topics.pdf, dest: teacher}
+      art-exhibition:
+        - {tex: Exhibition_teachers.tex, toggle: teacher, out: Exhibition_material_for_teachers.pdf, dest: teacher}
