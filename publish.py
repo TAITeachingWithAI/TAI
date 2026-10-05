@@ -95,9 +95,11 @@ def copy_materials(part: str, lesson: str) -> None:
         if "Figures" in dirnames:
             dirnames.remove("Figures")
         for fn in filenames:
+            low = fn.lower()
             ext = Path(fn).suffix.lower()
-            if ext in SKIP_EXT or ext in LATEX_ARTIFACTS:
-                continue
+            if (ext in SKIP_EXT or ext in LATEX_ARTIFACTS or ext == ".pdf"
+                    or low.endswith(".synctex.gz")):
+                continue  # .tex, build artifacts and compiled PDFs are not materials
             rel = (dp / fn).relative_to(src)
             target = dest_dir / rel
             target.parent.mkdir(parents=True, exist_ok=True)
