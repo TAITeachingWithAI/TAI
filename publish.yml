@@ -1,0 +1,37 @@
+# Which course materials to publish, and how.
+# Run:  python publish.py            (publish every lesson below)
+#       python publish.py physics    (publish only one or more lessons)
+#
+# "latex" lessons are built from their .tex (student = \teacherfalse,
+# teacher = \teachertrue) into the two PDF names given here. Every other file
+# in a lesson's materials folder (notebooks, slides, code, images, ...) is
+# copied to the matching website folder as-is.
+
+part: part-2-ai-science
+
+lessons:
+  physics:
+    latex:
+      tex: physics.tex
+      student: physics_forstudents.pdf
+      teacher: physics_teachertrue.pdf
+  mathematics:
+    latex:
+      tex: Math.tex
+      student: Math_forstudents.pdf
+      teacher: Math_teachertrue.pdf
+  chemistry:
+    latex:
+      tex: Chemistry.tex
+      student: "Chemistry lesson_student version.pdf"
+      teacher: "Chemistry lesson_teacher version.pdf"
+  biology:
+    latex:
+      tex: Biology.tex
+      student: "Biology lesson_student version.pdf"
+      teacher: "Biology lesson_teacher version.pdf"
+  robotics:
+    latex:
+      tex: RL_Rover_Handout.tex
+      student: RL_Rover_Handout_student.pdf
+      teacher: RL_Rover_Handout_teacher.pdf

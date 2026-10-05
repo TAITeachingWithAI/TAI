@@ -3,7 +3,8 @@ site_description: Teaching and learning materials about and with artificial inte
 site_url: https://taiteachingwithai.github.io/TAI/
 repo_url: https://github.com/TAITeachingWithAI/TAI
 repo_name: TAITeachingWithAI/TAI
-edit_uri: edit/main/docs/
+docs_dir: website
+edit_uri: edit/main/website/
 copyright: >
   Teaching With AI. Funded by the Erasmus+ programme of the European Union.
 
