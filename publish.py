@@ -105,7 +105,14 @@ def copy_materials(lesson: str) -> None:
 
 
 def main() -> None:
-    want = sys.argv[1:] or list(LESSONS)
+    args = sys.argv[1:]
+    if args and args[0] in ("--list", "-l", "-h", "--help"):
+        print("Available lessons (keys in publish.yml):")
+        for name in LESSONS:
+            print(f"  {name}")
+        print("\nUsage: python publish.py [lesson ...]   (no arguments = publish all)")
+        return
+    want = args or list(LESSONS)
     unknown = [lsn for lsn in want if lsn not in LESSONS]
     if unknown:
         raise SystemExit(f"unknown lesson(s): {unknown}; known: {list(LESSONS)}")
