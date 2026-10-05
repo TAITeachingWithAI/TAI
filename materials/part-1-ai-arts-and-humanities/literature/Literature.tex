@@ -1,0 +1,389 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{enumitem}
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+\newcommand{\exercisetitle}[1]{%
+\stepcounter{exercise}
+  \vspace{0.5cm}
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise #1}%
+    }%
+  }
+  \vspace{0.3cm}
+}
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX ---
+\newcounter{question}
+
+\newcommand{\question}[2][5cm]{%
+  \stepcounter{question}
+  \vspace{0.3cm}
+  \textbf{\faEdit\ Question \thequestion: #2} \\[0.3em]
+  
+  \begin{Form}
+  \TextField[
+    name=Q\thequestion,
+    multiline=true,
+    width=\linewidth,
+    height=#1,
+    charsize=10pt,
+    bordercolor={0 0 0},
+    borderwidth=1.8,
+    backgroundcolor={1 1 1}
+  ]{}
+  \end{Form}
+  
+  \vspace{0.3cm}
+}
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} Your AI library: Exploring your preferred literature \par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+\vspace*{0.5\textheight}
+
+Subject: Literature
+
+Activity duration: 45 min
+
+\vspace{0.5cm}
+
+Steps:
+\begin{enumerate}
+    \item Generate your wish list and prompt. (10 min)
+    \item Compare and analyze the texts. Guess the historical period where it was written. (25 min)
+    \item Ask the AI for the answer and further analysis of the texts. (10 min)
+\end{enumerate}
+
+Learning goals:
+
+\begin{itemize}
+    \item Getting to know literature (from different historical periods) that matches your own individual interests.
+    \item Text analysis.
+    \item Using AI as a tutor that helps you get a personalized lesson (in this case, in literature, but can be extended to other subjects).
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\Huge \color{maincolor} Your AI library}\\[5pt]
+    {\large \textit{Exploring your preferred literature}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+\textit{What are your current interests or worries? Were there people like you in the past that wrote about those same interests?}
+\vspace{0.3cm}
+
+You will give the AI a wish list with the type of characters, topics and writing style that you find interesting. Then, the AI will generate 3 short literary texts matching your wish list. Your goal is to compare those texts, guess when they were written, and see which ones you like the most. Can you spot which one is original from the AI?
+
+% --- Assignment ---
+\exercisetitle{: Generate your wish list and prompt the AI}
+
+Before you get your texts, you’ll design a personal “literary wish list”. This means you’ll choose a few features or elements that describe what you’d like to explore.
+
+You can mix and match ideas about themes, characters, writing styles, and narrative techniques.
+
+Feel free to use the lists below as inspiration, but you can also add any other feature you'd like. \textbf{You don't need to choose from all feature categories (A to D below) either!}
+
+\begin{enumerate}[label=\Alph*.]
+    \item \textbf{Themes and Ideas}
+
+The role of women in society
+
+Identity and self-discovery
+
+Freedom and control
+
+Class and social expectations
+
+Power and rebellion
+
+Family and conflict
+
+Belonging and loneliness
+
+\item \textbf{Characters}
+
+Strong but conflicted female characters
+
+Anti-heroes or morally complex people
+
+Teenagers figuring out who they are
+
+Characters facing change or loss
+
+Outsiders looking for acceptance
+
+\item \textbf{Narrative Style}
+
+First-person (told as “I…”)
+
+Unreliable narrator
+
+Stream of consciousness (like hearing thoughts flow freely)
+
+Letters, diary entries, or interviews
+
+Two different points of view
+
+\item \textbf{Writing Style and Mood}
+
+Poetic or descriptive language
+
+Poems
+
+Simple, realistic language
+
+Humorous or ironic tone
+
+Sad, mysterious, or hopeful mood
+
+Symbolism (objects that stand for ideas)
+
+\end{enumerate}
+
+When you’re ready, use your chosen features to create a prompt for the AI. Use the template prompt below. You should fill in your chosen features where it corresponds in the template. \colorbox{orange!30}{Replace the examples inside the brackets [...] by your own text.} \textbf{If you do not want to specify a category} from the A to D chosen above, \textbf{remove that category} from the prompt. \colorbox{orange!30}{The rest of the text should remain as is.}
+
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}
+\begin{promptbox}
+I’m doing a literature project in high school (16-17 years old).
+
+Please create a set of 3 short literary excerpts (150–250 words each) that match the following features:
+
+Themes / Ideas: \textbf{[fill in here your chosen theme, e.g. the role of women in society; identity and freedom]}
+
+Character type or focus: \textbf{[e.g. a strong but conflicted female character; an outsider searching for belonging]}
+
+Narrative style: \textbf{[e.g. first-person narration; stream of consciousness]}
+
+Writing style and mood: \textbf{[e.g. poetic tone; simple language]}
+
+Please make:
+
+2 excerpts written in the style of real authors (you can choose them based on what fits best the features selected above). Each excerpt should be from a different literary period.
+
+1 excerpt written by you, AI model, following the features and styles indicated above in brackets.
+
+You can present the excerpts in an arbitrary order. Label the excerpts as Text A, Text B, Text C, where Text A is the first excerpt you present and Text C the last excerpt you present, but do not reveal yet which is the one you created without imitating the style of an author.
+
+Each excerpt should stand on its own (a short passage or scene). Make sure the mix of styles feels natural — some should sound older or classic, others more modern.
+
+After providing all 3 excerpts, confirm that you have “recorded” which ones are imitating real authors and which one is originally AI-generated, so I can ask you later to reveal them.
+
+Do not include author names or dates yet.
+\end{promptbox}
+
+
+
+% --- Assignment  ---
+\exercisetitle{: Compare and analyze the texts}
+
+After copy-pastying your final prompt, you’ll receive 3 short texts (some that imitate real authors, and one that is original from the AI model).
+
+Each text will be labeled Text A, Text B, Text C.
+
+Read each text carefully.
+
+Answer the following guiding questions here in the pdf to help you make the comparison between texts.
+
+\question{What are the main differences and similarities you observe?}
+
+\question{How does the style feel — e.g. old-fashioned, modern, poetic, simple? Select the part/s in the text that indicate or show that style.}
+
+\question{How are the characters/identity/society described in the text?}
+
+\question{In which ways that depiction of the characters/identity/society are similar to today's depiction in our society? In which ways are they different?}
+
+\question{From your answers to questions 2 and 3, to which historical period and literature movement do the texts belong?}
+
+\question{One of the text is original from the AI, meaning the AI is not imitating the style of an existing author. Which text do you think it is? Justify your answer.}
+
+% --- Assignment  ---
+\exercisetitle{: Ask the AI for its answer and analysis}
+
+Ask the AI to give you the author it is imitating, most well-known books/plays from that author, and time period of each of the texts, as well as its own comparison between them, emphasizing the main features of the literary period to which they belong.
+
+You can copy the following prompt for this.
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}
+\begin{promptbox}
+Now please give me, for those excerpts that are imitating the style of a given author: the author, name of the most famous book/play of that author, and time period of each of the texts. For the excerpt that is made by you, AI model, say "AI generated" and provide the historical period they could belong to. Afterwards, make a brief comparison between them, emphasizing the main features of the literary period to which they belong, and analyzing briefly their literary style (language). This comparison should be made with simple language, adapted for high-school students.
+\end{promptbox}
+
+\textit{Were you correct in your guess?}
+
+Read carefully the extended analysis that the AI did of each of the texts.
+
+\stepcounter{question}
+  \vspace{0.3cm}
+  \textbf{\faEdit\ Question \thequestion: Go back to the texts, and identify at least one feature that the AI gave in its analysis, for each of the texts. Write down one example sentence where you saw that feature in each text.} \\[0.3em]
+  
+  \begin{Form}
+
+% ---------- A ----------
+\textbf{Text A)} \\[0.3cm]
+
+Feature: \\[0.2cm]
+\TextField[name=A_feature,width=\linewidth,height=1cm, bordercolor={0 0 0}]{} \\[0.4cm]
+
+Sentence: \\[0.2cm]
+\TextField[name=A_sentence,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+
+\vspace{0.6cm}
+
+% ---------- B ----------
+\textbf{ Text B)} \\[0.3cm]
+
+Feature: \\[0.2cm]
+\TextField[name=B_feature,width=\linewidth,height=1cm, bordercolor={0 0 0}]{} \\[0.4cm]
+
+Sentence: \\[0.2cm]
+\TextField[name=B_sentence,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+
+\vspace{0.6cm}
+
+% ---------- C ----------
+\textbf{Text C)} \\[0.3cm]
+
+Feature: \\[0.2cm]
+\TextField[name=C_feature,width=\linewidth,height=1cm, bordercolor={0 0 0}]{} \\[0.4cm]
+
+Sentence: \\[0.2cm]
+\TextField[name=C_sentence,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+
+\end{Form}
+
+\vspace{0.3cm}
+Select the text you like the most. If the text you selected is one imitating a real author, look for more information about the author and historical context in which they wrote it.
+
+Feel free to ask the AI for recommendations of more recent books that fit your interests on the topics you chose above.
+
+\question{What is the thing you liked the most about the text / the author?}
+
+Use the prompt below for recommendations:
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}
+\begin{promptbox}
+Can you recommend 2 more recent books that deal with the topics I selected above and that are appropriate for a high-school student (15-17 yo)? Give the title, author, year, main topic, and brief plot summary (without spoilers) of each of them.
+\end{promptbox}
+
+\end{document}

@@ -1,0 +1,313 @@
+
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{cleveref}
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+\newcommand{\exercisetitle}[1]{%
+\stepcounter{exercise}
+  \vspace{0.5cm}
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise:~ #1}%
+    }%
+  }
+  \vspace{0.3cm}
+}
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX ---
+\newcounter{question}
+
+\newcommand{\question}[2][5cm]{%
+  \stepcounter{question}
+  \vspace{0.3cm}
+  \textbf{\faEdit\ Question \thequestion: #2} \\[0.3em]
+  
+  \begin{Form}
+  \TextField[
+    name=Q\thequestion,
+    multiline=true,
+    width=\linewidth,
+    height=#1,
+    charsize=10pt,
+    bordercolor={0 0 0},
+    borderwidth=1.8,
+    backgroundcolor={1 1 1}
+  ]{}
+  \end{Form}
+  
+  \vspace{0.3cm}
+}
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} AI as a language tutor \par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+\vspace*{0.5\textheight}
+
+Subject: Improving your language skills with AI
+
+Activity duration: 45 min
+
+\vspace{0.5cm}
+
+Steps:
+\begin{enumerate}
+\item Class discussion (5 min)
+\item Level assessment: Chat with an LLM (10 min)
+\item Personalized lesson: LLM as language tutor (20 min)
+\item Class discussion (10 min)
+\end{enumerate}
+
+Learning goals:
+
+\begin{itemize}
+    \item Improve in a language of your choice
+    \item Prompting an LLM to create an individual lesson
+\end{itemize}
+
+
+Setup: 
+\begin{itemize}
+    \item Access to an LLM chat bot. 
+    \item Turn or the auto correct option in the LLM chat.
+\end{itemize}
+
+
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\Huge \color{maincolor} AI as a language tutor}\\[5pt]
+    {\large \textit{Improve in a language of your choice}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+Would you like to improve your language skills? In this lesson you experience how an LLM can be your language tutor. 
+
+\exercisetitle{Initial Discussion} 
+
+Discuss in small groups and be ready to share the answers in class:
+\begin{itemize}
+\item   Have you ever tried learning a new language outside of school? How did you proceed?
+\item   What is the best way to learn a new language?
+\item   Have you ever used AI to help you with language? How?
+\item   How can you imagine that AI could help you improve your language skills?
+\end{itemize}
+
+% --- Assignment ---
+\exercisetitle{Level assessment Chat}
+
+In this assignment, you will have a written chat with an LLM chat bot in a language that you are learning. Based on this chat, the model will try to find out what your language level is and where you could still improve. First, answer the following questions. 
+
+\question[2cm]{Which language would you like to improve today?}\label{Q1}
+
+\question{What topic do you want to be able to talk about (more easily) in that language?}\label{Q2}
+
+\question{Are there specific kinds of grammar or vocabulary that you find hard?}\label{Q3}
+
+
+
+
+In the next 5--10 minutes, you will have a chat with an LLM about the topic you chose in Question 2. The LLM will ask you questions, and you answer them. You can also ask questions back. Pretend that you are having a chat with an actual language tutor. During the chat, the LLM can figure out what your language level is, and use this to create a specialized language lesson.
+
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ a) Preparing the LLM as a Tutor}} 
+
+Complete the following prompt by filling in the \textit{[italic parts]}, and give it to the LLM.
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}
+\begin{promptbox}
+Act as my language tutor. I am a high school student learning \textit{[language, answer \cref{Q1}]} and want to improve. I want to focus on improving: \textit{[fill in your answer from \cref{Q2}, or remove this sentence if you don't know]}. Have a conversation with me where you act as my human conversation partner and tutor. The goal of the conversation is for you to figure out what level my language is and what I still need to work on. The topic of the conversation is: \textit{[fill in your answer from \cref{Q2}]}. Keep initial instructions short and in English. Then, immediately start with a greeting and one easy question about the topic in the language I am learning. You can correct my answer shortly if it contained mistakes.
+For the explanation of the correction, use English as the main language. Then, go back to the conversation in the learning language and respond to me in maximum 100 words with an answer and a new question. Only increase the level if the level of my answers allows you to, and try to mimic my language level. Never give me any example answers to your questions. The goal is that I come up with answers myself, potentially make mistakes, and you help me learn.
+The conversation should be in the language I am learning, but please write any other messages in English. After chatting for a while, I will ask you to create a specialized language lesson for me.
+\end{promptbox}
+
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ b) Chat with the LLM for 5-10 minutes}} 
+Have a chat with the AI system. Some tips: 
+
+\begin{itemize}
+    \item Make sure that the auto correct option in your chatbox is turned off: you should be able to make mistakes! 
+    \item If you do not understand what the LLM is writing, please tell it so in your language of choice. This can be English but also your mother tongue. For example, you can say: 
+    \begin{promptbox}
+This is too hard for me to understand. I will now start say something to you in the language, please wait for it. Please respond in a similar level afterwards.
+\end{promptbox}
+Then, start a conversation yourself. 
+    \item Some programs may have the option to also speak to it. In that case, you can also have the conversation spoken instead of written.
+\end{itemize}
+
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ c) Ask for a level assessment}} 
+After 5--10 minutes of chatting, you tell the LLM:
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}
+\begin{promptbox}
+This is the end of the conversation. Give me an estimation of my language level. Make me a short summary in bullet points of a few areas I need to work on to improve.
+After that, pose me a first exercise to work on these areas. Give me one exercise at the time, posing a new one after I answered the first and adjust the level according to my answers.
+If my level allows it, the exercises can be posed in the new language. If not, please pose the questions in english.
+\end{promptbox}
+
+
+\exercisetitle{Personalized lesson}
+
+Now, do the exercises provided to you by the LLM.
+If the lesson is not to your wishes, just tell the LLM so, and it will adjust to your needs. Remember: you are the one in charge! For example, you can say:
+
+\begin{itemize}
+    \item What is the meaning of \textit{[word]}
+    \item This exercise is too basic, please make it more challenging.
+    \item Can you give me an exercise about \ldots\ instead?
+    \item I do not know how to do this, please break it down in smaller steps.
+    \item Instead of English, can you do the general instructions and explanations in my mothertonge \textit{[fill in your mothertonge]}.
+\end{itemize}
+
+At the end of the lesson, ask the LLM for a summary of the topics you covered and the new things you learned. Also, ask it for a short description of a follow up lesson that you could do next time. You can use the following prompt as a basis, but feel free to change it to your wishes.
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}
+\begin{promptbox}
+This is the end of the first lesson. Can you make a summary of the things I learned this lesson, and what you advice me to work next.
+Also, give a short description (less than 200 words, using bulletpoints) of the program of a next 30 minute lesson that I could do.
+\end{promptbox}
+
+Now, answer the following questions. 
+
+\question{What did you learn in this lesson?}
+
+\question{What could you work on in a follow-up lesson?}
+
+
+\exercisetitle{Final discussion}
+
+Discuss in small groups and be ready to share the answers in class:
+\begin{itemize}
+    \item Did you feel like the LLM got a good impression of your language skill?
+    \item Compare the exercises that the LLM provided. Which one did you like? Which one did you not like?
+    \item Did it work to give the LLM feedback and make it change the lesson to your wishes?
+    \item Can you come up with other ways in which you could use AI to improve your language skill?
+\end{itemize}
+
+
+
+
+\end{document}

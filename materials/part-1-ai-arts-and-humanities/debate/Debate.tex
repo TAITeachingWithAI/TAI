@@ -1,0 +1,382 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{subcaption} % modern replacement for the deprecated subfigure package
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% Tell cleveref how to name your counter
+\crefname{exercise}{assignment}{assignments}
+\Crefname{exercise}{Assignment}{Assignments}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+
+% Optional label: \exercisetitle[<label>]{<Title>}
+\newcommand{\exercisetitle}[2][]{%
+  \refstepcounter{exercise}% make this step referenceable/hyperlinked
+  \vspace{0.5cm}%
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise:~ #2}%
+    }%
+  }%
+  % If an optional label was provided, set it
+  \if\relax\detokenize{#1}\relax\else\label{#1}\fi
+  \vspace{0.3cm}%
+}
+
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX (with starred variant and cleveref names) ---
+% Requires: \usepackage{hyperref} for \Form/\TextField
+%           \usepackage{fontawesome5} for \faEdit
+
+% Cleveref names for the question counter
+\crefname{question}{question}{questions}
+\Crefname{question}{Question}{Questions}
+
+\makeatletter
+\newcounter{question}
+\newlength\questionheight
+\setlength\questionheight{5cm} % default answer box height
+
+% \question{<text>}                  -> with TextField (default height)
+% \question[<height>]{<text>}        -> with TextField (custom height)
+% \question*{<text>}                 -> no TextField, still numbered
+\newcommand{\question}{\@ifstar{\question@text}{\question@field}}
+
+% Common heading (increments counter and creates ref anchor)
+\newcommand{\question@heading}[1]{%
+  \refstepcounter{question}%
+  \vspace{0.3cm}%
+  \noindent\textbf{\faEdit\ Question \thequestion: #1}%\\[0.3em]%
+}
+
+% Starred form: numbered question without input field
+\newcommand{\question@text}[1]{%
+  \question@heading{#1}%
+%  \vspace{0.3cm}%
+}
+
+% Unstarred form: numbered question with input field (optional height)
+\newcommand{\question@field}[2][\questionheight]{%
+  \question@heading{#2}%
+ \\[0.3em] \begin{Form}
+    \TextField[
+      name=Q\thequestion,
+      multiline=true,
+      width=\linewidth,
+      height=#1,
+      charsize=10pt,
+      bordercolor={0 0 0},
+      borderwidth=1.8,
+      backgroundcolor={1 1 1}
+    ]{}
+  \end{Form}
+  \vspace{0.3cm}%
+}
+\makeatother
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} Debate\par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+\vspace*{0.5\textheight}
+
+Subject: Debate about AI
+
+Activity duration: 180 min
+
+\vspace{0.5cm}
+
+Steps:
+\begin{enumerate}
+    \item Distribute debate themes and prepare in groups (90 min)
+    \item Debate in groups (90 min)
+\end{enumerate}
+
+Learning goals:
+
+\begin{itemize}
+    \item Doing research about an ethical topic
+    \item Preparing arguments
+    \item Debate
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\Huge \color{maincolor} Debate}\\[5pt]
+    {\large \textit{on ethics and practical consequences of AI}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+Here we share a list of suggested topics for a debate about AI. Students get assigned a thesis and a side (for/against) in groups of 2 or 3. They get time to do research and prepare their arguments. 
+Then, they will have a debate with the other side. The students in de audience each prepare a question. Afterwards, two students in the audience are appointed to ask a question. 
+
+
+\section*{Debate Topics on AI}
+
+
+Each topic has a short thesis, a simple explanation, and two sides (For / Against). Students argue for or against the thesis.
+
+
+\begin{enumerate}
+\item \textbf{Thesis: AI-made works should be allowed to have copyright.}\\
+\emph{What this means:} If a human uses AI to make images, music, or text, can that human own the rights like an author?\\
+\textbf{For:}
+\begin{itemize}
+\item The human still makes choices: prompts, edits, and selection show creativity.
+\item It motivates people to invest time and money in creative AI.
+\item Tools have always changed art (like cameras); authorship can include new tools.
+\end{itemize}
+\textbf{Against:}
+\begin{itemize}
+\item Copyright is for human authors; fully machine-made work should not qualify.
+\item Could create a flood of protected machine content and legal problems.
+\item Other options (contracts, licenses) may fit better than copyright.
+\end{itemize}
+
+
+\item \textbf{Thesis: The environmental cost of generative AI is bigger than its benefits.}\\
+\emph{What this means:} Training and using big AI models uses a lot of electricity and water. Is it worth it?\\
+\textbf{For:}
+\begin{itemize}
+    \item Data centers use much energy and water; local communities pay the price.
+    \item Many AI uses are low-value or replace simpler methods.
+    \item The same resources could support health, climate, or public services.
+\end{itemize}
+\textbf{Against:}
+\begin{itemize}
+    \item AI can save energy in other areas (smart grids, transport, buildings).
+    \item Chips and data centers are getting more efficient.
+    \item Rules and clean energy can reduce the harm without stopping progress.
+\end{itemize}
+
+\item \textbf{Thesis: AI companions and creative tools are good for mental health.}\\
+\emph{What this means:} Chatbots and AI art/music tools might help people feel better.\\
+\textbf{For:}
+\begin{itemize}
+    \item Easy to access, no stigma; good for journaling and reflection.
+    \item Can reduce loneliness and support coping skills.
+    \item Early studies show mood benefits when used with care.
+\end{itemize}
+\textbf{Against:}
+\begin{itemize}
+    \item People may become dependent and talk less to real friends.
+    \item Bots can give wrong or unsafe advice.
+    \item Privacy risks: sensitive data could be misused.
+\end{itemize}
+
+\item \textbf{Thesis: Students should be allowed to use generative AI in arts and humanities assignments.}\\
+\emph{What this means:} Can students use tools like chatbots or image generators for class work?\\
+\textbf{For:}
+\begin{itemize}
+    \item Matches real creative work today; teaches how to guide and improve AI output.
+    \item Helps with brainstorming and feedback for all students.
+    \item With clear rules and citation, it supports learning.
+\end{itemize}
+\textbf{Against:}
+\begin{itemize}
+    \item Makes it hard to judge a student’s own skills.
+    \item Tempts students to shortcut and weakens basics (writing, analysis, technique).
+    \item Not all students have equal access; tools can be biased.
+\end{itemize}
+
+\item \textbf{Thesis: Using public internet content to train AI is fair use.}\\
+\emph{What this means:} Is it okay for companies to scrape online text and images to train AI without asking each creator?\\
+\textbf{For:}
+\begin{itemize}
+    \item The training is transformative (learning patterns, not copying exact works).
+    \item Needed for useful AI; similar to text and data mining.
+    \item Society benefits from better tools and knowledge.
+\end{itemize}
+\textbf{Against:}
+\begin{itemize}
+    \item It takes creators’ work without permission or pay.
+    \item AI outputs can replace the original creators’ market.
+    \item Publicly available does not mean free to use; privacy and website rules matter.
+\end{itemize}
+
+\item \textbf{Thesis: AI-made art is art.}\\
+\emph{What this means:} Should works made with or by AI be accepted as ``art''?\\
+\textbf{For:}
+\begin{itemize}
+    \item Art depends on intention, context, and audience—not only on the tool.
+    \item Humans still choose prompts, curate results, and set meaning.
+    \item Art history shows new media (photo, video, code) become accepted.
+\end{itemize}
+\textbf{Against:}
+\begin{itemize}
+    \item AI lacks human feeling and agency inside the work.
+    \item Often imitates styles; may lead to sameness and pastiche.
+    \item Can shift focus from human craft to automation.
+\end{itemize}
+
+\item \textbf{Thesis: Teachers should use AI to make teaching materials and help evaluate students.}\\
+\emph{What this means:} Is it good for teachers to use AI to prepare lessons, quizzes, and feedback?\\
+\textbf{For:}
+\begin{itemize}
+    \item Saves time so teachers can focus on students.
+    \item Helps personalize learning and improve accessibility.
+    \item Can support clear rubrics and spot learning gaps.
+\end{itemize}
+\textbf{Against:}
+\begin{itemize}
+    \item AI can be biased or wrong; grading may become less fair or clear.
+    \item Risks to student privacy and data security.
+    \item Could weaken teacher skills and relationships with students.
+\end{itemize}
+
+\item \textbf{Thesis: In creative and cultural jobs, AI will cause more job losses than new jobs.}\\
+\emph{What this means:} Will AI take away more jobs (designers, writers, translators, etc.) than it creates?\\
+\textbf{For:}
+\begin{itemize}
+    \item Fast replacement in illustration, content writing, and post-production.
+    \item Lower pay and fewer entry-level opportunities.
+    \item Big tech firms capture most value, not individual creators.
+\end{itemize}
+\textbf{Against:}
+\begin{itemize}
+    \item New jobs appear (model trainers, prompt experts, curators, verifiers).
+    \item Higher productivity can grow markets and demand.
+    \item History shows tech changes jobs more than it removes them over time.
+\end{itemize}
+
+\item \textbf{Thesis: People must say when they used AI in academic or creative work.}\\
+\emph{What this means:} Should students, writers, and artists disclose AI help in their work?\\
+\textbf{For:}
+\begin{itemize}
+    \item Builds trust and protects academic honesty.
+    \item Gives proper credit and shows the human’s real contribution.
+    \item Helps with copyright, safety checks, and provenance.
+\end{itemize}
+\textbf{Against:}
+\begin{itemize}
+    \item Hard to enforce when AI is built into many tools.
+    \item Might discourage experimentation with useful tools.
+    \item Some say the result matters more than which tool was used.
+\end{itemize}
+
+\end{enumerate}
+
+
+\subsection*{Optional tips for students}
+\begin{itemize}
+\item Define key words at the start in 1--2 simple sentences (e.g., copyright,'' fair use,'' ``disclosure'').
+\item Use clear examples: a news article on AI energy use, a school policy, a court case, a real artist’s experience.
+\item Agree on team roles: one introduces, one gives evidence, one rebuts and closes.
+\end{itemize}
+
+\end{document}

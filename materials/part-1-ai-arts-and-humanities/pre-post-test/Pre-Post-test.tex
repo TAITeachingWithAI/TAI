@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{enumitem,amssymb}
+\usepackage{tabularx,array}
+
+\setlist[itemize]{noitemsep,topsep=2pt,leftmargin=1.2em}
+\setlist[enumerate]{itemsep=0.8em,topsep=6pt,leftmargin=1.2em}
+
+\newcommand{\PrePostBox}[1][4cm]{%
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.48\linewidth} >{\raggedright\arraybackslash}p{.48\linewidth}@{}}
+\textbf{Pre} & \textbf{Post}\[0.2em]
+\fbox{\parbox[t][#1][t]{\linewidth}{\vspace*{0.2em}}} &
+\fbox{\parbox[t][#1][t]{\linewidth}{\vspace*{0.2em}}}
+\end{tabularx}
+}
+
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{center}
+\Large\textbf{AI \& Arts and Humanities — Pre/Post Survey} \\ [0.5em]
+\small Use a blue/black pen on the first day and a different color on the last day.
+\end{center}
+
+
+\noindent Age \rule{0.15\linewidth}{0.4pt} \hfill Country \rule{0.3\linewidth}{0.4pt}
+
+
+\bigskip
+
+
+\textbf{Instructions:} Circle one answer unless the question says ``tick all that apply.''
+
+
+\bigskip
+
+
+\begin{enumerate}
+\item I can explain, in simple words, how a large language model (LLM) works.\\
+Circle one: \quad Very well \quad Quite well \quad A little \quad Not at all
+
+
+\item I can explain, in simple words, how an image diffusion model works.\\
+Circle one: \quad Very well \quad Quite well \quad A little \quad Not at all
+
+\item Do you consider art made with AI to be art?\\
+Circle one: \quad Yes \quad Mostly yes \quad Mostly no \quad No
+
+\item When AI gives me an answer, I check if it is correct.\\
+Circle one: \quad Always \quad Often \quad Sometimes \quad Never
+
+\item How often do you use AI for schoolwork?\\
+Circle one: \quad Never \quad Less than weekly \quad Weekly \quad Daily
+
+\item In what ways have you used AI? (tick all that apply)
+\begin{itemize}[label=$\square$, leftmargin=2em]
+\item Tutor/teacher (explains topics)
+\item Assistant (summaries, notes, drafts)
+\item Inspiration/ideas (brainstorming, prompts)
+\item Verifier/judge (checking work or sources)
+\item Creative partner (co-writing, co-design)
+\item Full replacement (AI does the whole task for me)
+\item Other: \rule{0.55\linewidth}{0.4pt}
+\end{itemize}
+
+\item Name two things for which AI is helpful and two things it is not helpful. \\[0.3em]
+
+\begin{tabular}{|m{20em}|m{20em}|}
+   \hline Pre  &  Post \\ \hline
+   Helpful: & Helpful: \\
+   \rule{0pt}{1.5cm} & \rule{0pt}{1.5cm} \\
+   Not helpful: & Not helpful: \\
+   \rule{0pt}{1.5cm} & \rule{0pt}{1.5cm} \\
+   \hline
+\end{tabular}
+
+\newpage
+\item You are creating art with AI. Name two things you should do yourself (not the AI) so you can still call it your art piece.\\[0.3em]
+\begin{tabular}{|m{20em}|m{20em}|}
+   \hline Pre  &  Post \\ \hline
+   1: & 1: \\
+   \rule{0pt}{1.5cm} & \rule{0pt}{1.5cm} \\
+   2: & 2: \\
+   \rule{0pt}{1.5cm} & \rule{0pt}{1.5cm} \\
+   \hline
+\end{tabular}
+\item How should you use AI and still learn something yourself? Give one example.\\[0.3em]
+
+\begin{tabular}{|m{20em}|m{20em}|}
+   \hline Pre  &  Post \\ \hline
+    \rule{0pt}{3cm} & \rule{0pt}{3cm}  \\
+   \vspace*{5cm } & \vspace{5cm } \\
+
+   \hline
+\end{tabular}
+
+\end{enumerate}
+\end{document}

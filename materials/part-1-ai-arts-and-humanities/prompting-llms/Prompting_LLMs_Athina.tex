@@ -1,0 +1,406 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{subcaption} % modern replacement for the deprecated subfigure package
+\usepackage{array}
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% Tell cleveref how to name your counter
+\crefname{exercise}{assignment}{assignments}
+\Crefname{exercise}{Assignment}{Assignments}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+
+% Optional label: \exercisetitle[<label>]{<Title>}
+\newcommand{\exercisetitle}[2][]{%
+  \refstepcounter{exercise}% make this step referenceable/hyperlinked
+  \vspace{0.5cm}%
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise:~ #2}%
+    }%
+  }%
+  % If an optional label was provided, set it
+  \if\relax\detokenize{#1}\relax\else\label{#1}\fi
+  \vspace{0.3cm}%
+}
+
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX (with starred variant and cleveref names) ---
+% Requires: \usepackage{hyperref} for \Form/\TextField
+%           \usepackage{fontawesome5} for \faEdit
+
+% Cleveref names for the question counter
+\crefname{question}{question}{questions}
+\Crefname{question}{Question}{Questions}
+
+\makeatletter
+\newcounter{question}
+\newlength\questionheight
+\setlength\questionheight{5cm} % default answer box height
+
+% \question{<text>}                  -> with TextField (default height)
+% \question[<height>]{<text>}        -> with TextField (custom height)
+% \question*{<text>}                 -> no TextField, still numbered
+\newcommand{\question}{\@ifstar{\question@text}{\question@field}}
+
+% Common heading (increments counter and creates ref anchor)
+\newcommand{\question@heading}[1]{%
+  \refstepcounter{question}%
+  \vspace{0.3cm}%
+  \noindent\textbf{\faEdit\ Question \thequestion: #1}%\\[0.3em]%
+}
+
+% Starred form: numbered question without input field
+\newcommand{\question@text}[1]{%
+  \question@heading{#1}%
+%  \vspace{0.3cm}%
+}
+
+% Unstarred form: numbered question with input field (optional height)
+\newcommand{\question@field}[2][\questionheight]{%
+  \question@heading{#2}%
+ \\[0.3em] \begin{Form}
+    \TextField[
+      name=Q\thequestion,
+      multiline=true,
+      width=\linewidth,
+      height=#1,
+      charsize=10pt,
+      bordercolor={0 0 0},
+      borderwidth=1.8,
+      backgroundcolor={1 1 1}
+    ]{}
+  \end{Form}
+  \vspace{0.3cm}%
+}
+\makeatother
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} Prompting an LLM \par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Athina Minaidi$^{1}$, Mirte van der Eyden$^{2}$, Andrea López Incera$^{3}$ \\[0.3cm]
+
+{\small
+$^{1}$ 2nd Lyceum of Kos \\[0.2cm]
+
+$^{2}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+$^{3}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+\vspace*{0.5\textheight}
+
+Subject: Any subject for which you use an LLM, or specific subjects like technology.
+
+Activity duration: 45 min
+
+\vspace{0.5cm}
+
+Steps:
+\begin{enumerate}
+    \item Prompting for an explanation of a topic  (5 min)
+    \item Tips for good prompts (10 min)
+    \item Practice with example tasks (30 min)
+\end{enumerate}
+
+Learning goals:
+
+\begin{itemize}
+    \item	Learn how to prompt LLMs to get the results you want
+\item	Practice prompting 
+\item	Understand how language affects AI responses 
+\item	Develop critical thinking when comparing answers 
+
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\Huge \color{maincolor} Prompting an LLM}\\[5pt]
+    {\large \textit{Tips for good prompting and practice}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+In this activity, you will learn some tips to prompt LLMs, and you will practice prompting.
+
+\begin{importantbox}
+    No matter what you ask and how you ask about it, the LLM will always give an answer (correct or incorrect). But ultimately, YOU are responsible for the answer, since you can influence the answer by tweaking the prompt, asking for sources or checking the factual correctness. Be critical and always check for external sources of the facts that the LLM provides.
+\end{importantbox}
+
+% --- Assignment ---
+\exercisetitle{Asking for an explanation of a topic}
+
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ a) First, choose a topic from the list below.}}
+
+\begin{itemize}
+    \item	Explain gaming addiction.
+\item	Explain Quantum Physics.
+\item	How does AI work?
+\item	Why do people get addicted to social media?
+\item	Help me study.
+
+\end{itemize}
+
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ b) Second, prompt the LLM for an explanation of the topic you chose above.}}
+
+\question{Write here the prompt you wrote asking the LLM for the explanation of the topic.} \label{q:prompt_explanation_pre}
+
+\question{Was the result you got to your liking? If not, why not?}
+
+\question{Would that explanation be ok for any person/audience?}
+
+
+% --- Assignment  ---
+\exercisetitle{Tips for prompting}
+
+Together with this document, this lesson has a double-side card with tips for prompting LLMs.
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ a) Read the card carefully.}}
+
+% --- Assignment  ---
+\exercisetitle{Update your prompt}
+
+\question{Write the updated version of the prompt you wrote in Question~\ref{q:prompt_explanation_pre}, now taking into account the prompting tips. Try to add goal, context, format, style, examples, etc.}
+
+\question{Were the answers different? If yes, which step made the biggest difference? What does this tell you about how AI works?}
+
+
+% --- Assignment  ---
+\exercisetitle{Asking the same question...but in different ways}
+
+\question*{Create 3 different prompts for the same topic, adapting each of them to a different audience (8, 17, and 20 year-olds).} \label{q:different_ways}
+
+\vspace{0.3cm}
+
+First, choose a topic from the list below:
+\begin{enumerate}
+    \item Explain Black Holes
+\item	How the Universe Was Created
+\item	Explain Quantum Physics
+\item	Explain AI
+
+\end{enumerate}
+
+\begin{Form}
+\begin{itemize}
+\item Topic \\ [0.2cm]
+\TextField[name=topicways,width=\linewidth,height=0.6cm,multiline=true, bordercolor={0 0 0}]{}
+
+    \item 8 year-old child \\ [0.2cm]
+\TextField[name=promptone,width=\linewidth,height=4cm,multiline=true, bordercolor={0 0 0}]{}
+    \item 17 year-old student \\[0.2cm]
+    \TextField[name=prompttwo,width=\linewidth,height=4cm,multiline=true, bordercolor={0 0 0}]{}
+    
+    \item 20 year-old university student \\[0.2cm]
+    \TextField[name=promptthree,width=\linewidth,height=4cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+
+\end{Form}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ a) Use a LLM to test your prompts. It will generate three answers.}}
+
+\question{Compare the answers and explain what changed and why.}
+
+% --- Assignment  ---
+\exercisetitle{Same question, different language}
+
+\question*{Ask the SAME question in 4 different languages (English, Danish, Spanish, Greek) and compare the answers.} \label{q:different_language}
+
+\vspace{0.3cm}
+
+First, choose a topic from the list below:
+\begin{enumerate}
+    \item What is the purpose of the European Union?
+  \item How does the European Union affect young people?
+ \item What are the advantages and disadvantages of living in the EU?
+
+\end{enumerate}
+
+\begin{Form}
+\begin{itemize}
+\item Topic \\ [0.2cm]
+\TextField[name=topicEU,width=\linewidth,height=0.6cm,multiline=true, bordercolor={0 0 0}]{}
+
+    \item First, write the (upgraded) prompt in English \\ [0.2cm]
+\TextField[name=languageone,width=\linewidth,height=4cm,multiline=true, bordercolor={0 0 0}]{}
+
+Then, translate it to different languages:
+
+    \item Danish \\[0.2cm]
+    \TextField[name=languagetwo,width=\linewidth,height=4cm,multiline=true, bordercolor={0 0 0}]{}
+    
+    \item Greek\\[0.2cm]
+    \TextField[name=languagethree,width=\linewidth,height=4cm,multiline=true, bordercolor={0 0 0}]{}
+
+    \item Spanish \\[0.2cm]
+    \TextField[name=languagefour,width=\linewidth,height=4cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+
+\end{Form}
+
+\question*{Compare the four answers generated by the AI in the four languages. Is the answer in some language clearer than in others? Is there a language that has missing ideas in the answer? Check in the table below which options apply for each language. 
+}
+
+\vspace{0.3cm}
+\begin{Form}
+
+\renewcommand{\arraystretch}{1.8}
+
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Language} & \textbf{Clearer} & \textbf{More detailed} & \textbf{Missing ideas} & \textbf{Translation differences} \\
+\hline
+
+English &
+\CheckBox[name=eng_clearer]{} &
+\CheckBox[name=eng_detailed]{} &
+\CheckBox[name=eng_missing]{} &
+\CheckBox[name=eng_diff]{} \\
+\hline
+
+Danish &
+\CheckBox[name=dan_clearer]{} &
+\CheckBox[name=dan_detailed]{} &
+\CheckBox[name=dan_missing]{} &
+\CheckBox[name=dan_diff]{} \\
+\hline
+
+Spanish &
+\CheckBox[name=spa_clearer]{} &
+\CheckBox[name=spa_detailed]{} &
+\CheckBox[name=spa_missing]{} &
+\CheckBox[name=spa_diff]{}  \\
+\hline
+
+Greek &
+\CheckBox[name=gre_clearer]{} &
+\CheckBox[name=gre_detailed]{} &
+\CheckBox[name=gre_missing]{} &
+\CheckBox[name=gre_diff]{}  \\
+\hline
+
+\end{tabular}
+
+\vspace{0.4cm}
+Additional Notes and Observations: \\ [0.2cm]
+\TextField[name=noteslan,width=\linewidth,height=5cm,multiline=true, bordercolor={0 0 0}]{}
+
+\end{Form}
+
+\question{Quality gap: Which language provided the best overall answer quality? Why do you think one language was clearer or with better answer quality than another?}
+
+\question{(Extension) What happens if we write the prompt in English…but ask for the answer in another language? Does the quality improve compared to writing the prompt in Greek from the start?}
+
+\end{document}

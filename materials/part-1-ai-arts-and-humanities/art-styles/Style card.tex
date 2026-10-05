@@ -1,0 +1,196 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{subcaption} % modern replacement for the deprecated subfigure package
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% Tell cleveref how to name your counter
+\crefname{exercise}{assignment}{assignments}
+\Crefname{exercise}{Assignment}{Assignments}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+
+% Optional label: \exercisetitle[<label>]{<Title>}
+\newcommand{\exercisetitle}[2][]{%
+  \refstepcounter{exercise}% make this step referenceable/hyperlinked
+  \vspace{0.5cm}%
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise:~ #2}%
+    }%
+  }%
+  % If an optional label was provided, set it
+  \if\relax\detokenize{#1}\relax\else\label{#1}\fi
+  \vspace{0.3cm}%
+}
+
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX (with starred variant and cleveref names) ---
+% Requires: \usepackage{hyperref} for \Form/\TextField
+%           \usepackage{fontawesome5} for \faEdit
+
+% Cleveref names for the question counter
+\crefname{question}{question}{questions}
+\Crefname{question}{Question}{Questions}
+
+\makeatletter
+\newcounter{question}
+\newlength\questionheight
+\setlength\questionheight{5cm} % default answer box height
+
+% \question{<text>}                  -> with TextField (default height)
+% \question[<height>]{<text>}        -> with TextField (custom height)
+% \question*{<text>}                 -> no TextField, still numbered
+\newcommand{\question}{\@ifstar{\question@text}{\question@field}}
+
+% Common heading (increments counter and creates ref anchor)
+\newcommand{\question@heading}[1]{%
+  \refstepcounter{question}%
+  \vspace{0.3cm}%
+  \noindent\textbf{\faEdit\ Question \thequestion: #1}%\\[0.3em]%
+}
+
+% Starred form: numbered question without input field
+\newcommand{\question@text}[1]{%
+  \question@heading{#1}%
+%  \vspace{0.3cm}%
+}
+
+% Unstarred form: numbered question with input field (optional height)
+\newcommand{\question@field}[2][\questionheight]{%
+  \question@heading{#2}%
+ \\[0.3em] \begin{Form}
+    \TextField[
+      name=Q\thequestion,
+      multiline=true,
+      width=\linewidth,
+      height=#1,
+      charsize=10pt,
+      bordercolor={0 0 0},
+      borderwidth=1.8,
+      backgroundcolor={1 1 1}
+    ]{}
+  \end{Form}
+  \vspace{0.3cm}%
+}
+\makeatother
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+
+\title{\color{maincolor} Style Card}
+\date{\vspace{-5ex}}
+\begin{document}
+
+\maketitle
+\vspace{-5ex}
+\subsection*{Initial impression}
+\question[2\baselineskip]{Group members' names (2--3)}
+
+\question[1\baselineskip]{When do you guess that this artwork was created?}
+
+\question[3\baselineskip]{Do you have an idea what art style it could be?}
+
+\question[3\baselineskip]{What do you like or dislike about the artwork}
+
+\question{Using the Style Guide, write down three style features of this artwork}
+
+
+\subsection*{Art Style identification}
+For the upcoming questions about the identification of the style, you can use an LLM assistent to help you. 
+
+
+Some helpful prompts:
+\begin{promptbox}
+“Based on this description of a painting: [1–2 sentences describing what you see], identify likely art style(s). List 3 signature visual features, 2 artists connected to that style, and a typical date range. Include 1 museum link to verify. Keep under 100 words.”
+\end{promptbox}
+\begin{promptbox}
+“List 3 public-domain artworks that exemplify [style], with museum links.”
+\end{promptbox}
+\begin{promptbox}
+“Provide 2 museum or academic links that confirm these features for [style]. Summarize what each source confirms in one sentence.”
+\end{promptbox}
+
+\begin{importantbox}
+    Make sure that you verify your information with trustworthy sources, for example museum web pages.
+\end{importantbox}
+
+
+\question[3\baselineskip]{What are the artist and title of the artwork?}
+
+\question[3\baselineskip]{What art style(s) does the artwork belong to?}
+
+\question[2\baselineskip]{What date range did this art style thrive?}
+
+\question[2\baselineskip]{What region or movement does this art style originate from?}
+
+\question[6\baselineskip]{List three visual hallmarks of the style that can be seen in your mystery image}
+
+\question[4\baselineskip]{Two other artists associated with this style}
+
+\question[4\baselineskip]{One other representative artwork (not the mystery artwork) (title + artist + date)}
+
+\question[6\baselineskip]{Why did this style emerge? (e.g., social change, technology, philosophy)}
+
+\subsection*{Citations (paste URLs)}
+\question[3\baselineskip]{Source 1 (museum/academic)}
+\question[3\baselineskip]{Source 2 (optional)}
+
+\end{document}

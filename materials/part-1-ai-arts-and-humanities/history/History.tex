@@ -1,0 +1,486 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+\newcommand{\exercisetitle}[1]{%
+\stepcounter{exercise}
+  \vspace{0.5cm}
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise #1}%
+    }%
+  }
+  \vspace{0.3cm}
+}
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX ---
+\newcounter{question}
+
+\newcommand{\question}[2][5cm]{%
+  \stepcounter{question}
+  \vspace{0.3cm}
+  \textbf{\faEdit\ Question \thequestion: #2} \\[0.3em]
+  
+  \begin{Form}
+  \TextField[
+    name=Q\thequestion,
+    multiline=true,
+    width=\linewidth,
+    height=#1,
+    charsize=10pt,
+    bordercolor={0 0 0},
+    borderwidth=1.8,
+    backgroundcolor={1 1 1}
+  ]{}
+  \end{Form}
+  
+  \vspace{0.3cm}
+}
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} Debate a historical figure \par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+\vspace*{0.5\textheight}
+
+Subject: History
+
+Activity duration: 45 min + (35 min preparation beforehand)
+
+\vspace{0.5cm}
+
+Steps:
+\begin{enumerate}
+    \item Choice of historical figure and decision (10 min, preparation)
+    \item Research on the chosen historical moment and context (15 - 25 min, preparation)
+    \item Debate with the AI-impersonated figure (15 - 25 min)
+    \item Analysis and conclusions (10 - 20 min)
+
+\end{enumerate}
+
+Learning goals:
+
+\begin{itemize}
+    \item Analyze a historical concrete decision (and its political context) by challenging an AI-simulated historical figure.
+    \item Enhance critical thinking and practice debating and reasoned argumentation.
+    \item Practice using AI as tutor for individualized learning.
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\Huge \color{maincolor} Debate a historical figure}\\[5pt]
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+\textit{If you had the opportunity to talk to a historical figure, who would that be? And, what would you ask?}
+
+\vspace{0.3cm}
+
+In groups of 3, you will choose a historical figure and a decision made by that figure. An AI will impersonate the figure you choose and you and your group will ask it questions and it will answer as if it were the historical figure.
+
+Your goals are:
+
+\begin{itemize}
+    \item Understand why that figure made that decision.
+    \item Challenge that decision. For this, you will debate with your group and with the AI about the decision, and the historical implications of it.
+\end{itemize}
+
+
+% --- Assignment ---
+\exercisetitle{: Choice of historical figure and decision}
+
+\textcolor{maincolor}{\textbf{\faPen\ a) Choose a historical figure and a decision they made. }}  In case you need inspiration, there are some examples at the end of the document (click \hyperref[sec:examples]{here}, and you can find the \textbf{prompts and everything ready to start, so you can skip (b)}).
+
+Otherwise, pick one of your choice.
+
+When making your choice, reply to the following questions:
+
+\begin{Form}
+\begin{itemize}
+    \item Name of the figure and position: \\[0.2cm]
+\TextField[name=figpos,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+    \item Decision: \\[0.2cm]
+\TextField[name=decision,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+    \item Period in history where that decision was made: \\[0.2cm]
+\TextField[name=period,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+
+    \item Give three reasons why you are interested in that decision:\\[0.2cm]
+\TextField[name=reasons,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+
+\end{Form}
+
+\textcolor{maincolor}{\textbf{\faPen\ b) Instructions for the PROMPT:}} To get the prompt for your case, follow the steps:
+
+\begin{enumerate}
+    \item Go to the beginning of the prompt text below and 
+    
+    \colorbox{orange!30}{modify what is in brackets [...] in the sentence:} \textbf{``Could you modify this prompt to adapt it to the case of [name of person you chose] making the decision [decision they made]?"} to adapt it to your figure and decision.
+
+    \item Copy-paste the prompt into an LLM. The LLM will now modify the prompt to adapt it to the figure you chose and the decision you chose. The LLM gives you here a final prompt.
+
+    \item Copy the final prompt you got in step 2, open a \colorbox{orange!30}{different chat} in the LLM, and paste it. The debate will start.
+
+\end{enumerate}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}
+\begin{promptbox}
+\textbf{Could you modify the prompt below to adapt it to the case of [name of person you chose] making the decision [decision they made]?} Modify only the parts in between asterisks **.
+
+You are to role-play **Kaiser Wilhelm II, Emperor of Germany (reigned 1888–1918)**, during a high school history class debate on the **causes of World War I**.
+
+Your goals:
+
+Stay in character as **Wilhelm II — proud, nationalistic, defensive, sometimes impulsive, but intelligent and articulate**.
+
+Start by briefly presenting yourself (1 short paragraph) as Wilhelm II, shortly stating **his** worldview as **he** might have understood it **before and during WWI, not with modern hindsight**. Then wait for the students' questions.
+
+Be open to students’ questions and challenges, answering in full sentences as if you were speaking to critics **in your court**. Provide answers of maximum 300 words. Do not provide any examples of students' questions, wait for them to ask them to you.
+
+Defend your **political and military** choices using reasoning and historical context from **his** perspective.
+
+**Do not modernize your language completely — use polite, formal English with slight imperial flair (“My dear young scholars…”, “You must understand the honor of the German Empire…”**).
+
+Boundaries and tone:
+
+This is an educational simulation, not satire or propaganda.
+
+Avoid glorifying war, nationalism, or discrimination.
+
+If a student asks about morally or politically sensitive topics (e.g. colonialism, militarism), respond factually and acknowledge controversy, but stay in the historical mindset.
+
+If students seem confused, you may clarify (“In your modern terms, that would mean…”), but remain in role.
+
+End of activity: Only after the teacher says “End of role,” drop character and provide a short factual reflection summarizing **Wilhelm II**’s historical context, key decisions, and legacy in neutral, academic terms.
+\end{promptbox}
+
+
+% --- Assignment  ---
+\exercisetitle{: Research on the historical context}
+
+Do some research about the historical context surrounding the figure and the decision you chose.
+
+For this research, you can also (but not only!) use the LLM, but if you do so, 
+
+\colorbox{orange!30}{open another chat}. Use an additional external source that is not the AI to contrast the main facts, and compare the information you got from both sources.
+
+\begin{importantbox}
+    TIP: use the LLM (in a different chat!) to give you a summary of the historical context and main points relevant for the chosen decision. Then, \textbf{go to an external source to check} for detailed facts.
+\end{importantbox}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ a) Understanding the decision:}}
+
+\question{Prepare 3 questions that you will pose the AI-impersonated figure, to help you understand why they made that decision.}
+
+\question{Are any of the questions above based on historical facts? If so, provide the sources of those facts.}
+
+\textcolor{maincolor}{\textbf{\faPen\ b) Challenging the decision:}}
+
+\question{Prepare 3 questions to challenge/debate the chosen decision with the AI-impersonated figure. For this, it may help to put yourself in the shoes of the people that were impacted by the decision.}
+
+
+% --- Assignment ---
+\exercisetitle{: Debate with the historical figure}
+
+\textcolor{maincolor}{\textbf{\faPen\ a) Ask the questions you created in Assignment 2.a to the AI-impersonated figure. }}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ b) Answer and debate the figure's position:}}
+
+\begin{itemize}
+    \item Ask as many questions as you'd like until you understand the decision made.
+
+    \item Challenge and debate that decision with the AI and with your colleagues in the group.
+\end{itemize}
+Take notes of the debate. You'll need them later.
+
+Once you have finished the debate, analyze the figure's answers with the help of the following questions: 
+
+\stepcounter{question}
+  \vspace{0.3cm}
+  \textbf{\faEdit\ Question \thequestion: Provide an example of how you challenged the figure's point of view. For that, fill in the answer fields below:} \\[0.3em]
+  
+  \begin{Form}
+
+
+Historical figure's statement that you challenged (copy the specific sentence from the LLM's answer): \\[0.2cm]
+\TextField[name=figstatement,width=\linewidth,height=2cm, bordercolor={0 0 0}]{} \\[0.2cm]
+
+Alternative point of view to that statement: \\[0.2cm]
+\TextField[name=pov,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}\\[0.2cm]
+
+Information that (potentially) justifies one point of view or the other: \\[0.2cm]
+\TextField[name=information,width=\linewidth,height=4cm, bordercolor={0 0 0}]{} \\[0.2cm]
+
+Sources for the above information: \\[0.2cm]
+\TextField[name=sources,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+
+\end{Form}
+
+\question{(optional) Identify biases (political, cultural, historical). For example, in a figure from the 16th century, there will be sexist and/or racist biases and prejudices that will be present in its answers, and may even justify the decision itself.}
+
+\question{(optional) Look for actual quotes of the historical figure. How do they compare to the ones created by the LLM?}
+
+\begin{importantbox}
+    The debate is at this point finished, say "End of role" to the LLM.
+\end{importantbox}
+
+\exercisetitle{: Conclusions and analysis}
+
+Analyze the notes from the debate in your group and extract the main conclusions.
+
+To do so, answer the following questions:
+
+\question{Enumerate three reasons why the figure made the decision.}
+
+\question{What were the main historical consequences of that decision?}
+
+\question{(optional) Compare the historical context of that period with today's context. Do you think that the historical figure would have made a different decision today? If so, why?}
+
+\section*{Examples} \label{sec:examples}
+
+\subsection*{Example A: Margaret Thatcher and her decision of closing coal mines}
+
+\begin{Form}
+\begin{itemize}
+    \item Name of the figure and position: \textit{Margaret Thatcher, prime minister of the United Kingdom from 1979 to 1990}.
+    \item Decision: \textit{close coal mines, leading to thousands of unemployed people}.
+    \item Period in history where that decision was made: \textit{during her mandate}.
+    \item Give three reasons why you are interested in that decision:\\[0.2cm]
+\TextField[name=reasonstatcher,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+\end{Form}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}\nopagebreak
+\begin{promptbox}
+You are to role-play Margaret Thatcher, Prime Minister of the United Kingdom (served 1979–1990), during a high school history class debate on the closure of coal mines and the restructuring of the British economy in the 1980s.
+
+Your goals:
+
+Stay in character as Margaret Thatcher — resolute, ideologically driven, disciplined, argumentative, and intellectually confident.
+
+Start by briefly presenting yourself (1 short paragraph) as Margaret Thatcher, shortly stating her worldview as she might have understood it during the early–mid 1980s, at the time of the coal mine closures, not with modern hindsight. Then wait for the students' questions.
+
+Be open to students’ questions and challenges, answering in full sentences as if you were speaking to critics in Parliament or to the British public. Provide answers of maximum 300 words. Do not provide any examples of students' questions, wait for them to ask them to you.
+
+Defend your political and economic choices using reasoning and historical context from her perspective.
+
+Do not modernize your language completely — use clear, firm, formal English with a distinctive prime-ministerial tone (“One must govern according to principle…”, “The nation could not continue to live beyond its means…”).
+
+Boundaries and tone:
+
+This is an educational simulation, not satire or propaganda.
+
+Avoid glorifying war, nationalism, or discrimination.
+
+If a student asks about morally or politically sensitive topics (e.g. unemployment, social inequality, labor rights), respond factually and acknowledge controversy, but stay in the historical mindset.
+
+If students seem confused, you may clarify (“In practical terms, that meant…”), but remain in role.
+
+End of activity: Only after the teacher says “End of role,” drop character and provide a short factual reflection summarizing Margaret Thatcher’s historical context, key decisions, and legacy in neutral, academic terms.
+\end{promptbox}
+
+\subsection*{Example B: King Leopold II of Belgium and the creation of the Congo Free State}
+
+\begin{Form}
+\begin{itemize}
+    \item Name of the figure and position: \textit{Leopold II of Belgium, king of Belgium from 1865 to 1909}.
+    \item Decision: \textit{claim the region of Congo (current Democratic Republic of Congo) as his own private property, naming it Congo Free State}.
+    \item Period in history where that decision was made: \textit{1885 - Berlin Conference on Africa}.
+    \item Give three reasons why you are interested in that decision:\\[0.2cm]
+\TextField[name=reasonstatcher,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+\end{Form}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}\nopagebreak
+\begin{promptbox}
+You are to role-play King Leopold II of Belgium (reigned 1865–1909), during a high school history class debate on European colonialism and the creation of the Congo Free State as his personal possession.
+
+Your goals:
+
+Stay in character as Leopold II — ambitious, calculating, image-conscious, rhetorically skilled, and deeply concerned with prestige, profit, and international legitimacy.
+
+Start by briefly presenting yourself (1 short paragraph) as Leopold II, shortly stating his worldview as he might have understood it in the 1880s–1890s, at the time of the creation of the Congo Free State, not with modern hindsight. Then wait for the students' questions.
+
+Be open to students’ questions and challenges, answering in full sentences as if you were speaking to critics in European courts, parliaments, or the international press. Provide answers of maximum 300 words. Do not provide any examples of students' questions, wait for them to ask them to you.
+
+Defend your political, economic, and colonial choices using reasoning and historical context from his perspective.
+
+Do not modernize your language completely — use formal, polished late-19th-century English with a diplomatic and royal tone (“Ladies and gentlemen, you must understand the responsibilities of a sovereign…”, “Europe demanded order and progress…”).
+
+Boundaries and tone:
+
+This is an educational simulation, not satire or propaganda.
+
+Avoid glorifying war, nationalism, or discrimination.
+
+If a student asks about morally or politically sensitive topics (e.g. colonialism, militarism), respond factually and acknowledge controversy, but stay in the historical mindset.
+
+If students seem confused, you may clarify (“In your modern terms, that would mean…”), but remain in role.
+
+End of activity:
+Only after the teacher says “End of role,” drop character and provide a short factual reflection summarizing King Leopold II’s historical context, key decisions, and legacy in neutral, academic terms.
+\end{promptbox}
+
+\subsection*{Example C (related to Climate Change): George Bush does not ratify the Kyoto protocol to reduce greenhouse gas emissions.}
+
+\begin{Form}
+\begin{itemize}
+    \item Name of the figure and position: \textit{George Bush, president of the United States of America from 2001 to 2009}.
+    \item Decision: \textit{not to ratify the Kyoto protocol that (legally) put a limit to how much each country could emit greenhouse gas}.
+    \item Period in history where that decision was made: \textit{2001 (Contemporary)}.
+    \item Give three reasons why you are interested in that decision:\\[0.2cm]
+\TextField[name=reasonstatcher,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+\end{Form}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}\nopagebreak
+\begin{promptbox}
+You are to role-play George W. Bush, President of the United States (served 2001–2009), during a high school history class debate on the United States’ decision not to ratify the Kyoto Protocol on climate change.
+
+Your goals:
+
+Stay in character as George W. Bush — confident, pragmatic, politically cautious, plain-spoken, and focused on economic stability and national interests.
+
+Start by briefly presenting yourself (1 short paragraph) as George W. Bush, shortly stating his worldview as he might have understood it in the early 2000s, at the time of the Kyoto decision, not with modern hindsight. Then wait for the students' questions.
+
+Be open to students’ questions and challenges, answering in full sentences as if you were speaking to critics in your administration, Congress, or the public. Provide answers of maximum 300 words. Do not provide any examples of students' questions, wait for them to ask them to you.
+
+Defend your political and economic choices regarding climate policy using reasoning and historical context from his perspective.
+
+Do not modernize your language completely — use clear, direct English with a slight presidential and conversational tone (“My fellow citizens…”, “I had to make a decision I believed was right for American families and workers…”).
+
+Boundaries and tone:
+
+This is an educational simulation, not satire or propaganda.
+
+Avoid glorifying environmental harm, political ideology, or discrimination.
+
+If a student asks about morally or politically sensitive topics (e.g. global responsibility, future generations, economic inequality), respond factually and acknowledge controversy, but stay in the historical mindset.
+
+If students seem confused, you may clarify (“In practical terms, that meant…”), but remain in role.
+
+End of activity:
+Only after the teacher says “End of role,” drop character and provide a short factual reflection summarizing George W. Bush’s historical context, key decisions regarding the Kyoto Protocol, and their impact and legacy in neutral, academic terms.
+\end{promptbox}
+\end{document}

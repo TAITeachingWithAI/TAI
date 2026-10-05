@@ -1,0 +1,428 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{subcaption} % modern replacement for the deprecated subfigure package
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% Tell cleveref how to name your counter
+\crefname{exercise}{assignment}{assignments}
+\Crefname{exercise}{Assignment}{Assignments}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+
+% Optional label: \exercisetitle[<label>]{<Title>}
+\newcommand{\exercisetitle}[2][]{%
+  \refstepcounter{exercise}% make this step referenceable/hyperlinked
+  \vspace{0.5cm}%
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise:~ #2}%
+    }%
+  }%
+  % If an optional label was provided, set it
+  \if\relax\detokenize{#1}\relax\else\label{#1}\fi
+  \vspace{0.3cm}%
+}
+
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX (with starred variant and cleveref names) ---
+% Requires: \usepackage{hyperref} for \Form/\TextField
+%           \usepackage{fontawesome5} for \faEdit
+
+% Cleveref names for the question counter
+\crefname{question}{question}{questions}
+\Crefname{question}{Question}{Questions}
+
+\makeatletter
+\newcounter{question}
+\newlength\questionheight
+\setlength\questionheight{5cm} % default answer box height
+
+% \question{<text>}                  -> with TextField (default height)
+% \question[<height>]{<text>}        -> with TextField (custom height)
+% \question*{<text>}                 -> no TextField, still numbered
+\newcommand{\question}{\@ifstar{\question@text}{\question@field}}
+
+% Common heading (increments counter and creates ref anchor)
+\newcommand{\question@heading}[1]{%
+  \refstepcounter{question}%
+  \vspace{0.3cm}%
+  \noindent\textbf{\faEdit\ Question \thequestion: #1}%\\[0.3em]%
+}
+
+% Starred form: numbered question without input field
+\newcommand{\question@text}[1]{%
+  \question@heading{#1}%
+%  \vspace{0.3cm}%
+}
+
+% Unstarred form: numbered question with input field (optional height)
+\newcommand{\question@field}[2][\questionheight]{%
+  \question@heading{#2}%
+ \\[0.3em] \begin{Form}
+    \TextField[
+      name=Q\thequestion,
+      multiline=true,
+      width=\linewidth,
+      height=#1,
+      charsize=10pt,
+      bordercolor={0 0 0},
+      borderwidth=1.8,
+      backgroundcolor={1 1 1}
+    ]{}
+  \end{Form}
+  \vspace{0.3cm}%
+}
+\makeatother
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teacherfalse  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} Where does an LLM fail? \par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+\vspace*{0.5\textheight}
+
+Subject: Any subject for which you use an LLM, or specific subjects like technology.
+
+Activity duration: 30 min
+
+\vspace{0.5cm}
+
+Steps:
+\begin{enumerate}
+    \item Initial discussion. (5 min)
+    \item Challenge the LLM. (20 min)
+    \item Conclusions. (5 min)
+\end{enumerate}
+
+Learning goals:
+
+\begin{itemize}
+    \item Understand the weak points of LLMs.
+    \item Learn to use LLMs with a critical perspective (instead of blindly trusting them), based on basic knowledge of how it works from previous lessons.
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\Huge \color{maincolor} Where does an LLM fail?}\\[5pt]
+    {\large \textit{Learning not to trust them blindly}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+\textit{Which tasks are hard for an LLM? What type of questions we cannot trust the LLM to give a correct/good answer?}
+
+% --- Assignment ---
+\exercisetitle{Initial discussion}
+
+This assignment is for those students that did the lesson ``How does an LLM work?" before.
+
+\question{Based on what you learned in the lesson ``How does an LLM work?", name 3 tasks/questions where you think that the LLM will be wrong.}
+
+\question{Ask one of those tasks/questions to the LLM. Was its answer actually wrong? Did it use additional resources (active search on the internet, mathematical programs such as mathematica, coding in Python, etc.)}
+
+Note that probably, for some of the answers, the LLM is using external resources to e.g. reason mathematically, make exact computations, or search for information on the internet. Those external resources are additional to the mechanisms that we learned in the previous activity.
+
+Even though current advances in AI have the goal of improving those tasks that are (at the moment, April 2026) hard for LLMs, we need to be aware of the things the LLMs are not good at, to avoid relying too much on them or blindly trusting them. 
+
+\begin{importantbox}
+    Always be critical of the LLMs output and check whether those outputs make sense or not.
+\end{importantbox}
+
+\exercisetitle{Challenge the LLM}
+
+\begin{importantbox}
+    \textbf{Hallucinations}: responses that LLMs create that are wrong, but that are presented as correct without any sign of doubt. LLMs are trained to produce text that sounds human, and because this is their main goal, they will answer questions very confidently, even when those answers are not correct.
+\end{importantbox}
+
+Researchers on AI are trying to create ways to teach LLMs to abstain or be neutral if they are not confident that their answer is true (for example, see \href{https://arxiv.org/abs/2509.25760}{this reference from Meta} - very technical).
+
+Over the past few years, LLMs have reduced the hallucinations a lot, but it still happens. In most models, the percentage of answers that are hallucinations range from 15 $\%$ to 35$\%$ (of course, this depends on the type of question) - Reference \href{https://research.aimultiple.com/ai-hallucination/}{here}.
+
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ a) The following tasks are typically hard for LLMs, and so they are more likely to hallucinate. Try them on an LLM and analyze how the LLM answers.}} 
+
+\section*{Use of sources and fact checking}
+
+Even if most LLMs nowadays can search the internet for facts, they may not be able to access specific sources (books, papers, etc.), so they will likely make something up if you ask for a specific quote, year or location of some piece of information in a specific text.
+
+\question*{Ask the LLM for a specific quote from a book. Use the prompt below.}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}
+\begin{promptbox}
+Give me a quote from Harry Potter where he expresses fear.
+\end{promptbox}
+
+\begin{Form}
+\begin{itemize}
+    \item Quote: \\[0.2cm]
+\TextField[name=quoteharry,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+    \item Book: \\[0.2cm]
+\TextField[name=bookharry,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+\end{Form}
+
+\question*{Now repeat the question, but use the following modified prompt. What is the answer of the LLM now?}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}\nopagebreak
+\begin{promptbox}
+Give me a quote from Harry Potter where he expresses fear. Say "Not available" if you cannot copy directly from the book.
+\end{promptbox}
+\begin{Form}
+\begin{itemize}
+    \item New answer from the LLM: \\[0.2cm]
+\TextField[name=newquoteharry,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+\end{Form}
+\vspace{0.5cm}
+
+\question*{Ask the LLM for a quote by a politician. Use the prompt below. Check the source that the LLM may give you, and look for it outside of the LLM chat. Does the quote actually appear in an actual source?}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}\nopagebreak
+\begin{promptbox}
+Give me a quote of Barack Obama about immigrants.
+\end{promptbox}
+
+\question*{Now, use the modified prompt below. Was the answer better? Was the quote in the source the LLM provided?}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}\nopagebreak
+\begin{promptbox}
+When and where did Barack Obama say that he will let immigrants stay in the USA without papers? Provide the specific quote.
+\end{promptbox}
+
+\begin{importantbox}
+    Be careful when asking for specific quotes or locations in texts that the LLM may not be able to access.
+
+Advice: Add the sentence \textit{`Say ``Not available" if you cannot access the original source'}. The more precise your prompt is, the less likely the LLM is to hallucinate. But it can still happen!
+
+So, in any case, make sure that you check the original sources.
+\end{importantbox}
+
+\section*{Local and current fact checks}
+
+\question{Ask the LLM about something that happened yesterday in the news, or about possible things you can do in the weekend in your local town. Does it get it correctly? Has it used external search on the internet to answer?}
+
+Note that an LLM alone cannot provide answers for recent facts since they cannot be included in their training data. The most recent versions will likely reply correctly to the question after searching on the internet.
+
+\section*{Complex logical reasoning (optional)}
+
+Logical puzzles that require multiple steps and conditions are tricky for an LLM because it has to keep track of multiple conditions simultaneously.
+
+\vspace{0.3cm}
+\textbf{Puzzle:}
+
+Five friends — Alice, Bob, Carla, Daniel, and Eva — are sitting in a row at a birthday party. Each friend has a different favorite color: red, blue, green, yellow, or purple. Using the clues below, figure out who sits where and what their favorite color is.
+
+\vspace{0.3cm}
+\textbf{Clues:}
+
+\begin{itemize}
+\item Alice is sitting somewhere to the left of the person who likes blue.
+
+\item Daniel is not at either end.
+
+\item The person who likes red is sitting next to Eva.
+
+\item Bob likes neither green nor yellow.
+
+\item Carla is sitting immediately to the right of the person who likes purple.
+
+\item The person who likes yellow is sitting at one of the ends.
+\end{itemize}
+
+\question{Who sits in each position (from left to right) and what is each person’s favorite color? Solve the puzzle yourself and write the solution below.}
+
+\begin{solution}
+    One solution is: Alice (yellow), Daniel (red), Eva (blue), Bob (purple), Carla (green)
+\end{solution}
+
+\question{Try it on an LLM and see if it gets it right. For the prompt, simply copy the above paragraphs ``Puzzle" and ``Clues". Does it get it right? If not, why do you think it fails?}
+
+\begin{solution}
+Why this is tricky for an LLM:
+\begin{itemize}
+\item There are multiple steps: You have to check positions, colors, and adjacency conditions simultaneously.
+\item Each clue affects several possibilities. A small mistake early on cascades.
+
+\item Conditional reasoning: Some statements are relative (“Alice is somewhere to the left of blue”) rather than absolute.
+
+\item There are many possible arrangements, so it’s easy to lose track.
+\end{itemize}
+\end{solution}
+
+\section*{When it does not recognize the task as mathematical}
+
+If the LLM does not identify a task as ``mathematical", it may not use external resources like Python or Mathematica for it, and then, it will get it wrong.
+
+For example, an LLM has a hard time keeping track of how many times it has used a certain letter.
+
+\question*{Try the following prompt in the LLM. Does the LLM get it right (all requirements are satisfied)?}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faCopy\ Prompt}}\nopagebreak
+\begin{promptbox}
+Make 3 sentences that contain 10 words and 3 times the letter d.
+\end{promptbox}
+
+\begin{Form}
+\begin{itemize}
+    \item Why do you think it does not get it right? \\[0.2cm]
+\TextField[name=whywrong,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+\end{Form}
+
+\begin{solution}
+Why this is tricky for an LLM:
+\begin{itemize}
+\item It does not identify the task as a mathematical problem, so it is not using external resources to count letters, so it relies on creating an answer that is plausible.
+\item It does not re-check what it has done, as a human would do.
+
+\item It does not count letters explicitly, unless told to do so, so it may miss some letters inside some of the words.
+
+\item It has several requirements that it needs to fulfill, which makes it harder. In this case, it needs to create a plausible sentence, with only 10 words and with only 3 letters d.
+\end{itemize}
+\end{solution}
+
+\question*{Play around with the prompt to see if you can make the LLM get it right.}
+
+
+\section*{Social and emotional advice}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ b) Ask the LLM for advice on some emotional or social question/situation.}} Of course, it does not need to be real, you can make it up. Analyze the prompt and the answer by answering the following questions.
+
+\question{Did you give enough context for the LLM to provide a good answer?}
+
+\question{Was the LLM's answer convincing, and, in your opinion, useful? Justify your answer.}
+
+\question{Which parts of your prompt do you think the LLM is using to give you an answer?}
+
+\begin{importantbox}
+LLMs can analyze language, not minds. They are not experts in human psychology and do not have the human experience on how to socially deal with human emotions. They may be good at replying with something you may consider useful or convincing, since this is what they are trained on. This, however, does not mean that they should be blindly trusted on your personal decisions.
+\end{importantbox}
+
+
+\exercisetitle{Conclusions}
+
+\question{What is your conclusion after having done this activity on the things you can ask an LLM about? You can discuss it with a colleague.}
+
+\question{Name one thing that you used to ask an LLM about, that now you would not ask (or that you would now be careful with the answer).}
+
+\end{document}

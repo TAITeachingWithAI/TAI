@@ -1,0 +1,460 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+\newcommand{\exercisetitle}[1]{%
+\stepcounter{exercise}
+  \vspace{0.5cm}
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise #1}%
+    }%
+  }
+  \vspace{0.3cm}
+}
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX ---
+\newcounter{question}
+
+\newcommand{\question}[2][5cm]{%
+  \stepcounter{question}
+  \vspace{0.3cm}
+  \textbf{\faEdit\ Question \thequestion: #2} \\[0.3em]
+  
+  \begin{Form}
+  \TextField[
+    name=Q\thequestion,
+    multiline=true,
+    width=\linewidth,
+    height=#1,
+    charsize=10pt,
+    bordercolor={0 0 0},
+    borderwidth=1.8,
+    backgroundcolor={1 1 1}
+  ]{}
+  \end{Form}
+  
+  \vspace{0.3cm}
+}
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} Exhibition: ``The Future, perspectives of the youth" \par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+
+\vspace{1cm}
+
+    {\Large  Material for teachers \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+\vspace*{0.5\textheight}
+
+Activity duration: one school day
+
+Subject: art, design
+\vspace{0.5cm}
+
+Steps: the creative process is structured by means of the design thinking framework, whose phases are detailed in this document.
+
+\vspace{0.5cm}
+Learning goals:
+
+\begin{itemize}
+    \item Experience a design/creative process in a structured way.
+    \item Learn to collaborate with an AI in that process, focusing on being aware of the things that the AI actually does, in order to learn to keep in charge of the artistic production.
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\Huge \color{maincolor} Exhibition}\\[5pt]
+    {\large \textit{The Future: Perspectives of the youth}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+For the last day in this round on \textit{Arts and Humanities}, we are planning on doing an art exhibition, where students have to use AI and their own creative abilities to develop all the material for the exhibition, including the content itself - such as drawings/paintings, poems, music, or comics, but also the press release, the webpage for the expo, and the advertisement posters. The topic of the exhibition will be "The Future: perspectives of the youth". 
+
+Adapting the framework of Design Thinking to the creative process, we aim to structure the way students collaborate with AI in creating art, in order to keep the students at the center of the process and in charge of it. We focus on developing the students' awareness of what AI is doing at each stage of the process.
+
+\section{Material for the students}
+
+\subsection{Introduction} 
+
+The following introduction should be displayed at the beginning of the session, so that all students can see it.
+
+
+
+\begin{importantbox}
+“The Future: Perspectives of the Youth” invites you to share your ideas, hopes, and worries about what’s ahead. What excites you — technology, social change, new adventures? What worries you — climate, inequality, uncertainty? How does AI feature in your perspective of the Future?
+
+Using AI and your imagination, create artworks, poems, music, comics, or visuals that show your vision of the future. You’ll also design how people discover your work — posters, press releases, and the expo webpage. Turn your voice into art, and let the world see tomorrow through your eyes.
+
+\end{importantbox}
+
+\subsection{Print-outs}
+
+In addition to the explanations detailed in this document ---which are designed to be read only by teachers, this activity has the following documents for the students:
+
+\begin{itemize}
+    \item \textbf{A2 poster with Design Phases (1 per team of students)}: to be displayed at all times during the creative process. The students have there guidance questions (which are detailed also in this document) for each of the phases of the process. IMPORTANT: The students have to fill in the boxes corresponding to `Decisions' and `AI' before continuing to the next phase.
+
+    \item \textbf{A4 Feedback card (2-3 per team of students)}: the students use this card in round `5. Test' to gather feedback about their prototype. If they make several iterations, this card should be printed once per iteration. 
+
+    \item \textbf{A4 Template (1 per team of students)}: the students fill in this template during and at the end of the creative process, in order to structure it and to make them aware of the difference between the planned task they assign to the AI and what they ended up using it for. It is important that they reason about \textbf{why and for what} they are using the AI. This template will be exhibited together with the artwork. 
+
+    \item \textbf{A4 Exhibition card (1 per student)}: the students use this card during the exhibition to ask questions to their colleagues.
+    
+\end{itemize}
+
+The above documents should be printed before the session.
+
+\section{Splitting of the students into teams}
+
+We first split into working teams of around 3 students. Each student should select the type of content (a bullet point) that they’d prefer to work on. There could be more than one team on the same point.
+
+\textbf{Art content:}
+\begin{itemize}
+\item Artwork (visual art, e.g. painting, drawing, pictures)
+\item Music/video
+\item Literature (poems / essays)
+\item Comic
+\item 3D print sculpture / piece
+
+\end{itemize}
+
+\textbf{Communication office:}
+\begin{itemize}
+\item Press releases
+\item Webpage
+\item Advertisement posters / mood board
+\item Advertisement bags / T-shirts
+\end{itemize}
+
+\section{Structure of the exhibition}
+
+\textbf{The following information should be communicated to the students in advance:}
+
+Each output the students create (including those made by the communication office) will be presented in the exhibition at the end of the day.
+
+We are interested in seeing and understanding not only the final output, but also the process of collaboration between the students and the AI. For that reason, the students will need to fill in the blank spaces on the poster during the creative process, and also the template. Both are printed and should be available at all times. 
+
+\begin{importantbox}
+    The template will also be exhibited, together with the main piece of art.
+\end{importantbox}
+
+*All teams* (including those in the communication office) need to fill in the template. Fill in the light pink fields during the creative process, and the bright purple field after the artwork is finished.
+
+\section{Design thinking}
+
+The students will follow the phases of the DESIGN THINKING model to structure the creative process. 
+
+\begin{importantbox}
+    The A2 poster with Design Phases contains the following material in a nice, visual way for students to follow.
+\end{importantbox}
+
+
+\subsection{Phase 1: Empathize}
+
+Goals of the phase:
+\begin{itemize}
+\item Select a topic/problem of the Future
+\item Do research on it
+\item Choose the audience
+\end{itemize}
+
+Guiding questions for students:
+
+\begin{enumerate}
+\item Briefly discuss with your team:
+
+    \begin{enumerate}
+    \item What is it that worries you about the Future?
+    \item What excites you about the Future?
+    \item What role does Technology play in those aspects that worry/excite you?
+    \end{enumerate}
+
+\item From the topics you discussed in (1), select one to work on. You will create the artwork on that topic.
+
+\item Investigate more about the topic you selected in (2):
+    \begin{enumerate}
+    \item How does it make you feel? Each person in the group should reply to this question, to gather data.
+    \item In which ways will it affect your generation?
+    \item In which ways will it affect society in general?
+    
+    Look for information on the internet to reply to b) and c). Feel free to also use an AI to assist you in this investigation. Remember to prompt it properly (see Lesson on “How to prompt an LLM”), and to always check the original sources of information!
+    \end{enumerate}
+    
+\item Select three points or insights from your investigations, which you would like to focus on during your creative process. Write them on post-its, pieces of paper or any other place - you will need to have them accessible later!
+
+\item Choose your audience:
+    \begin{enumerate}
+    \item Who do you want to communicate your art with? Is it your colleagues, your generation, the entire society?
+    \item Create a mood board of your audience
+    Feel free to use AI to make it. 
+    \item If you think you did enough investigations in 3) about how your selected topic is perceived or affects your audience, then go to phase 2. Otherwise, keep on investigating until you think you have enough information. Finalize by making sure you have the three points in 3d) that apply to your audience.
+    \end{enumerate}
+\end{enumerate}
+
+What the students need to have accessible and visible (e.g. post-its, cards, on a board) before phase 2:
+
+\begin{itemize}
+
+\item TOPIC you will focus on
+\item AUDIENCE
+\item INSIGHTS from your research (from point 4)
+
+\end{itemize}
+
+\subsection{Phase 2: Define}
+
+Goals of the phase: 
+\begin{itemize}
+\item Define a more concrete message (from the topic chosen in phase 1)
+\item Define what they would like to convey (feelings, reactions, etc.) through their artwork
+\end{itemize}
+
+
+Guiding questions for students: 
+
+\begin{enumerate}
+\item Look at the notes and material you have available from phase 1. Make sure that you have them visible around you. \item Refine the topic you want to deal with in your artwork to make it as concrete as possible.
+\item Summarize what you discussed in 1) into a concrete message (40-70 words). 
+
+What would you like to convey through your artwork? What type of feelings or reactions would you like to elicit in your audience?
+\end{enumerate}
+
+What the students need to have before phase 3:
+
+\begin{itemize}
+\item MESSAGE (40-70 words, written down in the template)
+
+\item Completed sentence in the template: With our artwork, we’d like to convey...
+\end{itemize}
+
+\subsection{Phase 3: Ideate}
+
+Goals of the phase: 
+\begin{itemize}
+\item Come up with concrete ideas on how to create the artwork: medium they are using, how to translate the message and feelings into the piece of art.
+\item Define what is the role of AI in the creation process.
+\end{itemize}
+
+Guiding questions for students: 
+
+\begin{enumerate}
+\item Choose the medium for your artwork (e.g. if it is a painting, are you going to use paper and paint, or is it purely digital? or is it a combination of both? what type of materials do you need?).
+\item Brainstorming phase: discuss within your team how you are going to convey your message and what will be in your artwork. Make sketches, keep (all) your ideas (also the “bad” ones) available on post-its or on the board, draw diagrams, etc. IT IS IMPORTANT TO HAVE MANY IDEAS TO CHOOSE FROM, so create as much as possible in this phase! Write the main final ideas in the template. You can include there: sketches, bullet point lists, post-its, etc.
+
+Steps 1) and 2) here may happen iteratively until you agree on the main idea and the medium to do it. Throughout this process, you can also use AI as another team member. If you do, be aware of it and write down the ideas that the AI provided separately.
+
+\item What role did the AI have in the brainstorming phase? If you follow one of its ideas, write it down in the template.
+
+\item Distribute the tasks to finish the artwork among the team members (who will do what?) and define beforehand the role that the AI is going to have in the creative process:
+
+\begin{enumerate}
+\item What are the skills, knowledge or tools needed to finish the artwork?
+\item Which parts of the artwork would be best if they were done purely by humans? 
+\item Which of the parts could benefit from help from an AI? 
+\item Where will the help of AI be most impactful?
+\item Write down in the template what the AI is going to do and why you chose it this way
+\end{enumerate}
+\end{enumerate}
+
+What the students need to have before phase 4:
+
+\begin{itemize}
+\item MEDIUM
+\item SKETCH/MAIN IDEA ON WHAT WILL BE ON THE ARTWORK (add these idea/s to the template)
+\item Task distribution (AI and each team member)
+\end{itemize}
+
+\subsection{Phase 4: Prototype}
+
+Goals of the phase: 
+\begin{itemize}
+\item Finish a first prototype of the artwork
+\end{itemize}
+
+Each team member does the task that was assigned to them. The AI is (in principle) used as planned in phase 3.
+Everything is combined to form a final prototype. The artwork should be as finished as possible to be able to test it.
+
+What the students need to have before phase 5:
+\begin{itemize}
+\item First version of the artwork, ready to be tested.
+\end{itemize}
+
+\subsection{Phase 5: Test}
+
+Goals of the phase: 
+\begin{itemize}
+\item Test the prototype to see if it elicits the reaction you planned for in your audience.
+\end{itemize}
+
+Guiding questions for students: 
+\begin{enumerate}
+\item Select two or three people from your audience. Show the prototype to them and ask them questions to see if it had the effect you wanted. Some examples are:
+\begin{itemize}
+\item What do you feel when you interact with the artwork?
+\item What do you interpret from the artwork?
+
+These questions should be open-ended questions (what, where, how…), avoid asking the answer you want to get in the form of a question (e.g. does this picture make you feel sad?).
+\end{itemize}
+\item Write down the feedback you get. Reflect upon this feedback:
+    \begin{enumerate}
+    \item Is there anything you want to change in the artwork?
+    \item If so, how would you change it to make it closer to what you expect to get?
+    
+    \end{enumerate}
+
+\item Iterate over phases 1 to 5 again, as many times as needed to get to your final version, in which you are satisfied with the feedback provided by your audience in phase 5.
+
+\end{enumerate}
+
+What students need to have before phase 6:
+\begin{itemize}
+\item Final version of your artwork, ready for the exhibition.
+\end{itemize}
+
+
+\subsection{Phase 6: Reflect}
+
+This phase is not typically included in the Design thinking process, but we added it because we consider it of fundamental importance that the students reflect upon the entire process and the role that the AI has had in it.
+
+\vspace{0.3cm}
+Goals of the phase: 
+\begin{itemize}
+\item Reflect upon the creative process
+\item Prepare the artwork for the exhibition
+\end{itemize}
+
+Guiding questions for students:
+
+\begin{enumerate}
+\item Create a title (if you have not done so yet)
+\item Prepare your artwork for the exhibition (print whatever you need to print, assemble it together if needed, etc.)
+\item Reflect upon the creative process by answering the following questions:
+\begin{enumerate}
+\item Are you satisfied with your artwork? If not, why not?
+\item How did you like the collaboration with the AI? 
+\item Write down in the template all the things the AI ended up doing throughout the creative process.
+\item Did the AI end up doing more things that you planned for? If so, why do you think that happened?
+\item Are you happy with the role the AI had in the creative process in the end?
+\item What were the advantages and disadvantages compared to doing this project without the help of AI? 
+\end{enumerate}
+\item Place your artwork together with the template in the corresponding slot.
+
+\end{enumerate}
+
+
+\end{document}

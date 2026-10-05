@@ -1,0 +1,445 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{subcaption} % modern replacement for the deprecated subfigure package
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% Tell cleveref how to name your counter
+\crefname{exercise}{assignment}{assignments}
+\Crefname{exercise}{Assignment}{Assignments}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+
+% Optional label: \exercisetitle[<label>]{<Title>}
+\newcommand{\exercisetitle}[2][]{%
+  \refstepcounter{exercise}% make this step referenceable/hyperlinked
+  \vspace{0.5cm}%
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise:~ #2}%
+    }%
+  }%
+  % If an optional label was provided, set it
+  \if\relax\detokenize{#1}\relax\else\label{#1}\fi
+  \vspace{0.3cm}%
+}
+
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX (with starred variant and cleveref names) ---
+% Requires: \usepackage{hyperref} for \Form/\TextField
+%           \usepackage{fontawesome5} for \faEdit
+
+% Cleveref names for the question counter
+\crefname{question}{question}{questions}
+\Crefname{question}{Question}{Questions}
+
+\makeatletter
+\newcounter{question}
+\newlength\questionheight
+\setlength\questionheight{5cm} % default answer box height
+
+% \question{<text>}                  -> with TextField (default height)
+% \question[<height>]{<text>}        -> with TextField (custom height)
+% \question*{<text>}                 -> no TextField, still numbered
+\newcommand{\question}{\@ifstar{\question@text}{\question@field}}
+
+% Common heading (increments counter and creates ref anchor)
+\newcommand{\question@heading}[1]{%
+  \refstepcounter{question}%
+  \vspace{0.3cm}%
+  \noindent\textbf{\faEdit\ Question \thequestion: #1}%\\[0.3em]%
+}
+
+% Starred form: numbered question without input field
+\newcommand{\question@text}[1]{%
+  \question@heading{#1}%
+%  \vspace{0.3cm}%
+}
+
+% Unstarred form: numbered question with input field (optional height)
+\newcommand{\question@field}[2][\questionheight]{%
+  \question@heading{#2}%
+ \\[0.3em] \begin{Form}
+    \TextField[
+      name=Q\thequestion,
+      multiline=true,
+      width=\linewidth,
+      height=#1,
+      charsize=10pt,
+      bordercolor={0 0 0},
+      borderwidth=1.8,
+      backgroundcolor={1 1 1}
+    ]{}
+  \end{Form}
+  \vspace{0.3cm}%
+}
+\makeatother
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} From Style to Prompt: Creating Images with an Art Historian’s Eye \par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+%\vspace*{0.5\textheight}
+\vspace*{5 cm}
+Subject: Art styles and image prompting
+
+Activity duration: 90 min
+
+\vspace{0.5cm}
+
+Steps:
+\begin{enumerate}
+    \item Art Styles (45 minutes)
+    \begin{itemize}
+  \item Motivation + Assignment 1: spot the difference (15 min)
+  \item Assignment 2: mystery image (30 min)
+\end{itemize}
+    \item Prompting images (45 minutes)
+\begin{itemize}
+  \item Assignment 3: reverse engineer your mystery image (10 min)
+  \item Assignment 4: swap and guess (10 min)
+  \item Assignment 5: create a logo (25 min)
+\end{itemize}
+\end{enumerate}
+Learning goals:
+
+\begin{itemize}
+  \item Art styles have common visual features. 
+  \item Distinguish art styles in paintings and photographs.
+  \item Using AI to learn responsibly: describe images, request verification links from museums, and cross-check facts
+  \item How to prompt to obtain the image you want
+  \item Create a logo
+\end{itemize}
+
+Setup: 
+\begin{itemize}
+  \item Students need access to an AI LLM chat bot, and an AI image generation tool. 
+  \item The teacher provides and prints mystery artworks for every pair or students.
+  \item The teacher prints a Style Feature Guide and Style Card for every pair of students. 
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\Huge \color{maincolor} From style to prompt}\\[5pt]
+    {\large \textit{Creating images with an art historian's eye}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+Modern AI image generators can create images in all kind of styles. For example, since they have been trained on many famous artworks, they can therefore reproduce the style of famous artists or art styles.
+This gives anyone the chance to, without being a master painter, create an image of their wish in the style of, let's say, Vincent van Gogh. We give the style as part of a textual prompt to the model, and it creates an image.
+
+This creates an opportunity, but is also a challenge: we need to be able to \emph{describe the image we want to create in words}. Sometimes, it is not easy to express in words why we like a painting, photograph or drawing. In this lesson, you will learn about different art styles and their main visual features. Then, you will practice with creating your own images with AI.
+
+\exercisetitle[]{Spot the difference}
+
+Your teacher will show two paintings and two photographs. Also, you will receive a Style Guide. Work with a partner to identify what makes the pairs of paintings and photographs different in style. Use the Style Guide to make the differences concrete.
+
+\textcolor{maincolor}{\textbf{\faPen\ Pair A: paintings}}
+
+\question*{Come up with a name for the paintings.} 
+\begin{Form}
+\begin{itemize}
+    \item Name for Painting 1 \\[0.2cm]
+\TextField[name=painting1,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+    \item Name for Painting 2\\[0.2cm]
+\TextField[name=painting2,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+\end{Form}
+
+\question[3cm]{Describe the differences between the paintings in your own words.}
+
+\question[3cm]{Look at the Style Guide and find two style features present in Painting 1 but not in Painting 2.}
+
+\question[3cm]{Now find two style features present in Painting 2 but not Painting 1.}
+
+\textcolor{maincolor}{\textbf{\faPen\ Pair B: photographs}}
+
+\question*{Come up with a name for the photos.} 
+\begin{Form}
+\begin{itemize}
+    \item Name for Photo 1 \\[0.2cm]
+\TextField[name=photo1,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+    \item Name for Photo 2\\[0.2cm]
+\TextField[name=photo2,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+\end{Form}
+
+\question[3cm]{Describe the differences between the photographs in your own words.}
+
+\question[3cm]{Look at the Style Guide and find two style features present in Photo 1 but not in Photo 2.}
+
+\question[3cm]{Now find two style features present in Photo 2 but not Photo 1.}
+
+\section{Art Styles}
+
+Some combinations of style features are often used together. This gives collections of paintings that are often made in a certain period of time a similar look. These looks are described by art styles like realism, impressionism or Art Nouveau, for example.
+
+In the next assignment, you will try to figure out the art style of a given piece of art, by first identifying the style features.
+
+\exercisetitle[]{Mystery art work}
+
+\textcolor{maincolor}{\textbf{\faPen\ a) }} As a group of 2-3 students you receive an image of a mystery artwork. Fill out the questions below for your assigned mystery artwork. 
+
+\subsection*{Initial impression}
+\question[2\baselineskip]{Group members' names (2--3)}
+
+\question[1\baselineskip]{When do you guess that this artwork was created?}
+
+\question[3\baselineskip]{Do you have an idea what art style it could be?}
+
+\question[3\baselineskip]{What do you like or dislike about the artwork}
+
+\question{Using the Style Guide, write down three style features of this artwork}
+
+
+\subsection*{Art Style identification}
+For the upcoming questions about the identification of the style, you can use an LLM assistent to help you. 
+
+
+Some helpful prompts:
+\begin{promptbox}
+“Based on this description of a painting: [1–2 sentences describing what you see], identify likely art style(s). List 3 signature visual features, 2 artists connected to that style, and a typical date range. Include 1 museum link to verify. Keep under 100 words.”
+\end{promptbox}
+\begin{promptbox}
+“List 3 public-domain artworks that exemplify [style], with museum links.”
+\end{promptbox}
+\begin{promptbox}
+“Provide 2 museum or academic links that confirm these features for [style]. Summarize what each source confirms in one sentence.”
+\end{promptbox}
+
+\begin{importantbox}
+    Make sure that you verify your information with trustworthy sources, for example museum web pages.
+\end{importantbox}
+
+
+\question[3\baselineskip]{What are the artist and title of the artwork?}
+
+\question[3\baselineskip]{What art style(s) does the artwork belong to?}
+
+\question[2\baselineskip]{What date range did this art style thrive?}
+
+\question[2\baselineskip]{What region or movement does this art style originate from?}
+
+\question[6\baselineskip]{List three visual hallmarks of the style that can be seen in your mystery image}
+
+\question[4\baselineskip]{Two other artists associated with this style}
+
+\question[4\baselineskip]{One other representative artwork (not the mystery artwork) (title + artist + date)}
+
+\question[6\baselineskip]{Why did this style emerge? (e.g., social change, technology, philosophy)}
+
+\subsection*{Citations (paste URLs)}
+\question[3\baselineskip]{Source 1 (museum/academic)}
+\question[3\baselineskip]{Source 2 (optional)}
+
+\subsection*{Evaluation}
+
+\question{How did you use AI to fill out your style card?}
+
+\question{How did you verify that the information that the AI gave you was correct?}
+
+\textcolor{maincolor}{\textbf{\faPen\ b) }}
+Write the name of the art style on your given mystery image and collect all of them in the front of the class. Take a look at the different images and styles. 
+
+\question{Which artwork and style do you like, and why? Describe it in terms of aspects in the Style Guide. }
+
+% \exercisetitle[]{Real or fake?}
+
+% Imagine that someone finds an old painting in their attic, inherited from an old relative and forgotten. Is it the long lost Rembrandt that no one ever found? Or, is it a fake?
+
+% For questions like this, art connoisseurs play an important role. They know everything about art styles and art history, and are often even specialized in a specific style or age. There are several techniques to determine the origin of an old painting: comparing it to other paintings, doing chemical analysis of the paint, trying to figure out the line of prior possessors of the art work. 
+
+% \question{How could AI help in the question whether this art piece is real or fake?}
+
+% \question{Which aspects of this research will have to be done by humans?}
+
+% \question{What are limitations of AI as it comes to evaluating art? }
+
+
+\section{Image generation with AI}
+
+The rest of this lesson we will generate images ourselves. We will create a personalized prompting template that we can use in the future, to help us create the images we want. 
+
+\exercisetitle[]{Reverse engineer your mystery artwork}
+
+\textcolor{maincolor}{\textbf{\faPen\ a) }}
+Open an AI Image generation program. Without using the name of the artist and artwork, try to recreate the piece of art that you received as a mystery artwork. Make use of the style features you collected in the previous exercise, and try to describe what you see as well as possible.
+
+\question{Paste your prompt here.}
+
+\textcolor{maincolor}{\textbf{\faPen\ b) }} You will now receive a Prompt Guide from your teacher. Repeat the exercise and rewrite/improve your prompt using the tips.
+
+\question{Paste your new prompt here.}
+
+\question{Compare the images created by the two versions of the prompt. What are the most important differences?}
+
+\question{What tip did you find useful?}
+
+\question{What would you add to the tips? Add them to your personalized Prompt Guide.}
+
+\textcolor{maincolor}{\textbf{\faPen\ c) }} Finally, put the best version of your prompt in an AI chat bot, and ask it to help you improve it even more. Say that you want to create the mystery painting (title, artist) without using the title and artist. 
+
+\question{Paste the final version of your prompt here.}
+
+\question{Ask your AI Chatbot for more tips to write prompts for images and add the ones you like to your personal Prompt Guide. }
+
+
+\exercisetitle[]{Swap and guess}
+
+\textcolor{maincolor}{\textbf{\faPen\ a) }} Describe a scene from a book, movie or TV series that you like. You will use this later to generate an image. 
+
+\TextField[name=scene,width=\linewidth,height=5cm,multiline=true, bordercolor={0 0 0}]{}
+
+
+\textcolor{maincolor}{\textbf{\faPen\ b) }}Generate an image of the scene you described, using your personal Prompt Guide. Each student generates one. Save your prompt and the image.
+
+\question{Write your prompt here.}
+
+\textcolor{maincolor}{\textbf{\faPen\ c) }} Exchange images with a neighbor. Try to guess the prompt that your neighbor used. 
+
+\question{Write your guess prompt for your neighbors image here.}
+
+
+
+
+\textcolor{maincolor}{\textbf{\faPen\ d) }}Try out the guess prompt and compare it to the original image. Also compare the prompts. Discuss what details were essential or missing.
+
+
+
+\question{ Which parts of the prompt did you miss?}
+
+
+\question{Why is it impossible to recreate the image exactly?}
+
+
+\exercisetitle[]{Logo creation}
+\textcolor{maincolor}{\textbf{\faPen\ a) }}In teams of 2 or 3, create a logo for the Teaching in AI (TAI) project. We will vote for the best logo, which will be used on the website and the publication of all the teaching material of this project. The logo will be seen by all the teachers and students learning from this material like you do now.
+
+\textbf{Tips:}
+\begin{itemize}
+  \item Consider the target audience and think about what they would like.
+  \item You can chat with an LLM to come up with ideas, that you can then translate into a prompt.
+\end{itemize}
+
+
+Afterwards, answer the following question. 
+
+\question{Which aspects of today's lesson did you use in the design of your logo?}
+
+
+
+
+\end{document}

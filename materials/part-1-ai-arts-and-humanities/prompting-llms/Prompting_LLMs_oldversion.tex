@@ -1,0 +1,331 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{subcaption} % modern replacement for the deprecated subfigure package
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% Tell cleveref how to name your counter
+\crefname{exercise}{assignment}{assignments}
+\Crefname{exercise}{Assignment}{Assignments}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+
+% Optional label: \exercisetitle[<label>]{<Title>}
+\newcommand{\exercisetitle}[2][]{%
+  \refstepcounter{exercise}% make this step referenceable/hyperlinked
+  \vspace{0.5cm}%
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise:~ #2}%
+    }%
+  }%
+  % If an optional label was provided, set it
+  \if\relax\detokenize{#1}\relax\else\label{#1}\fi
+  \vspace{0.3cm}%
+}
+
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX (with starred variant and cleveref names) ---
+% Requires: \usepackage{hyperref} for \Form/\TextField
+%           \usepackage{fontawesome5} for \faEdit
+
+% Cleveref names for the question counter
+\crefname{question}{question}{questions}
+\Crefname{question}{Question}{Questions}
+
+\makeatletter
+\newcounter{question}
+\newlength\questionheight
+\setlength\questionheight{5cm} % default answer box height
+
+% \question{<text>}                  -> with TextField (default height)
+% \question[<height>]{<text>}        -> with TextField (custom height)
+% \question*{<text>}                 -> no TextField, still numbered
+\newcommand{\question}{\@ifstar{\question@text}{\question@field}}
+
+% Common heading (increments counter and creates ref anchor)
+\newcommand{\question@heading}[1]{%
+  \refstepcounter{question}%
+  \vspace{0.3cm}%
+  \noindent\textbf{\faEdit\ Question \thequestion: #1}%\\[0.3em]%
+}
+
+% Starred form: numbered question without input field
+\newcommand{\question@text}[1]{%
+  \question@heading{#1}%
+%  \vspace{0.3cm}%
+}
+
+% Unstarred form: numbered question with input field (optional height)
+\newcommand{\question@field}[2][\questionheight]{%
+  \question@heading{#2}%
+ \\[0.3em] \begin{Form}
+    \TextField[
+      name=Q\thequestion,
+      multiline=true,
+      width=\linewidth,
+      height=#1,
+      charsize=10pt,
+      bordercolor={0 0 0},
+      borderwidth=1.8,
+      backgroundcolor={1 1 1}
+    ]{}
+  \end{Form}
+  \vspace{0.3cm}%
+}
+\makeatother
+
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} Prompting an LLM \par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+\vspace*{0.5\textheight}
+
+Subject: Any subject for which you use an LLM, or specific subjects like technology.
+
+Activity duration: 45 min
+
+\vspace{0.5cm}
+
+Steps:
+\begin{enumerate}
+    \item Prompting for an explanation of a topic  (7 min)
+    \item Tips for good prompts (8 min)
+    \item Practice with an example task (30 min)
+\end{enumerate}
+
+Learning goals:
+
+\begin{itemize}
+    \item Learn how to prompt LLMs to get the results you want
+    \item Practice prompting with an example task
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\Huge \color{maincolor} Prompting an LLM}\\[5pt]
+    {\large \textit{Tips for good prompting and practice}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+In this activity, you will learn some tips to prompt LLMs, and you will practice prompting.
+
+\begin{importantbox}
+    No matter what you ask and how you ask about it, the LLM will always give an answer (correct or incorrect). But ultimately, YOU are responsible for the answer, since you can influence the answer by tweaking the prompt, asking for sources or checking the factual correctness. Be critical and always check for external sources of the facts that the LLM provides.
+\end{importantbox}
+
+% --- Assignment ---
+\exercisetitle{Asking for an explanation of a topic}
+
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ a) First, choose a topic from the list below.}}
+
+\begin{itemize}
+    \item Why seasons change
+    \item How vaccines work
+    \item How the voting system in a country of your choice works
+\end{itemize}
+
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ b) Second, prompt the LLM for an explanation of the topic you chose above.}}
+
+\question{Write here the prompt you wrote asking the LLM for the explanation of the topic.} \label{q:prompt_explanation_pre}
+
+\question{Was the result you got to your liking? If not, why not?}
+
+\question{Would that explanation be ok for any person? And for a 10-year-old student?}
+
+
+% --- Assignment  ---
+\exercisetitle{Tips for prompting}
+
+Together with this document, this lesson has a double-side card with tips for prompting LLMs.
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ a) Read the card carefully.}}
+
+% --- Assignment  ---
+\exercisetitle{Design an activity for kids}
+
+Use an LLM to design a learning activity for \colorbox{orange!30}{10 year-old students} on the \textbf{topic you chose in Assignment 1}, taking into account the tips you have in the card. 
+
+Make sure the activity has the appropriate level and language.
+
+\begin{Form}
+\begin{itemize}
+    \item Topic: \\[0.2cm]
+\TextField[name=topic,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+\end{Form}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ a) Do some research on the topic yourself, to get familiar with it.}} Look at the prompt you did in Assignment 1, and modify it to get a better summary of the topic, considering the task you have to do now. Use the card for advice.
+
+\question{Write the updated version of the prompt you wrote in Question~\ref{q:prompt_explanation_pre}, now taking into account the tips.}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ b) Design an activity for kids on the topic.}}
+
+\question*{Write down three key points that you'd like the students to learn on that topic:} \label{q:learning_points}
+\begin{Form}
+\begin{itemize}
+    \item \TextField[name=pointone,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+    \item \TextField[name=pointtwo,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+    \item \TextField[name=pointthree,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+
+\end{Form}
+
+\question*{Write down three possible ideas for a short activity:}
+\begin{Form}
+\begin{itemize}
+    \item \TextField[name=ideaone,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+    \item \TextField[name=ideatwo,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+    \item \TextField[name=ideathree,width=\linewidth,height=0.4cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+
+\end{Form}
+
+\question*{Use an LLM to help you with the brainstorming. Write here the prompt you used, and the two ideas that you liked the most from the LLM:}
+
+\begin{Form}
+\begin{itemize}
+    \item Prompt \\ [0.2cm]
+    \TextField[name=promptidea,width=\linewidth,height=5cm,multiline=true, bordercolor={0 0 0}]{}
+    \item Ideas \\[0.2cm]
+    \TextField[name=ideasllm,width=\linewidth,height=2cm,multiline=true, bordercolor={0 0 0}]{}
+\end{itemize}
+
+\end{Form}
+
+\question{Pick one idea out of the ones you wrote above (yours + the LLM's):}
+
+\vspace{0.3cm}
+\textcolor{maincolor}{\textbf{\faPen\ c) Develop the idea with the help of the LLM.}} Supervise the output of the LLM to make sure that the final activity teaches the three key points you wrote in Question~\ref{q:learning_points} correctly. 
+
+Your activity should be fully developed (ready to be given to 10-year-old students) and include:
+
+\begin{itemize}
+\item A short paragraph explaining the necessary background of the topic. Adjust language and level appropriately.
+\item A couple of slides with bullet point lists with the main messages you want them to learn about the topic. These slides will be presented to the kids.
+\item The necessary material for the students to carry out the activity. (This does not need to be perfect and finished).
+
+\end{itemize}
+
+\end{document}

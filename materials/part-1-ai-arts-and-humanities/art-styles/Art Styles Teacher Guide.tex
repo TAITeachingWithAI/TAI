@@ -1,0 +1,408 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5} % icons
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{subcaption} % modern replacement for the deprecated subfigure package
+
+\setlength{\parindent}{0pt}
+
+% --- COLOR PALETTE (customize these) ---
+\definecolor{maincolor}{HTML}{2A9D8F} % your teal
+\definecolor{accentcolor}{HTML}{E76F51}
+\definecolor{lightcolor}{HTML}{FFDEAD}
+
+% Tell cleveref how to name your counter
+\crefname{exercise}{assignment}{assignments}
+\Crefname{exercise}{Assignment}{Assignments}
+
+% --- ASSIGNMENT STYLE ---
+\newcounter{exercise}
+
+% Optional label: \exercisetitle[<label>]{<Title>}
+\newcommand{\exercisetitle}[2][]{%
+  \refstepcounter{exercise}% make this step referenceable/hyperlinked
+  \vspace{0.5cm}%
+  \colorbox{maincolor}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{%
+      \textcolor{white}{\faPen\ Assignment \theexercise:~ #2}%
+    }%
+  }%
+  % If an optional label was provided, set it
+  \if\relax\detokenize{#1}\relax\else\label{#1}\fi
+  \vspace{0.3cm}%
+}
+
+
+% --- IMPORTANT BOX ---
+\newtcolorbox{importantbox}{
+  colback=lightcolor,
+  colframe=accentcolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- PROMPT BOX ---
+\newtcolorbox{promptbox}{
+  colback=white,
+  colframe=maincolor,
+  arc=4mm,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+% --- QUESTION BOX (with starred variant and cleveref names) ---
+% Requires: \usepackage{hyperref} for \Form/\TextField
+%           \usepackage{fontawesome5} for \faEdit
+
+% Cleveref names for the question counter
+\crefname{question}{question}{questions}
+\Crefname{question}{Question}{Questions}
+
+\makeatletter
+\newcounter{question}
+\newlength\questionheight
+\setlength\questionheight{5cm} % default answer box height
+
+% \question{<text>}                  -> with TextField (default height)
+% \question[<height>]{<text>}        -> with TextField (custom height)
+% \question*{<text>}                 -> no TextField, still numbered
+\newcommand{\question}{\@ifstar{\question@text}{\question@field}}
+
+% Common heading (increments counter and creates ref anchor)
+\newcommand{\question@heading}[1]{%
+  \refstepcounter{question}%
+  \vspace{0.3cm}%
+  \noindent\textbf{\faEdit\ Question \thequestion: #1}%\\[0.3em]%
+}
+
+% Starred form: numbered question without input field
+\newcommand{\question@text}[1]{%
+  \question@heading{#1}%
+%  \vspace{0.3cm}%
+}
+
+% Unstarred form: numbered question with input field (optional height)
+\newcommand{\question@field}[2][\questionheight]{%
+  \question@heading{#2}%
+ \\[0.3em] \begin{Form}
+    \TextField[
+      name=Q\thequestion,
+      multiline=true,
+      width=\linewidth,
+      height=#1,
+      charsize=10pt,
+      bordercolor={0 0 0},
+      borderwidth=1.8,
+      backgroundcolor={1 1 1}
+    ]{}
+  \end{Form}
+  \vspace{0.3cm}%
+}
+\makeatother
+% --- SOLUTION BOX ---
+%--- Definition of solution/no solution env to change between the teacher and the student versions --------%
+
+% --- Teacher toggle ---
+\newif\ifteacher
+\teachertrue  % Write teacherfalse for student version and teachertrue for teachers version
+
+% --- Solution environment ---
+\newtcolorbox{solutionbox}{colback=gray!10,colframe=black!60!black,arc=1mm,boxrule=1pt}
+
+\ifteacher
+\newenvironment{solution}{%
+  \begin{solutionbox}\textbf{Solution:}
+}{%
+  \end{solutionbox}
+}
+\else
+  \excludecomment{solution}
+\fi
+
+
+\begin{document}
+
+\begin{titlepage}
+
+% --- Top spacing ---
+\vspace*{2cm}
+
+% --- Title page ---
+\begin{center}
+    {\Huge \bfseries \color{maincolor} From Style to Prompt: Creating Images with an Art Historian’s Eye \par}
+    \vspace{0.5cm}
+    
+    {\Large \color{accentcolor} Teaching with AI (TAI) \par}
+
+    {\Large \color{accentcolor} Teachers supplementary material \par}
+    
+    \vspace{1.5cm}
+    
+    \begin{center}
+{\large
+Mirte van der Eyden$^{1}$, Andrea López Incera$^{2}$ \\[0.3cm]
+
+{\small
+$^{1}$ Institut für Fachdidaktik, Universität Innsbruck \\ 
+mirte.van-der-eyden@uibk.ac.at \\[0.2cm]
+
+
+$^{2}$ Departament de didàctica de la matemàtica i les ciències experimentals, Universitat Autònoma de Barcelona \\ 
+andrea.lopez.incera@uab.cat
+}
+}
+\end{center}
+
+\end{center}
+
+\vfill
+
+% --- Logos at the bottom ---
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[height=1.5cm]{Figures/Logos/universitaet-innsbruck-logo-cmyk-farbe.jpg} &
+\includegraphics[height=1.5cm]{Figures/Logos/logotipuab-v1-verd.png} &
+\includegraphics[height=1.5cm]{Figures/Logos/EN Co-funded by the EU_POS.jpg}
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+% Optional footer text
+\begin{center}
+    {\small Project funded by Erasmus+ Programme of the European Union}
+\end{center}
+
+\end{titlepage}
+
+% --- Description of activity ---
+%\vspace*{0.5\textheight}
+\vspace*{5 cm}
+Subject: Art styles and image prompting
+
+Activity duration: 90 min
+
+\vspace{0.5cm}
+
+Steps:
+\begin{enumerate}
+    \item Art Styles (45 minutes)
+    \begin{itemize}
+  \item Motivation + Assignment 1: spot the difference (15 min)
+  \item Assignment 2: mystery image (30 min)
+\end{itemize}
+    \item Prompting images (45 minutes)
+\begin{itemize}
+  \item Assignment 3: reverse engineer your mystery image (10 min)
+  \item Assignment 4: swap and guess (10 min)
+  \item Assignment 5: create a logo (25 min)
+\end{itemize}
+\end{enumerate}
+Learning goals:
+
+\begin{itemize}
+  \item Art styles have common visual features. 
+  \item Distinguish art styles in paintings and photographs.
+  \item Using AI to learn responsibly: describe images, request verification links from museums, and cross-check facts
+  \item How to prompt to obtain the image you want
+  \item Create a logo
+\end{itemize}
+
+Setup: 
+\begin{itemize}
+  \item Students need access to an AI LLM chat bot, and an AI image generation tool. 
+  \item The teacher provides and prints mystery artworks for every pair or students.
+  \item The teacher prints a Style Feature Guide and Style Card for every pair of students. 
+\end{itemize}
+
+\newpage
+
+% --- HEADER / BRANDING ---
+\begin{center}
+    {\Huge \color{maincolor} From style to prompt}\\[5pt]
+    {\large \textit{Creating images with an art historian's eye}}\\
+    \rule{\linewidth}{1pt}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{In this teacher guide you find}
+\begin{itemize}
+  \item Supplementary material on Assignment 1: Spot the difference
+  \item List of possible mystery artworks
+\end{itemize}
+
+You can choose to focus only on paintings, or also mix in photographs in this lesson. 
+In case you work with photographs as mystery art works in Assignment 2, a follow-up assignment could be that the students try to make a photograph themselves in the same style. 
+
+\exercisetitle[]{Spot the difference}
+
+As a warm-up, show two paintings that students compare and describe. You can choose your own pair; here is a suggested pair on the same theme (waves/sea) that differs clearly in technique, mood, and spatial depiction.
+You can do the same with two photographs, suggestions are also given below. 
+
+\subsection*{Painting A — Katsushika Hokusai, ``The Great Wave off Kanagawa'' (c.\ 1831)}
+Style: Ukiyo-e (Japanese woodblock print) \\
+Museum link: The Met \url{https://www.metmuseum.org/art/collection/search/45434}
+
+\textbf{Student-friendly style features}
+\begin{itemize}
+  \item Clear outlines: sharp, bold lines around shapes.
+  \item Flat color areas: big patches of color; little shading.
+  \item Asymmetry: off-center composition; strong diagonal sweep of the wave.
+  \item Detail in patterns: foam looks like claws; boats are crisp.
+  \item Space feels ``flat'': Mount Fuji small and near the surface.
+\end{itemize}
+
+
+\subsection*{Painting B — J.\,M.\,W. Turner, ``Snow Storm — Steam-Boat off a Harbour’s Mouth'' (1842)}
+Style: Romanticism \\
+Museum link: Tate \url{https://www.tate.org.uk/art/artworks/turner-snow-storm-steam-boat-off-a-harbours-mouth-n00530}
+
+\textbf{Student-friendly style features}
+\begin{itemize}
+  \item Loose brushwork: soft, swirling strokes; blurred edges.
+  \item Atmospheric color: misty blends of gray, brown, sea tones.
+  \item Dramatic light: stormy contrasts; light peeking through.
+  \item Motion and mood: spinning feel; intense, emotional.
+  \item Deep space: fading forms and haze suggest depth.
+\end{itemize}
+
+\textbf{Key style differences (what students can spot)}
+\begin{itemize}
+  \item Line vs.\ brush: Hokusai uses clear outlines; Turner dissolves edges.
+  \item Flat vs.\ deep space: Hokusai looks graphic/flat; Turner suggests deep space.
+  \item Color handling: Hokusai uses clean, separated colors; Turner blends into atmosphere.
+  \item Detail vs.\ atmosphere: Hokusai emphasizes crisp detail; Turner emphasizes mood and movement.
+  \item Mood: Hokusai is patterned/controlled; Turner is chaotic/emotional.
+\end{itemize}
+
+\textbf{Quick discussion prompts}
+\begin{itemize}
+  \item Where do your eyes go first in each image? Why?
+  \item How does each artist make the wave feel powerful (line vs.\ brush, flat vs.\ deep space)?
+  \item Which feels more like a ``poster'' or print, and which feels like a ``painting of weather''? Explain with evidence.
+\end{itemize}
+
+\subsection*{Idea for photographs to compare}
+
+\paragraph{Photo A — Henri Cartier-Bresson, ``Behind the Gare Saint-Lazare'' (1932)}
+Why it’s great for contrast: A candid, black-and-white street photograph that captures the ``decisive moment'' as a man leaps over a puddle. Unstaged, fast, and all about timing and composition. \\
+Verification link: MoMA \url{https://www.moma.org/audio/playlist/244/3135}
+
+\textbf{Style features}
+\begin{itemize}
+  \item Real vs.\ staged: candid/documentary; subject didn’t pose.
+  \item Motion: slight blur in foot/water; action frozen mid-jump.
+  \item Composition/framing: strong shapes/reflections; leading lines; off-center focus.
+  \item Light/shadow: natural, soft daylight; balanced tones.
+  \item Mood/message: everyday life at a perfect instant; playful/observational.
+  \item Technique: 35mm film, quick shutter; classic darkroom process.
+\end{itemize}
+
+
+\paragraph{Photo B — Steve McCurry, ``Afghan Girl'' (1984)}
+Why it’s great for contrast: A vivid color portrait for a magazine cover—staged in the sense that the subject faces the camera directly. Slow, controlled, all about gaze and color. \\
+Verification links: National Geographic \url{https://www.nationalgeographic.com/photography/article/afghan-girl-steve-mccurry} \\
+Steve McCurry Studio \url{https://stevemccurry.com/galleries/afghan-girl}
+
+\textbf{Style features}
+\begin{itemize}
+  \item Real vs.\ staged: documentary portrait; composed with care.
+  \item Color/palette: bright, intense color; green background vs.\ red headscarf; striking green eyes.
+  \item Composition/framing: tight close-up; centered focus; shallow depth of field.
+  \item Light/shadow: soft light enhancing texture and eye color.
+  \item Mood/message: direct, intense gaze; emotional impact; social/documentary message.
+  \item Technique: 35mm color film; controlled exposure and focus.
+\end{itemize}
+
+
+\textbf{Quick discussion prompts}
+\begin{itemize}
+  \item What makes A feel ``caught in the moment,'' while B feels ``confrontational and intentional''?
+  \item How do black-and-white vs.\ color change the mood and what you notice first?
+  \item In A, where does your eye travel? In B, what locks your gaze?
+\end{itemize}
+
+
+\exercisetitle[]{Mystery art work}
+20 possible ``mystery'' artworks for Assignment 2. Note: website links can change over time; searching the name and artist will help locate images when the links no longer work properly.
+
+Mix these so that each pair of students has a different style. Most images are public domain in the EU.
+
+\begin{itemize}
+  \item Early Renaissance — Sandro Botticelli, \emph{The Birth of Venus} (c.\ 1485). Tells: idealized figures, mythological subject, linear grace, shallow space. Link: Uffizi \url{https://www.uffizi.it/en/artworks/birth-of-venus}
+  \item Baroque — Rembrandt, \emph{The Night Watch} (1642). Tells: dramatic light, group portrait in action, rich textures, deep space. Link: Rijksmuseum \url{https://www.rijksmuseum.nl/en/collection/SK-C-5}
+  \item Baroque — Caravaggio, \emph{Supper at Emmaus} (1601). Tells: chiaroscuro, realism, theatrical gesture. Link: National Gallery (London) \url{https://www.nationalgallery.org.uk/paintings/michelangelo-merisi-da-caravaggio-the-supper-at-emmaus}
+  \item Rococo — Jean-Honoré Fragonard, \emph{The Swing} (1767). Tells: pastel palette, playful sensuality, ornate detail, garden setting. Link: Wallace Collection \url{https://www.wallacecollection.org/explore/collection/search-the-collection/les-hazards-heureux-de-lescarpolette-swing/}
+  \item Neoclassicism — Jacques-Louis David, \emph{Oath of the Horatii} (1784). Tells: clear contour, moral seriousness, classical subjects, rigid composition. Link: \url{https://emuseum.toledomuseum.org/objects/55069/the-oath-of-the-horatii}
+  \item Romanticism — Francisco Goya, \emph{The Third of May 1808} (1814). Tells: emotion/drama, political subject, stark contrasts. Link: Prado \url{https://www.museodelprado.es/en/the-collection/art-work/the-3rd-of-may-1808-in-madrid-or-the-executions/5e177409-2993-4240-97fb-847a02c6496c}
+  \item Realism — Gustave Courbet, \emph{The Stonebreakers} (1849–50; destroyed). Tells: ordinary laborers, earthy palette, anti-idealization. Link: Smarthistory \url{https://smarthistory.org/courbet-the-stonebreakers/}
+  \item Impressionism — Claude Monet, \emph{Impression, Sunrise} (1872). Tells: visible brushwork, fleeting light, harbor scene, plein air. Link: \url{https://claudemonetgiverny.fr/en/actualites/impression-sunrise-the-saga-of-a-legendary-painting/}
+  \item Impressionism — Pierre-Auguste Renoir, \emph{Bal du moulin de la Galette} (1876). Tells: dappled light, social leisure, vibrant brushwork. Link: Musée d’Orsay \url{https://www.musee-orsay.fr/fr/oeuvres/bal-du-moulin-de-la-galette-497}
+  \item Post-Impressionism — Georges Seurat, \emph{A Sunday on La Grande Jatte} (1884–86). Tells: pointillism, optical mixing, orderly composition. Link: Art Institute of Chicago \url{https://www.artic.edu/artworks/27992}
+  \item Post-Impressionism — Vincent van Gogh, \emph{The Starry Night} (1889). Tells: swirling impasto, expressive color, night landscape. Link: MoMA \url{https://www.moma.org/collection/works/79802}
+  \item Post-Impressionism / Proto-Cubism — Paul Cézanne, \emph{Mont Sainte-Victoire} (c.\ 1902–06). Tells: faceted brushstrokes, structural planes, reduced depth cues. Link: The Met \url{https://www.metmuseum.org/art/collection/search/435878}
+  \item Symbolism — Gustav Klimt, \emph{The Kiss} (1907–08). Tells: gold leaf, ornamental pattern, sensual theme, flat vs.\ modeled contrast. Link: Belvedere \url{https://www.belvedere.at/museum}
+  \item Expressionism — Edvard Munch, \emph{The Scream} (1893). Tells: distorted forms, expressive line/color, anxiety theme. Link: Nasjonalmuseet \url{https://www.nasjonalmuseet.no/en/collection/object/NG.M.00939}
+  \item Fauvism — Henri Matisse, \emph{Woman with a Hat} (1905). Tells: wild, non-natural color; loose brushwork; painterliness. Link: SFMOMA \url{https://www.sfmoma.org/artwork/91.161/}
+  \item Futurism — Umberto Boccioni, \emph{Unique Forms of Continuity in Space} (1913). Tells: dynamism, movement, mechanized body, metallic flow. Link: MoMA \url{https://www.moma.org/collection/works/81179}
+  \item Suprematism — Kazimir Malevich, \emph{Black Square} (1915). Tells: geometric abstraction, reduction to fundamentals, non-objective. Link: Tate \url{https://www.tate.org.uk/art/artists/kazimir-malevich-1561/five-ways-look-malevichs-black-square}
+  \item De Stijl — Piet Mondrian, \emph{Broadway Boogie Woogie} (1942–43). Tells: grid, primary colors, city rhythm mapped to geometry. Link: MoMA \url{https://www.moma.org/collection/works/78682}
+  \item Abstract art — Wassily Kandinsky, \emph{Composition VIII} (1923). Tells: non-objective forms, geometric/linear motifs, color–music analogy. Link: Guggenheim \url{https://www.guggenheim.org/artwork/1924}
+  \item Art Nouveau — Alphonse Mucha, \emph{Job Cigarettes Poster} (1896). Tells: flowing organic lines, decorative borders, stylized hair/floral motifs. Link: Princeton University Art Museum \url{https://artmuseum.princeton.edu/art/collections/objects/11486}
+  \item Ukiyo-e — Utagawa Hiroshige, \emph{Sudden Shower over Shin-Ōhashi Bridge and Atake} (1857). Tells: woodblock print, diagonal rain lines, asymmetry, flat color areas. Link: The Met \url{https://www.metmuseum.org/art/collection/search/36461}
+\end{itemize}
+
+\section*{Mystery photographs}
+A curated set of 20 famous photographs for Assignment 2. Each entry includes style marks and a link (museum/academic or major agency) for research/verification.
+
+\begin{itemize}
+  \item Henri Cartier-Bresson — \emph{Behind the Gare Saint-Lazare} (1932). Style: Street / decisive moment. Marks: candid, action mid-leap, reflections/shapes, off-center framing, B\&W. Link: MoMA \url{https://www.moma.org/collection/works/98333}
+  \item Dorothea Lange — \emph{Migrant Mother} (1936). Style: Documentary/social. Marks: emotional portrait, simple background, close framing, soft natural light, B\&W. Link: MoMA \url{https://www.moma.org/collection/works/50989}
+  \item Ansel Adams — \emph{Clearing Winter Storm, Yosemite National Park} (c.\ 1937, printed later). Style: Landscape/modernist. Marks: dramatic mountains/clouds, strong contrast, sharp detail, deep space, B\&W. Link: AIC \url{https://www.artic.edu/artworks/121723/clearing-winter-storm-yosemite-national-park}
+  \item Man Ray — \emph{Le Violon d’Ingres} (1924). Style: Surreal/studio. Marks: posed figure, playful transformation, smooth tones, careful lighting, B\&W. Link: Getty \url{https://www.getty.edu/art/collection/object/104E4A}
+  \item Robert Capa — \emph{D-Day, Omaha Beach} (1944). Style: War reportage. Marks: intense action, motion blur/grain, on-the-spot framing, B\&W, urgent mood. Link: Magnum \url{https://www.magnumphotos.com/newsroom/war/robert-capa-d-day/}
+  \item Cindy Sherman — \emph{Untitled Film Still \#21} (1978). Style: Staged cinematic portrait. Marks: actress-like pose, storytelling vibe, controlled framing, B\&W, classic film reference. Link: The Met \url{https://www.metmuseum.org/art/collection/search/266784}
+  \item Alfred Stieglitz — \emph{The Steerage} (1907). Style: Early modernist/documentary. Marks: strong geometry (lines/decks), layered space, everyday people, B\&W. Link: The Met \url{https://www.metmuseum.org/art/collection/search/267836}
+  \item Julia Margaret Cameron — \emph{Sir John Herschel} (1867). Style: Pictorialist portrait. Marks: soft focus, gentle light, artistic pose, shallow DoF, B\&W (albumen). Link: The Met \url{https://www.metmuseum.org/art/collection/search/282064}
+  \item László Moholy-Nagy — \emph{Photogram} (1926). Style: Bauhaus/experimental. Marks: camera-less image, shapes/textures on paper, high contrast, abstract design, B\&W. Link: The Met \url{https://www.metmuseum.org/de/art/collection/search/265197}
+  \item Gordon Parks — \emph{American Gothic, Washington, D.C.} (1942). Style: Documentary portrait/social message. Marks: staged symbolism, centered figure, B\&W, clear message. Link: Gordon Parks Foundation \url{https://www.gordonparksfoundation.org/publications/gordon-parks/american-gothic-gordon-parks-and-ella-watson}
+  \item Imogen Cunningham — \emph{Magnolia Blossom} (1925). Style: Modernist close-up. Marks: tight framing, smooth light, simple shapes, elegant curves, B\&W. Link: SFMOMA \url{https://www.moma.org/collection/works/44263}
+  \item Edward Weston — \emph{Pepper No.\ 30} (1930). Style: Modernist still life. Marks: single object, dramatic light, glossy texture, sculptural curves, B\&W. Link: SFMOMA \url{https://www.moma.org/audio/playlist/172/2274}
+  \item Yousuf Karsh — \emph{Winston Churchill} (1941). Style: Classic studio portrait. Marks: powerful pose/expression, controlled lighting, formal clothing, centered, B\&W. Link: The Met \url{https://www.metmuseum.org/de/art/collection/search/264827}
+  \item Lewis Hine — \emph{Power House Mechanic Working on Steam Pump} (c.\ 1920). Style: Industrial documentary. Marks: worker and machine, strong angles/lines, textures, B\&W, social message. Link: Brooklyn Museum \url{https://www.brooklynmuseum.org/nl-NL/objects/112132}
+  \item Diane Arbus — \emph{Identical Twins, Roselle, New Jersey} (1967). Style: Portrait with uncanny mood. Marks: centered twins, flat flash, direct gaze, subtle unease, B\&W. Link: MoMA \url{https://www.moma.org/collection/works/58927}
+  \item Brassaï — \emph{Paris Night View} (e.g., Street, Montparnasse, 1933). Style: Night/urban documentary. Marks: deep shadows/bright highlights, fog/wet streets, dramatic mood, B\&W. Link: Museu Tàpies \url{https://museutapies.org/en/exposicio/brassai/}
+  \item Harold Edgerton — \emph{Milk Drop Coronet} (1936). Style: High-speed photography. Marks: split-second splash, bright light, clean background, scientific feel, B\&W. Link: MIT Museum \url{https://mitmuseum.mit.edu/collections/object/HEE-NC-57001}
+  \item William Eggleston — \emph{Untitled (Memphis)} (c.\ 1970). Style: Color documentary/everyday. Marks: vivid color, ordinary subject, careful framing, natural light, relaxed mood. Link: The Met \url{https://www.metmuseum.org/de/art/collection/search/302301}
+  \item Sebastião Salgado — \emph{Serra Pelada (Gold Mine, Brazil)} (1986). Style: Documentary/epic scale. Marks: huge crowd patterns, strong contrast, labor story, B\&W. Link: Städel Museum \url{https://sammlung.staedelmuseum.de/de/werk/goldmine-serra-pelada-state-para}
+  \item Elliott Erwitt — \emph{California Kiss} (1955). Style: Street/humorous, romantic. Marks: candid moment, playful mood, simple shapes, B\&W, clear subject. Link: Koch Gallery \url{https://kochgallery.com/exhibitions/elliott-erwitt-2017/}
+\end{itemize}
+
+\section*{Tips for recreating these photography styles with a phone}
+\begin{itemize}
+  \item Street/doc: shoot candid moments; use burst mode; keep distance; look for strong shapes and reflections.
+  \item Portrait/classic: place subject by a window; use a plain background; center or off-center per mood; convert to B\&W.
+  \item Modernist close-up: find a single object; use side light; get very close; simplify the frame.
+  \item Night/urban: shoot near windows or lamps; let shadows be dark; look for wet floors or shiny surfaces.
+  \item High-speed: capture water splashes with bright light; use ``Live Photo'' or burst; pick the sharpest frame.
+  \item Color documentary: find everyday scenes with bold colors; avoid heavy filters; let color lead the eye.
+\end{itemize}
+
+
+
+\end{document}
