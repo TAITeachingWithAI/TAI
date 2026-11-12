@@ -20,10 +20,11 @@ so you can open them straight from here. No installation and no account needed.
 
     ---
 
-    Pre-prompted subject tutors that students chat with. Includes **Emmy**, a
-    Socratic physics research tutor who guides students through their own
-    experiment in five stages, and a **Debate a Historical Figure** role-play
-    tutor.
+    Pre-prompted tutors that students chat with. Includes **Emmy**, a research
+    mentor who guides students through their own investigation with questions
+    and helps them think like a scientist (one version for the exoplanet lesson,
+    one for any school experiment), and a **Debate a Historical Figure**
+    role-play tutor.
 
     [:octicons-arrow-right-24: Open the AI Tutors](https://scientificailab.streamlit.app/Tutors)
 
@@ -61,6 +62,7 @@ so you can open them straight from here. No installation and no account needed.
   [Exoplanet Files](for-teachers/part-2-ai-science/exoplanet-files/index.md)
   page for the accompanying teacher/student materials.
 - The app runs on a free AI model. If you would like to run a tutor on a stronger
-  model, the app has a **"Use in your own chatbot"** page that gives you a
-  self-contained version of the tutor's prompt to paste into ChatGPT, Claude or
-  Gemini.
+  model, each tutor has a **"Run this in your own (stronger) chatbot"** section
+  with a self-contained version of its prompt to paste into ChatGPT, Claude,
+  Gemini or Copilot. Emmy's prompt for the exoplanet lesson is also available as
+  a file on the [physics page](for-teachers/part-2-ai-science/physics/index.md).

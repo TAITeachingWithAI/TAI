@@ -40,7 +40,7 @@ hide:
 
     ---
 
-    Interactive AI tools we built for the classroom, like the Emmy physics tutor.
+    Interactive AI tools we built for the classroom, like Emmy, our AI research mentor.
 
     [:octicons-arrow-right-24: Explore the tools](tools.md)
 
