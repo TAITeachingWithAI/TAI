@@ -242,7 +242,15 @@ def _sections_block(folder: str, files) -> str:
     return "\n".join(lines)
 
 
+def _fill_durations(markdown: str, config) -> str:
+    """<!--duration:<part>/<lesson>--> -> the lesson's short duration (from the summaries)."""
+    data = _summaries(config)
+    return re.sub(r"<!--duration:([^>]+?)-->",
+                  lambda m: (data.get(m.group(1).strip()) or {}).get("duration") or "", markdown)
+
+
 def on_page_markdown(markdown, *, page, config, files, **kwargs):
+    markdown = _fill_durations(markdown, config)
     markdown = _ensure_student_material(markdown, page, files)
     markdown = _insert_summary(markdown, page, config)
     folder = posixpath.dirname(page.file.src_uri)
