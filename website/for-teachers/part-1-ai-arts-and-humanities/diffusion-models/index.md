@@ -1,9 +1,9 @@
 ---
-title: "How do Diffusion models work?"
+title: "Diffusion models"
 order: 7
 ---
 
-# How do Diffusion models work?
+# Diffusion models
 
 Here you find the supplementary teaching material on diffusion models.
 
@@ -32,4 +32,4 @@ black and one with white stickers.
 
 If you want to make noisy images yourself, you can use this Colab notebook:
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-1-ai-arts-and-humanities/diffusion-models/Diffusion_models_teachers_material.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-1-ai-arts-and-humanities/diffusion-models/Diffusion_models_Make_noisy_images.ipynb)

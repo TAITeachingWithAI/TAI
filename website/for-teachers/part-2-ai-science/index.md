@@ -33,9 +33,9 @@ can be split over two sessions.
 
 | Lesson | What students do | Time |
 | --- | --- | --- |
-| [Physics](physics/index.md) | Build a model of an exoplanet transit, investigate how the planet's size affects the dip in starlight with the help of an AI research mentor, and calculate the size of their own exoplanet. | <!--duration:part-2-ai-science/physics--> |
-| [Mathematics](mathematics/index.md) | Fit models to planet data, from linear regression to a neural network, and rediscover Kepler's third law to find their exoplanet's orbit. | <!--duration:part-2-ai-science/mathematics--> |
-| [Chemistry](chemistry/index.md) | Characterise their exoplanet's sample in an AI-driven rover lab, then estimate its iron concentration with colorimetry and recover the iron oxide in the real lab. | <!--duration:part-2-ai-science/chemistry--> |
-| [Biology](biology/index.md) | Use AI to read a scientific paper about their planet's extreme conditions, and design an organism that could survive there. | <!--duration:part-2-ai-science/biology--> |
-| [Robotics](robotics/index.md) | Act out reinforcement learning themselves, then program a Cutebot robot that learns the fastest path across a grid, with three levels of AI support. | <!--duration:part-2-ai-science/robotics--> |
+| [Physics](physics/index.md)<br>*<!--title:part-2-ai-science/physics-->* | Build a model of an exoplanet transit, investigate how the planet's size affects the dip in starlight with the help of an AI research mentor, and calculate the size of their own exoplanet. | <!--duration:part-2-ai-science/physics--> |
+| [Mathematics](mathematics/index.md)<br>*<!--title:part-2-ai-science/mathematics-->* | Fit models to planet data, from linear regression to a neural network, and rediscover Kepler's third law to find their exoplanet's orbit. | <!--duration:part-2-ai-science/mathematics--> |
+| [Chemistry](chemistry/index.md)<br>*<!--title:part-2-ai-science/chemistry-->* | Characterise their exoplanet's sample in an AI-driven rover lab, then estimate its iron concentration with colorimetry and recover the iron oxide in the real lab. | <!--duration:part-2-ai-science/chemistry--> |
+| [Biology](biology/index.md)<br>*<!--title:part-2-ai-science/biology-->* | Use AI to read a scientific paper about their planet's extreme conditions, and design an organism that could survive there. | <!--duration:part-2-ai-science/biology--> |
+| [Robotics](robotics/index.md)<br>*<!--title:part-2-ai-science/robotics-->* | Act out reinforcement learning themselves, then program a Cutebot robot that learns the fastest path across a grid, with three levels of AI support. | <!--duration:part-2-ai-science/robotics--> |
 | [Exoplanet Files](exoplanet-files/index.md) | Background files on the eight real exoplanets, used across the lessons. | |

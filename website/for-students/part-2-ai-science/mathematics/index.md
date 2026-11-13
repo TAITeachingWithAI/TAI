@@ -10,7 +10,7 @@ models to real planet data.
 
 ## Worksheet
 
-- [:material-file-pdf-box: Mathematics worksheet](../../../for-teachers/part-2-ai-science/mathematics/Math_forstudents.pdf)
+- [:material-file-pdf-box: Mathematics worksheet](../../../for-teachers/part-2-ai-science/mathematics/Mathematics_student.pdf)
 
 ## Notebooks
 

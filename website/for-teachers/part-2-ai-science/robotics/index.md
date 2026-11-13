@@ -15,8 +15,8 @@ of an AI.
 
 ## Lesson material
 
-- [:material-file-pdf-box: Robotics lesson: student version](RL_FastestPath_Handout_student.pdf)
-- [:material-file-pdf-box: Robotics lesson: teacher version](RL_FastestPath_Handout_teacher.pdf)
+- [:material-file-pdf-box: Robotics lesson: student version](Robotics_student.pdf)
+- [:material-file-pdf-box: Robotics lesson: teacher version](Robotics_teacher.pdf)
 
 !!! info "Which version do I need?"
     The **student version** is the worksheet you hand out. The **teacher version**
@@ -39,7 +39,7 @@ chatbot.
 
 **Print:**
 
-- [:material-printer: RL_3cell_grid_A3_print.pdf](RL_3cell_grid_A3_print.pdf): the 3-cell grid the robot drives on (A3, cells of 13.3 cm), one per Cutebot.
+- [:material-printer: Robotics_3cell_grid_A3_print.pdf](Robotics_3cell_grid_A3_print.pdf): the 3-cell grid the robot drives on (A3, cells of 13.3 cm), one per Cutebot.
 - From the student version: the environment and robot printables for assignment 1 (one set per pair of students) and the printed code for level 1 (one per student). They are in the appendix of the handout.
 
 ## Files for the micro:bit

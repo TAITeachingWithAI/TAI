@@ -66,6 +66,14 @@
   margin: 2rem 0 .5rem;
 }
 
+/* Lesson title from the cover of the material, under the page heading */
+.tai-lesson-title {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--md-default-fg-color--light);
+  margin-top: -0.8rem;
+}
+
 /* Partner logos on a white card, so they stay readable in dark mode */
 .tai-logos img {
   background: #fff;

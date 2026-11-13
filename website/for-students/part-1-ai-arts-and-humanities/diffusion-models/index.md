@@ -1,8 +1,8 @@
 ---
-title: "How do Diffusion models work?"
+title: "Diffusion models"
 order: 7
 ---
 
-# How do Diffusion models work?
+# Diffusion models
 
 <!--pdfs-->

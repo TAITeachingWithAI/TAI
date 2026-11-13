@@ -10,7 +10,7 @@ and then make a real Cutebot learn the fastest path across a small grid.
 
 ## Worksheet
 
-- [:material-file-pdf-box: Robotics worksheet](../../../for-teachers/part-2-ai-science/robotics/RL_FastestPath_Handout_student.pdf)
+- [:material-file-pdf-box: Robotics worksheet](../../../for-teachers/part-2-ai-science/robotics/Robotics_student.pdf)
 
 ## Files for your Cutebot
 

@@ -72,14 +72,14 @@ nav:
       - for-students/index.md
       - "Part 1: AI & Arts and Humanities":
           - for-students/part-1-ai-arts-and-humanities/index.md
-          - "How do LLMs work?": for-students/part-1-ai-arts-and-humanities/how-llms-work/index.md
+          - "How LLMs work": for-students/part-1-ai-arts-and-humanities/how-llms-work/index.md
           - Prompting LLMs: for-students/part-1-ai-arts-and-humanities/prompting-llms/index.md
           - Where LLMs fail: for-students/part-1-ai-arts-and-humanities/where-llms-fail/index.md
           - History: for-students/part-1-ai-arts-and-humanities/history/index.md
           - Languages: for-students/part-1-ai-arts-and-humanities/languages/index.md
           - Literature: for-students/part-1-ai-arts-and-humanities/literature/index.md
-          - "How do Diffusion models work?": for-students/part-1-ai-arts-and-humanities/diffusion-models/index.md
-          - Art Styles and image prompting: for-students/part-1-ai-arts-and-humanities/art-styles/index.md
+          - "Diffusion models": for-students/part-1-ai-arts-and-humanities/diffusion-models/index.md
+          - Art styles: for-students/part-1-ai-arts-and-humanities/art-styles/index.md
           - Sound generation: for-students/part-1-ai-arts-and-humanities/sound-generation/index.md
           - Debate: for-students/part-1-ai-arts-and-humanities/debate/index.md
           - Art exhibition: for-students/part-1-ai-arts-and-humanities/art-exhibition/index.md
@@ -96,16 +96,16 @@ nav:
       - for-teachers/index.md
       - "Part 1: AI & Arts and Humanities":
           - for-teachers/part-1-ai-arts-and-humanities/index.md
-          - "How do LLMs work?": for-teachers/part-1-ai-arts-and-humanities/how-llms-work/index.md
+          - "How LLMs work": for-teachers/part-1-ai-arts-and-humanities/how-llms-work/index.md
           - Prompting LLMs: for-teachers/part-1-ai-arts-and-humanities/prompting-llms/index.md
           - Where LLMs fail: for-teachers/part-1-ai-arts-and-humanities/where-llms-fail/index.md
           - History: for-teachers/part-1-ai-arts-and-humanities/history/index.md
           - Languages: for-teachers/part-1-ai-arts-and-humanities/languages/index.md
           - Literature: for-teachers/part-1-ai-arts-and-humanities/literature/index.md
-          - "How do Diffusion models work?":
+          - "Diffusion models":
               - for-teachers/part-1-ai-arts-and-humanities/diffusion-models/index.md
               - Image to Noise Examples: for-teachers/part-1-ai-arts-and-humanities/diffusion-models/image_to_noise_examples/index.md
-          - Art Styles and image prompting: for-teachers/part-1-ai-arts-and-humanities/art-styles/index.md
+          - Art styles: for-teachers/part-1-ai-arts-and-humanities/art-styles/index.md
           - Sound generation: for-teachers/part-1-ai-arts-and-humanities/sound-generation/index.md
           - Debate: for-teachers/part-1-ai-arts-and-humanities/debate/index.md
           - Art exhibition: for-teachers/part-1-ai-arts-and-humanities/art-exhibition/index.md

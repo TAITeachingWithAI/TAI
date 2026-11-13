@@ -1,9 +1,9 @@
 ---
-title: "How do LLMs work?"
+title: "How LLMs work"
 order: 1
 ---
 
-# How do LLMs work?
+# How LLMs work
 
 <!--pdfs-->
 

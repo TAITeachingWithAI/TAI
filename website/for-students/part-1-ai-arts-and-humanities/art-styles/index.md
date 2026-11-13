@@ -1,8 +1,8 @@
 ---
-title: "Art Styles and image prompting"
+title: "Art styles"
 order: 8
 ---
 
-# Art Styles and image prompting
+# Art styles
 
 <!--pdfs-->

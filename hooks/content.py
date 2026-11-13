@@ -243,16 +243,32 @@ def _sections_block(folder: str, files) -> str:
 
 
 def _fill_durations(markdown: str, config) -> str:
-    """<!--duration:<part>/<lesson>--> -> the lesson's short duration (from the summaries)."""
+    """<!--duration:<part>/<lesson>--> -> the lesson's short duration, and
+    <!--title:<part>/<lesson>--> -> its title from the cover (from the summaries)."""
     data = _summaries(config)
-    return re.sub(r"<!--duration:([^>]+?)-->",
-                  lambda m: (data.get(m.group(1).strip()) or {}).get("duration") or "", markdown)
+    markdown = re.sub(r"<!--duration:([^>]+?)-->",
+                      lambda m: (data.get(m.group(1).strip()) or {}).get("duration") or "", markdown)
+    return re.sub(r"<!--title:([^>]+?)-->",
+                  lambda m: (data.get(m.group(1).strip()) or {}).get("title") or "", markdown)
+
+
+def _insert_subtitle(markdown: str, page, config) -> str:
+    """Lesson pages: the title from the cover of the material, right under the H1."""
+    parts = page.file.src_uri.split("/")
+    if len(parts) != 4 or parts[0] not in ("for-students", "for-teachers") or parts[3] != "index.md":
+        return markdown
+    title = (_summaries(config).get(f"{parts[1]}/{parts[2]}") or {}).get("title")
+    h1 = re.search(r"^# .*$", markdown, re.M)
+    if not title or not h1:
+        return markdown
+    return markdown[:h1.end()] + f'\n\n<p class="tai-lesson-title">{title}</p>' + markdown[h1.end():]
 
 
 def on_page_markdown(markdown, *, page, config, files, **kwargs):
     markdown = _fill_durations(markdown, config)
     markdown = _ensure_student_material(markdown, page, files)
     markdown = _insert_summary(markdown, page, config)
+    markdown = _insert_subtitle(markdown, page, config)
     folder = posixpath.dirname(page.file.src_uri)
     if "<!--student-pdfs-->" in markdown:
         markdown = markdown.replace("<!--student-pdfs-->", _student_pdf_block(folder, files))

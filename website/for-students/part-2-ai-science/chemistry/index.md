@@ -10,7 +10,7 @@ brought back from an exoplanet.
 
 ## Worksheet
 
-- [:material-file-pdf-box: Chemistry worksheet](../../../for-teachers/part-2-ai-science/chemistry/Chemistry%20lesson_student%20version.pdf)
+- [:material-file-pdf-box: Chemistry worksheet](../../../for-teachers/part-2-ai-science/chemistry/Chemistry_student.pdf)
 
 ## The Rover Lab
 

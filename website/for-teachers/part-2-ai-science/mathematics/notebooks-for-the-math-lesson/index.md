@@ -19,12 +19,12 @@ anything, or download the `.ipynb` file to run it locally.
 
 | Version | Run it | Download |
 | --- | --- | --- |
-| Full | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/Fitting%20and%20machine%20learning.ipynb) | [:material-notebook: .ipynb](Fitting%20and%20machine%20learning.ipynb) |
-| AI version | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/Fitting%20and%20machine%20learning%20-%20AI%20version.ipynb) | [:material-notebook: .ipynb](Fitting%20and%20machine%20learning%20-%20AI%20version.ipynb) |
+| Full | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/Mathematics_Fitting_and_machine_learning.ipynb) | [:material-notebook: .ipynb](Mathematics_Fitting_and_machine_learning.ipynb) |
+| AI version | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/Mathematics_Fitting_and_machine_learning_AI_version.ipynb) | [:material-notebook: .ipynb](Mathematics_Fitting_and_machine_learning_AI_version.ipynb) |
 
 ## Neural network
 
 | Version | Run it | Download |
 | --- | --- | --- |
-| Full | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/Neural%20network.ipynb) | [:material-notebook: .ipynb](Neural%20network.ipynb) |
-| AI version | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/Neural%20network%20-%20AI%20version.ipynb) | [:material-notebook: .ipynb](Neural%20network%20-%20AI%20version.ipynb) |
+| Full | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/Mathematics_Neural_network.ipynb) | [:material-notebook: .ipynb](Mathematics_Neural_network.ipynb) |
+| AI version | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/Mathematics_Neural_network_AI_version.ipynb) | [:material-notebook: .ipynb](Mathematics_Neural_network_AI_version.ipynb) |

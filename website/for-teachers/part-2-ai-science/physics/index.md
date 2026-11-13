@@ -9,8 +9,8 @@ Teaching material for the physics lesson of Part 2: AI & Science.
 
 ## Lesson material
 
-- [:material-file-pdf-box: Physics lesson: student version](physics_forstudents.pdf)
-- [:material-file-pdf-box: Physics lesson: teacher version](physics_teachertrue.pdf)
+- [:material-file-pdf-box: Physics lesson: student version](Physics_student.pdf)
+- [:material-file-pdf-box: Physics lesson: teacher version](Physics_teacher.pdf)
 
 !!! info "Which version do I need?"
     The **student version** is the worksheet you hand out. The **teacher version**
@@ -30,7 +30,7 @@ chatbot (for example ChatGPT, Gemini, Claude or Copilot). Emmy then guides them
 through their own investigation with questions, and asks them to reflect on how
 science works.
 
-- [:material-file-document-outline: Emmy_prompt_exoplanet_lesson.txt](Emmy_prompt_exoplanet_lesson.txt){ target="_blank" }
+- [:material-file-document-outline: Physics_Emmy_prompt.txt](Physics_Emmy_prompt.txt){ target="_blank" }
 
 ## Star image for the experiment
 
@@ -38,11 +38,11 @@ Students display this image on their phone as the star. During the experiment
 they move the "planet" in front of it while the light sensor records the dip in
 brightness. Each student downloads it to their own phone.
 
-- [:material-image-search: Open the star image in your browser](Star_image_for_phone.png){ target="_blank" }
-- [:material-download: Download the star image](Star_image_for_phone.png){ download="Star_image_for_phone.png" }
+- [:material-image-search: Open the star image in your browser](Physics_Star_image_for_phone.png){ target="_blank" }
+- [:material-download: Download the star image](Physics_Star_image_for_phone.png){ download="Physics_Star_image_for_phone.png" }
 
 <p style="text-align:center;">
-  <img src="Star_image_for_phone.png" alt="Star image for the transit experiment" width="180"
+  <img src="Physics_Star_image_for_phone.png" alt="Star image for the transit experiment" width="180"
        style="background:#000; border-radius:8px; padding:8px;">
 </p>
 
@@ -59,4 +59,4 @@ download the file to share it yourself.
 
 | Run it | Download |
 | --- | --- |
-| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/physics/Exoplanet_transit_analysis_notebook.ipynb) | [:material-notebook: Exoplanet_transit_analysis_notebook.ipynb](Exoplanet_transit_analysis_notebook.ipynb) |
+| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/physics/Physics_Transit_analysis_notebook.ipynb) | [:material-notebook: Physics_Transit_analysis_notebook.ipynb](Physics_Transit_analysis_notebook.ipynb) |
