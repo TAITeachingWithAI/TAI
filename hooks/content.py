@@ -159,18 +159,34 @@ def _read_page_meta(abs_path: str) -> tuple[str | None, float]:
     return title, order
 
 
-def _pdf_block(folder: str, files) -> str:
+def _label(name: str, short: str | None) -> tuple[int, str]:
+    """(sort group, link label) for a lesson file, following the naming convention:
+    <Short>_student.pdf -> "<Short> lesson: student version" (also _teacher),
+    <Short>_<what>.pdf  -> "<Short>: <What>"."""
+    stem = name.rsplit(".", 1)[0]
+    if short:
+        prefix = short.replace(" ", "_")
+        if stem == f"{prefix}_student":
+            return 0, f"{short} lesson: student version"
+        if stem == f"{prefix}_teacher":
+            return 0, f"{short} lesson: teacher version"
+        if stem.startswith(prefix + "_"):
+            return 1, f"{short}: {_prettify(stem[len(prefix) + 1:])}"
+    return 1, _prettify(name)
+
+
+def _pdf_block(folder: str, files, short: str | None = None) -> str:
     items = []
     for f in files:
         uri = f.src_uri
         if uri.lower().endswith(".pdf") and posixpath.dirname(uri) == folder:
             name = posixpath.basename(uri)
-            items.append((name, _prettify(name)))
+            items.append((name, _label(name, short)))
     if not items:
         return "_No documents in this section yet._"
-    items.sort(key=lambda pair: pair[1].lower())
+    items.sort(key=lambda pair: (pair[1][0], pair[1][1].lower()))
     return "\n".join(
-        f"- [:material-file-pdf-box: {label}]({name})" for name, label in items
+        f"- [:material-file-pdf-box: {label}]({name})" for name, (_, label) in items
     )
 
 
@@ -182,7 +198,7 @@ def _student_folder(folder: str) -> str | None:
     return None
 
 
-def _student_pdfs(folder: str, files) -> list[tuple[str, str]]:
+def _student_pdfs(folder: str, files, short: str | None = None) -> list[tuple[str, str]]:
     """(relative link, label) for the PDFs in the matching student folder."""
     sfolder = _student_folder(folder)
     if not sfolder:
@@ -192,12 +208,13 @@ def _student_pdfs(folder: str, files) -> list[tuple[str, str]]:
         uri = f.src_uri
         if uri.lower().endswith(".pdf") and posixpath.dirname(uri) == sfolder:
             name = posixpath.basename(uri)
-            items.append((posixpath.relpath(uri, folder).replace(" ", "%20"), _prettify(name)))
-    return sorted(items, key=lambda pair: pair[1].lower())
+            items.append((posixpath.relpath(uri, folder).replace(" ", "%20"), _label(name, short)))
+    items.sort(key=lambda pair: (pair[1][0], pair[1][1].lower()))
+    return [(link, label) for link, (_, label) in items]
 
 
-def _student_pdf_block(folder: str, files) -> str:
-    items = _student_pdfs(folder, files)
+def _student_pdf_block(folder: str, files, short: str | None = None) -> str:
+    items = _student_pdfs(folder, files, short)
     if not items:
         return "_No student documents for this lesson._"
     return "\n".join(f"- [:material-file-pdf-box: {label}]({link})" for link, label in items)
@@ -270,10 +287,12 @@ def on_page_markdown(markdown, *, page, config, files, **kwargs):
     markdown = _insert_summary(markdown, page, config)
     markdown = _insert_subtitle(markdown, page, config)
     folder = posixpath.dirname(page.file.src_uri)
+    # On a lesson page, the page title is the lesson's short name (naming convention).
+    short = (page.meta or {}).get("title") if folder.count("/") == 2 else None
     if "<!--student-pdfs-->" in markdown:
-        markdown = markdown.replace("<!--student-pdfs-->", _student_pdf_block(folder, files))
+        markdown = markdown.replace("<!--student-pdfs-->", _student_pdf_block(folder, files, short))
     if "<!--pdfs-->" not in markdown and "<!--sections-->" not in markdown:
         return markdown
     markdown = markdown.replace("<!--sections-->", _sections_block(folder, files))
-    markdown = markdown.replace("<!--pdfs-->", _pdf_block(folder, files))
+    markdown = markdown.replace("<!--pdfs-->", _pdf_block(folder, files, short))
     return markdown

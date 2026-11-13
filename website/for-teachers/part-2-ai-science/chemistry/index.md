@@ -17,7 +17,7 @@ concentrations.
 
 - [:material-file-pdf-box: Chemistry lesson: student version](Chemistry_student.pdf)
 - [:material-file-pdf-box: Chemistry lesson: teacher version](Chemistry_teacher.pdf)
-- [:material-file-powerpoint-box: Teacher guide: Chemistry Lab (Exoplanet Iron Sample)](Chemistry_Teacher_guide_Rover_Lab.pptx)
+- [:material-file-powerpoint-box: Chemistry: Teacher guide for the Rover Lab](Chemistry_Teacher_guide_Rover_Lab.pptx)
 
 !!! info "Which version do I need?"
     The **student version** is the worksheet you hand out. The **teacher version**

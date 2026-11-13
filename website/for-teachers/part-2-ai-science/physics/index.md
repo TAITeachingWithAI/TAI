@@ -36,7 +36,7 @@ chatbot (for example ChatGPT, Gemini, Claude or Copilot). Emmy then guides them
 through their own investigation with questions, and asks them to reflect on how
 science works.
 
-- [:material-file-document-outline: Physics_Emmy_prompt.txt](Physics_Emmy_prompt.txt){ target="_blank" }
+- [:material-file-document-outline: Physics: Emmy's prompt](Physics_Emmy_prompt.txt){ target="_blank" }
 
 ## Star image for the experiment
 

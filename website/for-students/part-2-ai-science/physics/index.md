@@ -11,7 +11,7 @@ big your group's real exoplanet is.
 
 ## Worksheet
 
-- [:material-file-pdf-box: Physics worksheet](../../../for-teachers/part-2-ai-science/physics/Physics_student.pdf)
+- [:material-file-pdf-box: Physics lesson: student version](../../../for-teachers/part-2-ai-science/physics/Physics_student.pdf)
 
 ## Emmy's prompt
 
@@ -20,7 +20,7 @@ asking questions rather than handing you the answer. Open the file below, copy a
 of its text, and paste it as the first message in a new chat with the AI chatbot
 your school allows. Emmy will introduce herself and take it from there.
 
-- [:material-file-document-outline: Physics_Emmy_prompt.txt](../../../for-teachers/part-2-ai-science/physics/Physics_Emmy_prompt.txt){ target="_blank" }
+- [:material-file-document-outline: Physics: Emmy's prompt](../../../for-teachers/part-2-ai-science/physics/Physics_Emmy_prompt.txt){ target="_blank" }
 
 ## The star image
 

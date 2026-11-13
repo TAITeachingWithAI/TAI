@@ -39,7 +39,7 @@ chatbot.
 
 **Print:**
 
-- [:material-printer: Robotics_3cell_grid_A3_print.pdf](Robotics_3cell_grid_A3_print.pdf): the 3-cell grid the robot drives on (A3, cells of 13.3 cm), one per Cutebot.
+- [:material-printer: Robotics: 3-cell grid (A3 print)](Robotics_3cell_grid_A3_print.pdf): the 3-cell grid the robot drives on (A3, cells of 13.3 cm), one per Cutebot.
 - From the student version: the environment and robot printables for assignment 1 (one set per pair of students) and the printed code for level 1 (one per student). They are in the appendix of the handout.
 
 ## Files for the micro:bit
@@ -54,7 +54,7 @@ when students need it.
     `HEX_files`. The easiest way is to download the whole folder as one ZIP file,
     unzip it, and share the `HEX_files` folder with your students as it is:
 
-    [:material-folder-zip: Robotics_HEX_files.zip](Robotics_HEX_files.zip)
+    [:material-folder-zip: Robotics: HEX_files folder (ZIP)](Robotics_HEX_files.zip)
 
 You can also download the files one by one:
 

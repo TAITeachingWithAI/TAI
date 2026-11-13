@@ -10,7 +10,7 @@ fastest path across a small grid.
 
 ## Worksheet
 
-- [:material-file-pdf-box: Robotics worksheet](../../../for-teachers/part-2-ai-science/robotics/Robotics_student.pdf)
+- [:material-file-pdf-box: Robotics lesson: student version](../../../for-teachers/part-2-ai-science/robotics/Robotics_student.pdf)
 
 ## Files for your Cutebot
 
@@ -22,7 +22,7 @@ fastest path across a small grid.
 Your worksheet refers to the folder `HEX_files`. You can download that whole
 folder as one ZIP file:
 
-- [:material-folder-zip: Robotics_HEX_files.zip](../../../for-teachers/part-2-ai-science/robotics/Robotics_HEX_files.zip)
+- [:material-folder-zip: Robotics: HEX_files folder (ZIP)](../../../for-teachers/part-2-ai-science/robotics/Robotics_HEX_files.zip)
 
 Or download the files you need one by one:
 

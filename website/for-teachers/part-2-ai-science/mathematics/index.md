@@ -25,8 +25,8 @@ exoplanet. The lesson can be split over two sessions.
 
 Print these for the lesson, one copy of each per student.
 
-- [:material-printer: Linear fit for 4 planets](Mathematics_Linear_fit_4_planets.pdf)
-- [:material-printer: Linear fit for all planets](Mathematics_Linear_fit_all_planets.pdf)
+- [:material-printer: Mathematics: Linear fit for 4 planets](Mathematics_Linear_fit_4_planets.pdf)
+- [:material-printer: Mathematics: Linear fit for all planets](Mathematics_Linear_fit_all_planets.pdf)
 
 ## Notebooks
 

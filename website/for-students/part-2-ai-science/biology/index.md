@@ -10,4 +10,4 @@ your planet's conditions, and design an organism that could survive there.
 
 ## Worksheet
 
-- [:material-file-pdf-box: Biology worksheet](../../../for-teachers/part-2-ai-science/biology/Biology_student.pdf)
+- [:material-file-pdf-box: Biology lesson: student version](../../../for-teachers/part-2-ai-science/biology/Biology_student.pdf)

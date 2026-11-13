@@ -11,7 +11,7 @@ your exoplanet.
 
 ## Worksheet
 
-- [:material-file-pdf-box: Mathematics worksheet](../../../for-teachers/part-2-ai-science/mathematics/Mathematics_student.pdf)
+- [:material-file-pdf-box: Mathematics lesson: student version](../../../for-teachers/part-2-ai-science/mathematics/Mathematics_student.pdf)
 
 ## Notebooks
 

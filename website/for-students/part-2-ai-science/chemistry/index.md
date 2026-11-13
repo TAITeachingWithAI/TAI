@@ -10,7 +10,7 @@ find out in the real lab how much iron oxide it can produce.
 
 ## Worksheet
 
-- [:material-file-pdf-box: Chemistry worksheet](../../../for-teachers/part-2-ai-science/chemistry/Chemistry_student.pdf)
+- [:material-file-pdf-box: Chemistry lesson: student version](../../../for-teachers/part-2-ai-science/chemistry/Chemistry_student.pdf)
 
 ## The Rover Lab
 
