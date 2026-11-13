@@ -48,7 +48,7 @@ about images and sound, because the other lessons build on that understanding.
 | [Languages](languages/index.md)<br>*<!--title:part-1-ai-arts-and-humanities/languages-->* | Use a language model as a personal tutor for a language of their choice. | <!--duration:part-1-ai-arts-and-humanities/languages--> |
 | [Literature](literature/index.md)<br>*<!--title:part-1-ai-arts-and-humanities/literature-->* | Let AI find literature that matches their interests, and analyse texts from different periods. | <!--duration:part-1-ai-arts-and-humanities/literature--> |
 | [History](history/index.md)<br>*<!--title:part-1-ai-arts-and-humanities/history-->* | Debate a historical decision with an AI that plays the historical figure. | <!--duration:part-1-ai-arts-and-humanities/history--> |
-| [Art styles](art-styles/index.md)<br>*<!--title:part-1-ai-arts-and-humanities/art-styles-->* | Recognise art styles in a mystery artwork, then use prompts to recreate images and design a logo. | <!--duration:part-1-ai-arts-and-humanities/art-styles--> |
+| [Art styles](art-styles/index.md)<br>*<!--title:part-1-ai-arts-and-humanities/art-styles-->* | Recognise art styles in a mystery artwork, then use prompts to recreate images and guess each other's prompts. | <!--duration:part-1-ai-arts-and-humanities/art-styles--> |
 | [Sound generation](sound-generation/index.md)<br>*<!--title:part-1-ai-arts-and-humanities/sound-generation-->* | Create sound effects with AI for a silent film clip. | <!--duration:part-1-ai-arts-and-humanities/sound-generation--> |
 
 **Projects**
