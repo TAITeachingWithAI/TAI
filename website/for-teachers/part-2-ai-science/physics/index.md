@@ -65,4 +65,4 @@ download the file to share it yourself.
 
 | Run it | Download |
 | --- | --- |
-| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/physics/Physics_Transit_analysis_notebook.ipynb) | [:material-notebook: Physics_Transit_analysis_notebook.ipynb](Physics_Transit_analysis_notebook.ipynb) |
+| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAITeachingWithAI.github.io/blob/main/website/for-teachers/part-2-ai-science/physics/Physics_Transit_analysis_notebook.ipynb) | [:material-notebook: Physics_Transit_analysis_notebook.ipynb](Physics_Transit_analysis_notebook.ipynb) |

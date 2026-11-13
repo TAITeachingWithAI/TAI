@@ -1,8 +1,8 @@
 site_name: Teaching With AI
 site_description: Teaching and learning materials about and with artificial intelligence
-site_url: https://taiteachingwithai.github.io/TAI/
-repo_url: https://github.com/TAITeachingWithAI/TAI
-repo_name: TAITeachingWithAI/TAI
+site_url: https://taiteachingwithai.github.io/
+repo_url: https://github.com/TAITeachingWithAI/TAITeachingWithAI.github.io
+repo_name: TAITeachingWithAI/TAITeachingWithAI.github.io
 docs_dir: website
 edit_uri: edit/main/website/
 copyright: >
@@ -11,10 +11,11 @@ copyright: >
   expressed are those of the authors only.
   Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>,
   unless otherwise indicated.
-  <a href="https://taiteachingwithai.github.io/TAI/about/#funding-and-licence">Funding and licence</a>
+  <a href="https://taiteachingwithai.github.io/about/#funding-and-licence">Funding and licence</a>
 
 theme:
   name: material
+  custom_dir: overrides
   language: en
   logo: assets/images/Logo_TAI_Transparent.png
   icon:

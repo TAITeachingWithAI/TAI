@@ -36,4 +36,4 @@ black and one with white stickers.
 
 If you want to make noisy images yourself, you can use this Colab notebook:
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-1-ai-arts-and-humanities/diffusion-models/Diffusion_models_Make_noisy_images.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAITeachingWithAI.github.io/blob/main/website/for-teachers/part-1-ai-arts-and-humanities/diffusion-models/Diffusion_models_Make_noisy_images.ipynb)

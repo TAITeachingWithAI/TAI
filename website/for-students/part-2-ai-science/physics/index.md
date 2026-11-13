@@ -35,7 +35,7 @@ Display this image on your phone as the star. During the experiment you move the
 Use this notebook to load your light-sensor data, draw the light curve, and work
 out the transit depth. It opens in your browser, no installation needed.
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAI/blob/main/website/for-teachers/part-2-ai-science/physics/Physics_Transit_analysis_notebook.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TAITeachingWithAI/TAITeachingWithAI.github.io/blob/main/website/for-teachers/part-2-ai-science/physics/Physics_Transit_analysis_notebook.ipynb)
 
 ## Your exoplanet
 

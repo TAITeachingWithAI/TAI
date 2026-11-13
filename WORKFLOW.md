@@ -2,10 +2,10 @@
 
 The project is split across **two repositories**:
 
-- **`TAITeachingWithAI/TAI`** (this one, **public**) — the website: the pages,
+- **`TAITeachingWithAI/TAITeachingWithAI.github.io`** (this one, **public**) — the website: the pages,
   `mkdocs.yml`, `hooks/`, the GitHub Actions deploy, and the **generated** PDFs /
   notebooks under `website/`. This is what deploys to
-  <https://taiteachingwithai.github.io/TAI/>.
+  <https://taiteachingwithai.github.io/>.
 - **`TAITeachingWithAI/TAI_materials`** (**private**) — the editable LaTeX
   **sources** (`.tex` + `Figures/`) and the `publish.py` / `publish.yml` tool.
 
@@ -25,7 +25,7 @@ Clone **both** repos **side by side** (so `publish.py` in the materials repo can
 find this one):
 
 ```
-Projects\TAI             <- git clone https://github.com/TAITeachingWithAI/TAI.git
+Projects\TAI             <- git clone https://github.com/TAITeachingWithAI/TAITeachingWithAI.github.io.git TAI
 Projects\TAI_materials   <- git clone https://github.com/TAITeachingWithAI/TAI_materials.git
 ```
 
