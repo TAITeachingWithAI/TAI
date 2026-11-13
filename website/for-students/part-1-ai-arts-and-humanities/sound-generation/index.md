@@ -5,6 +5,9 @@ order: 9
 
 # Sound generation
 
+Create the sound effects for a short silent film clip with AI, and find out how AI
+makes sound out of noise.
+
 ## Lesson material
 
 <!--pdfs-->

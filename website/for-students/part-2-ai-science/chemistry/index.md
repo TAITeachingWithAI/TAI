@@ -5,8 +5,8 @@ order: 3
 
 # Chemistry
 
-Material for the chemistry lesson, where you investigate an unknown sample
-brought back from an exoplanet.
+Use a rover and its AI lab to investigate a sample from your exoplanet, and then
+find out in the real lab how much iron oxide it can produce.
 
 ## Worksheet
 

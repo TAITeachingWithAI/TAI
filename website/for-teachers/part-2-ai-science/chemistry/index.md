@@ -5,7 +5,13 @@ order: 3
 
 # Chemistry
 
-Teaching material for the chemistry lessons of Part 2: AI & Science.
+The research stations of the Aurora Network need iron to repair their shielding,
+and students have to find the best local source. With a rover and its AI
+laboratory (the Rover Lab), they first characterise the sample from their group's
+exoplanet in quick virtual experiments. In the real lab, they then estimate the
+iron concentration of their sample with colorimetry and recover the iron oxide by
+filtering and weighing, using stoichiometry to calculate masses and
+concentrations.
 
 ## Lesson material
 

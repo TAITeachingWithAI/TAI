@@ -5,8 +5,9 @@ order: 1
 
 # Physics
 
-Everything you need for the physics lesson, where you measure a real exoplanet
-transit with a light sensor.
+Build a model of an exoplanet transit, investigate how a planet's size affects the
+dip in starlight with the help of Emmy, your AI research mentor, and find out how
+big your group's real exoplanet is.
 
 ## Worksheet
 

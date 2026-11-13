@@ -5,7 +5,13 @@ order: 1
 
 # Physics
 
-Teaching material for the physics lesson of Part 2: AI & Science.
+Students build a model of an exoplanet transit: a model planet passes in front of
+a star shown on a phone, while a second phone's light sensor acts as the
+telescope. Instead of following a recipe, they design their own investigation of
+how the planet's size affects the dip in starlight, guided by Emmy, an AI research
+mentor that asks questions and makes them reflect on how science works. They
+analyse their data in a ready-made notebook, and finally use their result to
+calculate the size of their group's real exoplanet.
 
 ## Lesson material
 

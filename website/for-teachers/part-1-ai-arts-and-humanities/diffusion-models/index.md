@@ -5,7 +5,11 @@ order: 7
 
 # Diffusion models
 
-Here you find the supplementary teaching material on diffusion models.
+In this lesson, students find out how AI generates images out of noise. In an
+unplugged activity, groups recover an image hidden in a noisy printout by covering
+pixels with black and white stickers. They then learn how diffusion works, and
+follow the diffusion process step by step in an online visualisation. The lesson
+is the basis for the lessons on images and sound.
 
 ## Student material
 

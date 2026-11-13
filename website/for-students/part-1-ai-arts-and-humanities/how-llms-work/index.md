@@ -5,6 +5,9 @@ order: 1
 
 # How LLMs work
 
+How does a machine come up with an answer? In this lesson you go through the same
+steps as a large language model, and in the end you play the LLM yourself.
+
 ## Lesson material
 
 <!--pdfs-->

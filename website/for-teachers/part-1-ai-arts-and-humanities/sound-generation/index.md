@@ -5,6 +5,12 @@ order: 9
 
 # Sound generation
 
+Building on *Diffusion models*, students learn how AI can generate sound out of
+noise. After recreating a classroom sound with an AI tool, they create the sound
+effects and ambient sound for a short silent film clip from one of the open
+Blender films. The lesson ends with sharing the results and reflecting on what
+sound adds to a video.
+
 ## Student material
 
 <!--student-pdfs-->

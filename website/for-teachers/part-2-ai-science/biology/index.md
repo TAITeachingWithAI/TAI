@@ -5,7 +5,12 @@ order: 4
 
 # Biology
 
-Teaching material for the biology lessons of Part 2: AI & Science.
+Students investigate whether life could exist on their group's exoplanet. After
+discussing what life on Earth needs, they use AI to help them read a real
+scientific paper about one of their planet's extreme conditions, and connect it to
+the biology they know from the curriculum. Finally, they design an organism with
+the adaptations it would need to survive there, and critically evaluate an
+organism designed by AI.
 
 ## Lesson material
 

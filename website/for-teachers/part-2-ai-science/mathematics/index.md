@@ -5,7 +5,12 @@ order: 2
 
 # Mathematics
 
-Teaching material for the mathematics lesson of Part 2: AI & Science.
+Following in Kepler's footsteps, students fit mathematical models to a table of
+planetary data. They learn about loss functions and linear regression, compare
+different models, and explore how machine learning and neural networks find
+patterns, and when a simpler model is the better choice. Along the way, they
+rediscover Kepler's third law and use it to work out the orbit of their group's
+exoplanet. The lesson can be split over two sessions.
 
 ## Lesson material
 

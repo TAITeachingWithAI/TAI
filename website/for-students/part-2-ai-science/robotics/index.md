@@ -5,8 +5,8 @@ order: 5
 
 # Robotics
 
-Material for the robotics lesson, where you first act out how a robot learns,
-and then make a real Cutebot learn the fastest path across a small grid.
+First act out how a robot learns, and then make a real Cutebot robot learn the
+fastest path across a small grid.
 
 ## Worksheet
 

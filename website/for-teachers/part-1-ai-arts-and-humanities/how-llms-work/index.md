@@ -5,6 +5,13 @@ order: 1
 
 # How LLMs work
 
+In this lesson, students find out how a large language model generates text by
+going through the same steps themselves. After an optional warm-up game (the
+"exquisite corpse" folded story), they explore how words are represented as word
+embeddings and how context changes the meaning of a word. In the final activity,
+they "become an LLM" and predict the next word of a sentence. The lesson is the
+basis for the other lessons on language models.
+
 ## Student material
 
 <!--student-pdfs-->

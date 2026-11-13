@@ -5,7 +5,8 @@ order: 4
 
 # Biology
 
-Material for the biology lesson.
+Could life exist on your exoplanet? Use AI to read a real scientific paper about
+your planet's conditions, and design an organism that could survive there.
 
 ## Worksheet
 

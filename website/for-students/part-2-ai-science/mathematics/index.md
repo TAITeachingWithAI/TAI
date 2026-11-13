@@ -5,8 +5,9 @@ order: 2
 
 # Mathematics
 
-Material for the mathematics lesson, where you discover Kepler's law and fit
-models to real planet data.
+Fit mathematical models to real planet data, find out how machine learning and
+neural networks work, and rediscover Kepler's third law to work out the orbit of
+your exoplanet.
 
 ## Worksheet
 
