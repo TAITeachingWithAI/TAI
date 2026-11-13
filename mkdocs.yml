@@ -104,7 +104,7 @@ nav:
           - Literature: for-teachers/part-1-ai-arts-and-humanities/literature/index.md
           - "Diffusion models":
               - for-teachers/part-1-ai-arts-and-humanities/diffusion-models/index.md
-              - Image to Noise Examples: for-teachers/part-1-ai-arts-and-humanities/diffusion-models/image_to_noise_examples/index.md
+              - Image-to-noise examples: for-teachers/part-1-ai-arts-and-humanities/diffusion-models/image_to_noise_examples/index.md
           - Art styles: for-teachers/part-1-ai-arts-and-humanities/art-styles/index.md
           - Sound generation: for-teachers/part-1-ai-arts-and-humanities/sound-generation/index.md
           - Debate: for-teachers/part-1-ai-arts-and-humanities/debate/index.md
@@ -114,7 +114,7 @@ nav:
           - Physics: for-teachers/part-2-ai-science/physics/index.md
           - Mathematics:
               - for-teachers/part-2-ai-science/mathematics/index.md
-              - Notebooks for the math lesson: for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/index.md
+              - Mathematics notebooks: for-teachers/part-2-ai-science/mathematics/notebooks-for-the-math-lesson/index.md
           - Chemistry: for-teachers/part-2-ai-science/chemistry/index.md
           - Biology: for-teachers/part-2-ai-science/biology/index.md
           - Robotics: for-teachers/part-2-ai-science/robotics/index.md

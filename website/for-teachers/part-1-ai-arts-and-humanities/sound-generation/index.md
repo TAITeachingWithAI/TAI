@@ -31,7 +31,7 @@ lesson. They are cropped to 30 seconds, so they can be uploaded in Adobe Firefly
     | *Spring* (2019) | [Blender Studio](https://studio.blender.org/films/spring/) |
     | *Hero* (2018) | [archive.org](https://archive.org/download/hero_20260106/hero.mp4) (51 MB) |
 
-## Clips from Big Buck Bunny
+### Clips from Big Buck Bunny
 
 All of the following clips are from *Big Buck Bunny* (2008) by Blender Foundation,
 licensed CC BY 3.0 ([Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/)).
@@ -44,7 +44,7 @@ trimmed to shorter clips (except the Full version), original audio removed.
 - [:material-movie-open: Big Buck Bunny: Crafting (30 s)](Big_Buck_Bunny_Crafting_cropped_30.mp4)
 - [:material-movie-open: Big Buck Bunny: Opening (30 s)](Big_Buck_Bunny_Opening_cropped_30.mp4)
 
-## Clips from Sintel
+### Clips from Sintel
 
 All of the following clips are from *Sintel* (2010) by Blender Foundation,
 licensed CC BY 3.0 ([Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/)).
@@ -57,7 +57,7 @@ TeachingWithAI: trimmed to shorter clips, original audio removed.
 - [:material-movie-open: Sintel: Meeting (30 s)](Sintel_Meeting_cropped_30.mp4)
 - [:material-movie-open: Sintel: Soup (30 s)](Sintel_Soup_cropped_30.mp4)
 
-## Supplementary material
+## Longer clips and full films
 
 Slightly longer versions of the videos, where the scenes make more sense.
 

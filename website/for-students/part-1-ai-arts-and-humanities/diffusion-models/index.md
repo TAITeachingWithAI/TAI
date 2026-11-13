@@ -5,4 +5,6 @@ order: 7
 
 # Diffusion models
 
+## Lesson material
+
 <!--pdfs-->

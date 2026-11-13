@@ -11,11 +11,11 @@ Here you find the supplementary teaching material on diffusion models.
 
 <!--student-pdfs-->
 
-## Sub-sections
+## Supplementary material
 
 <!--sections-->
 
-## Documents
+## Material to print
 
 The following PDF can best be printed on A3. It contains 8 different half-noisy
 images, with the corresponding prompt. If printed on A3, the little circular

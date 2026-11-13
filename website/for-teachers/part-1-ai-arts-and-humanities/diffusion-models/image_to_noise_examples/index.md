@@ -1,9 +1,9 @@
 ---
-title: "Image to Noise Examples"
+title: "Image-to-noise examples"
 order: 1
 ---
 
-# Image to Noise Examples
+# Image-to-noise examples
 
 Here you find the images and their transformation to noise. You can show these at
 the end of Assignment 1, to compare with the images that the students created.

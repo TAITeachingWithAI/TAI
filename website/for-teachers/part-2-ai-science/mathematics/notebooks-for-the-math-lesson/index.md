@@ -1,9 +1,9 @@
 ---
-title: Notebooks for the math lesson
+title: Mathematics notebooks
 order: 1
 ---
 
-# Notebooks for the math lesson
+# Mathematics notebooks
 
 The notebooks belonging to the mathematics lesson. Each one comes in two
 versions:

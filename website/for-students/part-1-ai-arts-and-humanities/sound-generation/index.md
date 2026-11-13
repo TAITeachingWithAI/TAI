@@ -5,6 +5,8 @@ order: 9
 
 # Sound generation
 
+## Lesson material
+
 <!--pdfs-->
 
 ## Video clips
