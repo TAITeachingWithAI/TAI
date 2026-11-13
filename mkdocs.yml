@@ -6,7 +6,12 @@ repo_name: TAITeachingWithAI/TAI
 docs_dir: website
 edit_uri: edit/main/website/
 copyright: >
-  Teaching With AI. Funded by the Erasmus+ programme of the European Union.
+  Developed within the Erasmus+ project "Teaching in AI" (TAI),
+  2025-1-DK01-KA226-SCH-000365972. Funded by the European Union; the views
+  expressed are those of the authors only.
+  Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>,
+  unless otherwise indicated.
+  <a href="https://taiteachingwithai.github.io/TAI/about/#funding-and-licence">Funding and licence</a>
 
 theme:
   name: material

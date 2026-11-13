@@ -48,7 +48,8 @@ hide:
 
     ---
 
-    Teaching With AI is funded by the Erasmus+ programme of the European Union.
+    Who we are, our partners, and how the project is funded by the Erasmus+
+    programme of the European Union.
 
     [:octicons-arrow-right-24: About TAI](about.md)
 
@@ -58,5 +59,5 @@ hide:
     All material on this website is still under development and will be tested and updated regularly.
 
 <div class="tai-logos" markdown>
-![Partner logos](assets/images/logos.png){ height="56" }
+![Partner logos: Universität Innsbruck, Universitat Autònoma de Barcelona, Co-funded by the European Union, European International School of Barcelona, 2nd Lyceum of Kos, NEXT Vibenshus Gymnasium](assets/images/logos.png){ width="620" }
 </div>

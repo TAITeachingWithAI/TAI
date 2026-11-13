@@ -66,6 +66,15 @@
   margin: 2rem 0 .5rem;
 }
 
+/* Partner logos on a white card, so they stay readable in dark mode */
+.tai-logos img {
+  background: #fff;
+  border-radius: 8px;
+  padding: .5rem;
+  max-width: 100%;
+  height: auto;
+}
+
 /* Header logo in the top banner (shown on every page) */
 .md-header__button.md-logo {
   padding: .2rem;

@@ -16,7 +16,9 @@ three parts:
 
 - **Part 1: AI & Arts and Humanities** - how generative AI creates images, text
   and sound, and what that means for creative work.
-- **Part 2: AI & Science** - in development, expected in the fall of 2026.
+- **Part 2: AI & Science** - lessons in physics, mathematics, chemistry, biology
+  and robotics, in which students investigate with AI, many of them around eight
+  real exoplanets.
 - **Part 3: AI & Everyday Life** - in development, expected in the spring of 2027.
 
 Each part has a **student** section with the lesson materials and worksheets, and
@@ -25,16 +27,41 @@ for running the lessons.
 
 ## Using and sharing the material
 
+The material is licensed under the
+[Creative Commons Attribution 4.0 International Licence (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/),
+unless otherwise indicated. You may use, share and adapt it, also in your own
+learning platform, as long as you credit the Teaching With AI (TAI) project.
+Where we build on existing openly licensed work, the source and licence are
+credited on the relevant page or in the material itself.
+
 The material is still under development and is being tested in classrooms, so it
-will be updated regularly. Where we build on existing openly licensed work, the
-source and licence are credited on the relevant page.
+will be updated regularly.
 
-## Contact and partners
+## Partners
 
-<!-- TODO: add the project partners, contact address and grant number here. -->
-
-*Project partners and contact details will be added here.*
+- Universität Innsbruck (Austria)
+- Universitat Autònoma de Barcelona (Spain)
+- European International School of Barcelona (Spain)
+- 2nd Lyceum of Kos (Greece)
+- NEXT Vibenshus Gymnasium (Denmark)
 
 <div class="tai-logos" markdown>
-![Partner logos](assets/images/logos_vert.png){ height="140" }
+![Partner logos: Universität Innsbruck, Universitat Autònoma de Barcelona, Co-funded by the European Union, European International School of Barcelona, 2nd Lyceum of Kos, NEXT Vibenshus Gymnasium](assets/images/logos_vert.png){ width="420" }
 </div>
+
+## Funding and licence
+
+© 2026 "Teaching in AI" (TAI) Consortium.
+
+This educational material was developed within the framework of the Erasmus+
+project "Teaching in AI" (TAI) (2025-1-DK01-KA226-SCH-000365972).
+
+Funded by the European Union.
+
+The views and opinions expressed are those of the author(s) only and do not
+necessarily reflect those of the European Union or the granting authority.
+Neither the European Union nor the granting authority can be held responsible for
+them.
+
+This material is licensed under the Creative Commons Attribution 4.0
+International Licence (CC BY 4.0), unless otherwise indicated.
