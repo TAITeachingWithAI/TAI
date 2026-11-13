@@ -62,11 +62,11 @@ feedback directly shape the final material.
 
     AI & Science, tested at the 2nd Lyceum of Kos in Greece.
 
--   :material-account-group:{ .lg .middle } **Part 3: spring 2027**
+-   :material-account-group:{ .lg .middle } **Part 3: Barcelona, spring 2027**
 
     ---
 
-    AI & Everyday Life, to be tested in the third testing week.
+    AI & Everyday Life, to be tested in the third testing week in Spain.
 
 </div>
 
