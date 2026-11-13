@@ -9,12 +9,107 @@ Two tokens can be placed anywhere in a page's Markdown:
 
 This keeps section/index pages to a couple of lines: drop in a token and
 newly added PDFs or lesson folders appear automatically on the next build.
+
+Lesson pages (for-students/<part>/<lesson>/index.md and the same under
+for-teachers) also get a "lesson at a glance" block with the duration, subject,
+lesson outline and learning goals. The data comes from data/lesson_summaries.yml,
+which TAI_materials/publish.py generates from the lessons' .tex sources. The
+block is inserted before the first "## " heading, or where the page puts
+<!--summary-->.
 """
 
+import os
 import posixpath
 import re
 
 import yaml
+
+_SUMMARIES = None
+
+
+def _summaries(config) -> dict:
+    global _SUMMARIES
+    if _SUMMARIES is None:
+        path = os.path.join(os.path.dirname(config["config_file_path"]), "data", "lesson_summaries.yml")
+        try:
+            with open(path, encoding="utf-8") as fh:
+                _SUMMARIES = yaml.safe_load(fh) or {}
+        except OSError:
+            _SUMMARIES = {}
+    return _SUMMARIES
+
+
+def _md_list(items, indent: str, numbered: bool) -> list[str]:
+    lines = []
+    for n, item in enumerate(items, 1):
+        text, subs = (item.get("text", ""), item.get("sub", [])) if isinstance(item, dict) else (item, [])
+        lines.append(f"{indent}{f'{n}.' if numbered else '-'} {text}")
+        for sub in subs:
+            lines.append(f"{indent}    - {sub}")
+    return lines
+
+
+def _summary_block(s: dict, teacher: bool) -> str:
+    facts = []
+    if s.get("duration"):
+        facts.append(f":material-clock-outline: **Duration:** {s['duration']}")
+    if s.get("subject"):
+        facts.append(f":material-school-outline: **Subject:** {s['subject']}")
+    title = "Lesson at a glance" if teacher else "This lesson at a glance"
+    lines = [f'!!! abstract "{title}"', ""]
+    if facts:
+        lines.append("    " + "  \n    ".join(facts))
+        lines.append("")
+
+    def outline_part(open_: bool):
+        out = [f'    ???{"+" if open_ else ""} note "Lesson outline"', ""]
+        o = s.get("outline")
+        if isinstance(o, list):
+            out += _md_list(o, "        ", numbered=True)
+        elif o:
+            out.append(f"        {o}")
+        if s.get("outline_note"):
+            out += ["", f"        {s['outline_note']}"]
+        return out + [""]
+
+    goals = [f'    ???+ success "{"Learning goals" if teacher else "What you will learn"}"', ""]
+    goals += _md_list(s.get("goals") or [], "        ", numbered=False) + [""]
+
+    if teacher:
+        lines += outline_part(True) + goals
+        setup = s.get("setup")
+        if setup:
+            lines += ['    ??? info "What you need"', ""]
+            lines += (_md_list(setup, "        ", numbered=False) if isinstance(setup, list)
+                      else [f"        {setup}"]) + [""]
+    else:
+        lines += goals + outline_part(False)
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def _insert_summary(markdown: str, page, config) -> str:
+    parts = page.file.src_uri.split("/")
+    if len(parts) != 4 or parts[0] not in ("for-students", "for-teachers") or parts[3] != "index.md":
+        return markdown
+    s = _summaries(config).get(f"{parts[1]}/{parts[2]}")
+    if not s:
+        return markdown.replace("<!--summary-->", "")
+    block = _summary_block(s, teacher=parts[0] == "for-teachers")
+    if "<!--summary-->" in markdown:
+        return markdown.replace("<!--summary-->", block)
+    # Default position: right after the H1 and its intro paragraph(s), before the
+    # first heading, list, table, admonition, token or HTML block.
+    h1 = re.search(r"^# .*$", markdown, re.M)
+    pos = h1.end() if h1 else 0
+    while True:
+        m = re.match(r"\n*([^\n].*?)(?=\n\s*\n|\Z)", markdown[pos:], re.S)
+        if not m:
+            break
+        first = m.group(1).lstrip()
+        if re.match(r"(#|[-*+] |\d+\. |\||<|!!!|\?\?\?|\[!\[|\[:)", first):
+            break
+        pos += m.end()
+    return markdown[:pos].rstrip() + "\n\n" + block + "\n" + markdown[pos:].lstrip("\n")
 
 
 def _prettify(filename: str) -> str:
@@ -101,6 +196,7 @@ def _sections_block(folder: str, files) -> str:
 
 
 def on_page_markdown(markdown, *, page, config, files, **kwargs):
+    markdown = _insert_summary(markdown, page, config)
     if "<!--pdfs-->" not in markdown and "<!--sections-->" not in markdown:
         return markdown
     folder = posixpath.dirname(page.file.src_uri)
