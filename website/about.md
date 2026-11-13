@@ -37,6 +37,24 @@ credited on the relevant page or in the material itself.
 The material is still under development and is being tested in classrooms, so it
 will be updated regularly.
 
+## How we used AI
+
+Teaching With AI is a project about artificial intelligence, and we have used AI
+ourselves while developing it. We used AI tools to:
+
+- brainstorm ideas for lessons and activities;
+- help work out and improve the teaching material, such as worksheets, AI tutor
+  prompts and code;
+- build and maintain this website;
+- check the material for consistency, for example in wording, layout and
+  references between files.
+
+We used AI the way we ask students to use it: as a helpful assistant whose output
+always needs to be checked. Every lesson was designed by the project team, and
+everything AI helped to create was reviewed, edited and, where possible, tested
+in classrooms by us. As authors, we take full responsibility for the content of
+this project.
+
 ## Partners
 
 - Universität Innsbruck (Austria)
