@@ -21,7 +21,14 @@ exoplanets.
 
 ## Student material
 
-- [:material-folder-open: Planet Files](planet-files/index.md)
-
 Each of the eight exoplanets has a **planet file** with the background
 information that students work from.
+
+- [:material-file-pdf-box: 1. 55 Cancri e](planet-files/Planet1_55CancriE.pdf)
+- [:material-file-pdf-box: 2. WASP-76 b](planet-files/Planet2_Wasp-76B.pdf)
+- [:material-file-pdf-box: 3. TRAPPIST-1 e](planet-files/Planet3_Trappist-1E.pdf)
+- [:material-file-pdf-box: 4. K2-18 b](planet-files/Planet4_K2-18B.pdf)
+- [:material-file-pdf-box: 5. TOI-700 d](planet-files/Planet5_Toi-700D.pdf)
+- [:material-file-pdf-box: 6. GJ 1214 b](planet-files/Planet6_Gj1214B.pdf)
+- [:material-file-pdf-box: 7. LHS 1140 b](planet-files/Planet7_Lhs1140B.pdf)
+- [:material-file-pdf-box: 8. TRAPPIST-1 g](planet-files/Planet8_Trappist-1G.pdf)

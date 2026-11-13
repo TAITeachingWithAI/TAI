@@ -5,6 +5,12 @@ order: 9
 
 # Sound generation
 
+## Student material
+
+<!--student-pdfs-->
+
+## Video clips
+
 Here you find download links to the MP4 files that can be used as videos in the
 lesson. They are cropped to 30 seconds, so they can be uploaded in Adobe Firefly.
 

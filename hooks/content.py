@@ -6,6 +6,10 @@ Two tokens can be placed anywhere in a page's Markdown:
                       same folder as the page (subfolders excluded).
   <!--sections-->  -> a "grid cards" block linking to the immediate
                       child sections (subfolders that contain an index.md).
+  <!--student-pdfs--> -> on a teacher lesson page: direct links to the PDFs of
+                      the matching student page. Teacher lesson pages always
+                      get this ("## Student material") even without the token,
+                      so teachers find all material in one place.
 
 This keeps section/index pages to a couple of lines: drop in a token and
 newly added PDFs or lesson folders appear automatically on the next build.
@@ -170,6 +174,49 @@ def _pdf_block(folder: str, files) -> str:
     )
 
 
+def _student_folder(folder: str) -> str | None:
+    """for-teachers/<part>/<lesson> -> for-students/<part>/<lesson> (lesson pages only)."""
+    parts = folder.split("/")
+    if len(parts) == 3 and parts[0] == "for-teachers":
+        return "/".join(["for-students"] + parts[1:])
+    return None
+
+
+def _student_pdfs(folder: str, files) -> list[tuple[str, str]]:
+    """(relative link, label) for the PDFs in the matching student folder."""
+    sfolder = _student_folder(folder)
+    if not sfolder:
+        return []
+    items = []
+    for f in files:
+        uri = f.src_uri
+        if uri.lower().endswith(".pdf") and posixpath.dirname(uri) == sfolder:
+            name = posixpath.basename(uri)
+            items.append((posixpath.relpath(uri, folder).replace(" ", "%20"), _prettify(name)))
+    return sorted(items, key=lambda pair: pair[1].lower())
+
+
+def _student_pdf_block(folder: str, files) -> str:
+    items = _student_pdfs(folder, files)
+    if not items:
+        return "_No student documents for this lesson._"
+    return "\n".join(f"- [:material-file-pdf-box: {label}]({link})" for link, label in items)
+
+
+def _ensure_student_material(markdown: str, page, files) -> str:
+    """Teacher lesson pages always show the student material too (as direct links)."""
+    if "<!--student-pdfs-->" in markdown:
+        return markdown
+    folder = posixpath.dirname(page.file.src_uri)
+    if not _student_pdfs(folder, files):
+        return markdown
+    section = "## Student material\n\n<!--student-pdfs-->\n"
+    m = re.search(r"^## ", markdown, re.M)
+    if m:
+        return markdown[:m.start()] + section + "\n" + markdown[m.start():]
+    return markdown.rstrip() + "\n\n" + section
+
+
 def _sections_block(folder: str, files) -> str:
     children = {}
     for f in files:
@@ -196,10 +243,13 @@ def _sections_block(folder: str, files) -> str:
 
 
 def on_page_markdown(markdown, *, page, config, files, **kwargs):
+    markdown = _ensure_student_material(markdown, page, files)
     markdown = _insert_summary(markdown, page, config)
+    folder = posixpath.dirname(page.file.src_uri)
+    if "<!--student-pdfs-->" in markdown:
+        markdown = markdown.replace("<!--student-pdfs-->", _student_pdf_block(folder, files))
     if "<!--pdfs-->" not in markdown and "<!--sections-->" not in markdown:
         return markdown
-    folder = posixpath.dirname(page.file.src_uri)
     markdown = markdown.replace("<!--sections-->", _sections_block(folder, files))
     markdown = markdown.replace("<!--pdfs-->", _pdf_block(folder, files))
     return markdown

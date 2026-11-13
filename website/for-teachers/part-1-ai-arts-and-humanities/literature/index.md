@@ -5,6 +5,8 @@ order: 6
 
 # Literature
 
-This lesson has no separate teacher version: the material is the same as the student worksheet (no solutions are embedded).
+There is no separate teacher version of this lesson: teachers use the same material as the students.
 
-[:octicons-arrow-right-24: Go to the student material](../../../for-students/part-1-ai-arts-and-humanities/literature/index.md)
+## Lesson material
+
+<!--student-pdfs-->

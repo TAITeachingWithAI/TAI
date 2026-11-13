@@ -7,6 +7,10 @@ order: 7
 
 Here you find the supplementary teaching material on diffusion models.
 
+## Student material
+
+<!--student-pdfs-->
+
 ## Sub-sections
 
 <!--sections-->
