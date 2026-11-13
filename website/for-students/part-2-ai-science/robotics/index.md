@@ -19,6 +19,13 @@ and then make a real Cutebot learn the fastest path across a small grid.
     [python.microbit.org](https://python.microbit.org){ target="_blank" }.
     A `.hex` file can also simply be dragged onto the micro:bit.
 
+Your worksheet refers to the folder `HEX_files`. You can download that whole
+folder as one ZIP file:
+
+- [:material-folder-zip: Robotics_HEX_files.zip](../../../for-teachers/part-2-ai-science/robotics/Robotics_HEX_files.zip)
+
+Or download the files you need one by one:
+
 - [:material-language-python: Cutebot.py](../../../for-teachers/part-2-ai-science/robotics/HEX_files/Cutebot.py): the Cutebot library. In levels 2 and 3, add it as a separate file next to your own program.
 - [:material-chip: RL_cutebot_3cell.hex](../../../for-teachers/part-2-ai-science/robotics/HEX_files/RL_cutebot_3cell.hex): the learning robot on the 3-cell grid, ready to flash (level 1).
 - [:material-language-python: RL_cutebot_3cell.py](../../../for-teachers/part-2-ai-science/robotics/HEX_files/RL_cutebot_3cell.py): the same code as a Python file.

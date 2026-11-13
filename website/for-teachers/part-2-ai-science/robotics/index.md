@@ -44,10 +44,19 @@ chatbot.
 
 ## Files for the micro:bit
 
-All files are in the folder `HEX_files`. The `.hex` files are ready to flash:
-students drag them onto the micro:bit, no coding needed. The
+The code for the Cutebot comes as ready-made files. The `.hex` files are ready to
+flash: students drag them onto the micro:bit, no coding needed. The
 [explanation for teachers](HEX_files/README.md) describes what each file is and
 when students need it.
+
+!!! tip "Download everything at once"
+    The worksheet tells students to look for these files in a folder called
+    `HEX_files`. The easiest way is to download the whole folder as one ZIP file,
+    unzip it, and share the `HEX_files` folder with your students as it is:
+
+    [:material-folder-zip: Robotics_HEX_files.zip](Robotics_HEX_files.zip)
+
+You can also download the files one by one:
 
 - [:material-language-python: Cutebot.py](HEX_files/Cutebot.py): the Cutebot driver library. Only needed in levels 2 and 3, as a separate file next to the students' own program.
 - [:material-chip: RL_cutebot_3cell.hex](HEX_files/RL_cutebot_3cell.hex) and [:material-language-python: RL_cutebot_3cell.py](HEX_files/RL_cutebot_3cell.py): the learning robot on the 3-cell grid (level 1, and the reference solution for levels 2 and 3).
