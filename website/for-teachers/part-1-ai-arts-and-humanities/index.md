@@ -1,8 +1,8 @@
 ---
-title: "Part 1: AI & Arts and Humanities (Teachers)"
+title: "Part 1: AI & Arts and Humanities"
 ---
 
-# Part 1: AI & Arts and Humanities (Teachers)
+# Part 1: AI & Arts and Humanities
 
 Supporting teaching material for the lessons in the student section.
 

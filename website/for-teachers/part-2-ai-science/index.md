@@ -2,7 +2,7 @@
 title: "Part 2: AI & Science"
 ---
 
-# Part 2: AI & Science (Teachers)
+# Part 2: AI & Science
 
 Here you find the supporting teaching material for Part 2: AI & Science,
 organised by subject. This material is still under development.
